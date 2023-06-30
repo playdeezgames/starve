@@ -1,10 +1,13 @@
-﻿Friend Module TerrainTypes
+﻿Imports System.Runtime.CompilerServices
+
+Friend Module TerrainTypes
     Friend Const Empty = "Empty"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, TerrainTypeDescriptor) =
         New Dictionary(Of String, TerrainTypeDescriptor) From
         {
-            {Empty, New TerrainTypeDescriptor("/"c, Hue.Black)}
+            {Empty, New TerrainTypeDescriptor("\"c, Hue.Green)}
         }
+    <Extension>
     Friend Function ToTerrainTypeDescriptor(terrainType As String) As TerrainTypeDescriptor
         Return descriptors(terrainType)
     End Function

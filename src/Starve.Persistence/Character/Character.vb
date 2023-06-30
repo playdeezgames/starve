@@ -17,4 +17,20 @@
             Return CharacterData.CharacterType
         End Get
     End Property
+
+    Public Property Cell As ICell Implements ICharacter.Cell
+        Get
+            Return New Cell(WorldData, CharacterData.MapId, CharacterData.CellIndex)
+        End Get
+        Set(value As ICell)
+            CharacterData.MapId = value.Map.Id
+            CharacterData.CellIndex = value.Id
+        End Set
+    End Property
+
+    Public ReadOnly Property Map As IMap Implements ICharacter.Map
+        Get
+            Return Cell.Map
+        End Get
+    End Property
 End Class

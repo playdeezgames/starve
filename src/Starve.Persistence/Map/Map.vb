@@ -34,4 +34,11 @@
             Return MapId
         End Get
     End Property
+
+    Public Function GetCell(column As Integer, row As Integer) As ICell Implements IMap.GetCell
+        If column < 0 OrElse row < 0 OrElse column >= Columns OrElse row >= Rows Then
+            Return Nothing
+        End If
+        Return New Cell(WorldData, MapId, column + row * Columns)
+    End Function
 End Class

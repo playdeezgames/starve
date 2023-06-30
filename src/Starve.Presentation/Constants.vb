@@ -4,4 +4,6 @@
     Public Const DefaultScreenWidth = ViewWidth * 5
     Public Const DefaultScreenHeight = ViewHeight * 5
     Public Const StarveFont = "StarveFont"
+    Friend Const CellWidth = 8
+    Friend Const CellHeight = 8
 End Module

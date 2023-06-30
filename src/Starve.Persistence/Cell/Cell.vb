@@ -33,4 +33,22 @@ Friend Class Cell
             Return New Map(WorldData, MapId)
         End Get
     End Property
+
+    Public ReadOnly Property Column As Integer Implements ICell.Column
+        Get
+            Return CellIndex Mod Map.Columns
+        End Get
+    End Property
+
+    Public ReadOnly Property Row As Integer Implements ICell.Row
+        Get
+            Return CellIndex \ Map.Rows
+        End Get
+    End Property
+
+    Public ReadOnly Property TerrainType As String Implements ICell.TerrainType
+        Get
+            Return CellData.TerrainType
+        End Get
+    End Property
 End Class
