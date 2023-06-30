@@ -1,4 +1,4 @@
-﻿Friend Class VisibleEntityDescriptor
+﻿Friend MustInherit Class VisibleEntityDescriptor
     ReadOnly Property Glyph As Char
     ReadOnly Property Hue As Integer
     Sub New(glyph As Char, hue As Integer)
