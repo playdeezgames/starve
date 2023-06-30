@@ -29,11 +29,15 @@ Public Class StarveContext
         With font
             .WriteText(displayBuffer, (0, 0), "Starve!!", Hue.White)
         End With
+        With Me.Font(StarveFont)
+            .WriteText(displayBuffer, (8, 8), "$", Hue.Brown)
+        End With
     End Sub
 
     Public Overrides Sub ShowAboutContent(displayBuffer As IPixelSink, font As Font)
         With font
             .WriteText(displayBuffer, (0, 0), "About Starve!!", Hue.White)
+            'https://opengameart.org/content/micro-roguelike
         End With
     End Sub
 
