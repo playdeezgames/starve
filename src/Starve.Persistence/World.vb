@@ -19,4 +19,16 @@ Public Class World
             Return Nothing
         End Try
     End Function
+
+    Public Function CreateMap(mapType As String, size As (Integer, Integer)) As IMap Implements IWorld.CreateMap
+        Dim mapId = WorldData.Maps.Count
+        WorldData.Maps.Add(
+            New MapData With
+            {
+                .MapType = mapType,
+                .Columns = size.Item1,
+                .Rows = size.Item2
+            })
+        Return New Map(WorldData, mapId)
+    End Function
 End Class
