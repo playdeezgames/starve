@@ -11,4 +11,10 @@
             Return CharacterId
         End Get
     End Property
+
+    Public ReadOnly Property CharacterType As String Implements ICharacter.CharacterType
+        Get
+            Return CharacterData.CharacterType
+        End Get
+    End Property
 End Class

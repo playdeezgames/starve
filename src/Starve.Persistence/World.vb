@@ -9,6 +9,24 @@ Public Class World
         MyBase.New(worldData)
     End Sub
 
+    Public Property Avatar As ICharacter Implements IWorld.Avatar
+        Get
+            If WorldData.AvatarCharacterId.HasValue Then
+                Return New Character(WorldData, WorldData.AvatarCharacterId.Value)
+            End If
+            Return Nothing
+        End Get
+        Set(value As ICharacter)
+            WorldData.AvatarCharacterId = value?.Id
+        End Set
+    End Property
+
+    Public ReadOnly Property Characters As IEnumerable(Of ICharacter) Implements IWorld.Characters
+        Get
+            Return Enumerable.Range(0, WorldData.Characters.Count).Select(Function(x) New Character(WorldData, x))
+        End Get
+    End Property
+
     Public Sub Save(filename As String) Implements IWorld.Save
         File.WriteAllText(filename, JsonSerializer.Serialize(WorldData))
     End Sub
