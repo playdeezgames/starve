@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Starve</RootNamespace>
-    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Starve.Presentation</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <OptionStrict>On</OptionStrict>
   </PropertyGroup>
 
@@ -16,8 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj" />
-    <ProjectReference Include="..\Starve.Presentation\Starve.Presentation.vbproj" />
+    <ProjectReference Include="..\..\abettor-of-splorr\src\AOS.UI\AOS.UI.vbproj" />
+    <ProjectReference Include="..\Starve.Business\Starve.Business.vbproj" />
   </ItemGroup>
 
 </Project>
