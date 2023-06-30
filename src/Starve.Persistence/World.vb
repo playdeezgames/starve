@@ -20,15 +20,23 @@ Public Class World
         End Try
     End Function
 
-    Public Function CreateMap(mapType As String, size As (Integer, Integer)) As IMap Implements IWorld.CreateMap
+    Public Function CreateMap(mapType As String, size As (Integer, Integer), terrainType As String) As IMap Implements IWorld.CreateMap
         Dim mapId = WorldData.Maps.Count
-        WorldData.Maps.Add(
+        Dim mapData =
             New MapData With
             {
                 .MapType = mapType,
                 .Columns = size.Item1,
                 .Rows = size.Item2
-            })
+            }
+        While mapData.Cells.Count < size.Item1 * size.Item2
+            Dim cellData = New CellData With
+                {
+                    .TerrainType = terrainType
+                }
+            mapData.Cells.Add(cellData)
+        End While
+        WorldData.Maps.Add(mapData)
         Return New Map(WorldData, mapId)
     End Function
 End Class

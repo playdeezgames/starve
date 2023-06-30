@@ -8,6 +8,6 @@ Friend Module MapInitializer
         Next
     End Sub
     Private Sub InitializeMap(world As IWorld, mapType As String, descriptor As MapTypeDescriptor)
-        Dim map = world.CreateMap(mapType, descriptor.Size)
+        Dim map = world.CreateMap(mapType, descriptor.Size, descriptor.DefaultTerrainType)
     End Sub
 End Module
