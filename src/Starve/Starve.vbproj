@@ -19,6 +19,7 @@
     <None Remove="Content\CyFont3x5.json" />
     <None Remove="Content\PlayerHit.wav" />
     <None Remove="Content\Shucks.wav" />
+    <None Remove="Icon.bmp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +32,10 @@
     <Content Include="Content\Shucks.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
 
   <ItemGroup>

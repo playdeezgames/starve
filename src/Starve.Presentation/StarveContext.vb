@@ -53,6 +53,11 @@ Public Class StarveContext
         Return File.Exists(SlotFilename(slot))
     End Function
 
+    Friend Shared Sub Embark()
+        World = New World(New Data.WorldData)
+        WorldInitializer.Initialize(World)
+    End Sub
+
     Private ReadOnly SlotFilename As IReadOnlyDictionary(Of Integer, String) =
         New Dictionary(Of Integer, String) From
         {
