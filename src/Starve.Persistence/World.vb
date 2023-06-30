@@ -39,4 +39,22 @@ Public Class World
         WorldData.Maps.Add(mapData)
         Return New Map(WorldData, mapId)
     End Function
+
+    Public Function CreateCharacter(characterType As String, cell As ICell) As ICharacter Implements IWorld.CreateCharacter
+        Dim characterData As New CharacterData With
+            {
+                .Recycled = False,
+                .CharacterType = characterType,
+                .MapId = cell.Map.Id,
+                .CellIndex = cell.Id
+            }
+        Dim index = WorldData.Characters.FindIndex(Function(x) x.Recycled)
+        If index = -1 Then
+            index = WorldData.Characters.Count
+            WorldData.Characters.Add(characterData)
+        Else
+            WorldData.Characters(index) = characterData
+        End If
+        Return New Character(WorldData, index)
+    End Function
 End Class

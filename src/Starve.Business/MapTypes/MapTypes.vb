@@ -7,7 +7,12 @@ Friend Module MapTypes
         {
             {
                 Initial,
-                New MapTypeDescriptor((48, 48))
+                New MapTypeDescriptor(
+                    (48, 48),
+                    spawnCharacter:=New Dictionary(Of String, Integer) From
+                    {
+                        {CharacterTypes.Dude, 1}
+                    })
             }
         }
     <Extension>
