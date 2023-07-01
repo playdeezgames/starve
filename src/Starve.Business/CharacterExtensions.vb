@@ -3,11 +3,11 @@ Imports Starve.Persistence
 
 Public Module CharacterExtensions
     <Extension>
-    Public Function GetGlyph(character As ICharacter) As Char
+    Public Function Glyph(character As ICharacter) As Char
         Return character.CharacterType.ToCharacterTypeDescriptor.Glyph
     End Function
     <Extension>
-    Public Function GetHue(character As ICharacter) As Integer
+    Public Function Hue(character As ICharacter) As Integer
         Return character.CharacterType.ToCharacterTypeDescriptor.Hue
     End Function
     <Extension>
@@ -18,6 +18,7 @@ Public Module CharacterExtensions
             Return
         End If
         character.ApplyHunger()
+        character.SetMovesMade(character.MovesMade + 1)
         character.Cell = nextCell
         currentCell.Character = Nothing
         nextCell.Character = character
@@ -27,7 +28,7 @@ Public Module CharacterExtensions
         Return character.Statistic(StatisticTypes.Health)
     End Function
     <Extension>
-    Public Sub SetHealth(character As ICharacter, health As Integer)
+    Private Sub SetHealth(character As ICharacter, health As Integer)
         character.Statistic(StatisticTypes.Health) = Math.Clamp(health, 0, character.MaximumHealth)
     End Sub
     <Extension>
@@ -39,7 +40,7 @@ Public Module CharacterExtensions
         Return character.Statistic(StatisticTypes.Satiety)
     End Function
     <Extension>
-    Public Sub SetSatiety(character As ICharacter, satiety As Integer)
+    Private Sub SetSatiety(character As ICharacter, satiety As Integer)
         character.Statistic(StatisticTypes.Satiety) = Math.Clamp(satiety, 0, character.MaximumSatiety)
     End Sub
     <Extension>
@@ -47,11 +48,11 @@ Public Module CharacterExtensions
         Return character.Statistic(StatisticTypes.MaximumSatiety)
     End Function
     <Extension>
-    Public Function HungerRate(character As ICharacter) As Integer
+    Private Function HungerRate(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.HungerRate)
     End Function
     <Extension>
-    Public Sub ApplyHunger(character As ICharacter)
+    Private Sub ApplyHunger(character As ICharacter)
         Dim hungerRate = character.HungerRate
         Dim satiety = character.Satiety
         character.SetSatiety(character.Satiety - hungerRate)
@@ -62,4 +63,12 @@ Public Module CharacterExtensions
     Public Function IsDead(character As ICharacter) As Boolean
         Return character.Health = 0
     End Function
+    <Extension>
+    Public Function MovesMade(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.MovesMade)
+    End Function
+    <Extension>
+    Private Sub SetMovesMade(character As ICharacter, movesMade As Integer)
+        character.Statistic(StatisticTypes.MovesMade) = movesMade
+    End Sub
 End Module

@@ -18,9 +18,14 @@ Friend Class DeadState
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), Context.ViewSize, Hue.Black)
         Dim font = Context.Font(UIFont)
+        Dim centerX = ViewWidth \ 2
+        Dim centerTextY = ViewHeight \ 2 - font.Height \ 2
+        Dim avatar = Context.World.Avatar
         With font
             Dim text = "Yer Dead!"
-            .WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight \ 2 - font.Height \ 2), text, Hue.Red)
+            .WriteText(displayBuffer, (centerX - font.TextWidth(text) \ 2, centerTextY - font.Height), text, Hue.Red)
+            text = $"Moves Made: {avatar.MovesMade}"
+            .WriteText(displayBuffer, (centerX - font.TextWidth(text) \ 2, centerTextY + font.Height), text, Hue.Cyan)
         End With
         Context.ShowStatusBar(displayBuffer, font, "Space/(A) - Continue", Hue.Black, Hue.LightGray)
     End Sub

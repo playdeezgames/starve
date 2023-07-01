@@ -15,7 +15,8 @@ Friend Module CharacterTypes
                         {StatisticTypes.MaximumHealth, 100},
                         {StatisticTypes.Satiety, 100},
                         {StatisticTypes.MaximumSatiety, 100},
-                        {StatisticTypes.HungerRate, 1}
+                        {StatisticTypes.HungerRate, 1},
+                        {StatisticTypes.MovesMade, 0}
                     })}
         }
     <Extension>

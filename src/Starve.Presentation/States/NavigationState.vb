@@ -64,8 +64,8 @@ Friend Class NavigationState
         If character Is Nothing Then
             Return
         End If
-        Dim glyph = character.GetGlyph()
-        Dim hue = character.GetHue()
+        Dim glyph = character.Glyph()
+        Dim hue = character.Hue()
         displayBuffer.Fill(position, (CellWidth, CellHeight), Business.Hue.Black)
         font.WriteText(displayBuffer, position, $"{glyph}", hue)
     End Sub

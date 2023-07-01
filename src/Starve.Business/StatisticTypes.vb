@@ -4,4 +4,5 @@
     Friend Const Health = "Health"
     Friend Const MaximumHealth = "MaximumHealth"
     Friend Const HungerRate = "HungerRate"
+    Friend Const MovesMade = "MovesMade"
 End Module
