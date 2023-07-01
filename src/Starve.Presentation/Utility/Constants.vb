@@ -7,4 +7,5 @@
     Friend Const CellWidth = 8
     Friend Const CellHeight = 8
     Friend Const RunText = "RUN!!"
+    Friend Const AttackText = "Attack!"
 End Module

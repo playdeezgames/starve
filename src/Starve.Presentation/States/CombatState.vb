@@ -11,6 +11,8 @@ Friend Class CombatState
         Select Case value.Item2
             Case RunText
                 SetState(GameState.Run)
+            Case AttackText
+                SetState(GameState.Attack)
             Case Else
                 Throw New NotImplementedException
         End Select
@@ -22,6 +24,7 @@ Friend Class CombatState
         HeaderText = $"{avatar.Name}({avatar.Health}/{avatar.MaximumHealth}) v. {target.Name}({target.Health}/{target.MaximumHealth})"
         Return New List(Of (String, String)) From
             {
+                (AttackText, AttackText),
                 (RunText, RunText)
             }
     End Function

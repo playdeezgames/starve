@@ -89,4 +89,30 @@ Public Module CharacterExtensions
     Public Function Name(character As ICharacter) As String
         Return character.CharacterType.ToCharacterTypeDescriptor.Name
     End Function
+    <Extension>
+    Private Function Enemy(character As ICharacter) As ICharacter
+        If character.IsInCombat Then
+            Return character.TargetCell.Character
+        End If
+        Return Nothing
+    End Function
+    <Extension>
+    Public Sub Attack(character As ICharacter, doCounterAttacks As Boolean)
+        Dim enemy = character.Enemy
+        'TODO: roll attack
+        'TODO: roll defend
+        'TODO: calculate damage
+        'TODO: apply damage
+        If enemy.IsDead Then
+            'TODO: message about killing
+            'TODO: drops
+            'TODO: recyle
+            character.TargetCell = Nothing
+        Else
+            If doCounterAttacks Then
+                enemy.TargetCell = character.Cell
+                enemy.Attack(False)
+            End If
+        End If
+    End Sub
 End Module
