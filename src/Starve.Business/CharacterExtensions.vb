@@ -1,4 +1,5 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.Diagnostics.CodeAnalysis
+Imports System.Runtime.CompilerServices
 Imports Starve.Persistence
 
 Public Module CharacterExtensions
@@ -14,7 +15,7 @@ Public Module CharacterExtensions
     Public Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
         Dim currentCell = character.Cell
         Dim nextCell = currentCell.Map.GetCell(currentCell.Column + deltaX, currentCell.Row + deltaY)
-        If nextCell Is Nothing OrElse Not nextCell.IsTenable Then
+        If nextCell Is Nothing OrElse Not nextCell.IsTenable OrElse nextCell.HasCharacter Then
             Return
         End If
         character.ApplyHunger()

@@ -54,4 +54,10 @@ Friend Class Cell
             CellData.TerrainType = value
         End Set
     End Property
+
+    Public ReadOnly Property HasCharacter As Boolean Implements ICell.HasCharacter
+        Get
+            Return CellData.CharacterId.HasValue
+        End Get
+    End Property
 End Class

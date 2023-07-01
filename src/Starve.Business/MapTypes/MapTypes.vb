@@ -12,7 +12,8 @@ Friend Module MapTypes
                     (48, 48),
                     spawnCharacter:=New Dictionary(Of String, Integer) From
                     {
-                        {CharacterTypes.Dude, 1}
+                        {CharacterTypes.Dude, 1},
+                        {CharacterTypes.Snek, 100}
                     },
                     customInitializer:=AddressOf InitializeInitialMap)
             }
