@@ -10,4 +10,15 @@ Public Module CharacterExtensions
     Public Function GetHue(character As ICharacter) As Integer
         Return character.CharacterType.ToCharacterTypeDescriptor.Hue
     End Function
+    <Extension>
+    Public Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
+        Dim currentCell = character.Cell
+        Dim nextCell = currentCell.Map.GetCell(currentCell.Column + deltaX, currentCell.Row + deltaY)
+        If nextCell Is Nothing Then
+            Return
+        End If
+        character.Cell = nextCell
+        currentCell.Character = Nothing
+        nextCell.Character = character
+    End Sub
 End Module

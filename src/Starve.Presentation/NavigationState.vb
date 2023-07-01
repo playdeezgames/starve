@@ -9,7 +9,24 @@ Friend Class NavigationState
         MyBase.New(parent, setState, context)
     End Sub
     Public Overrides Sub HandleCommand(cmd As String)
-        SetState(BoilerplateState.GameMenu)
+        Select Case cmd
+            Case Command.B
+                SetState(BoilerplateState.GameMenu)
+            Case Command.Up
+                MoveAvatar(0, -1)
+            Case Command.Down
+                MoveAvatar(0, 1)
+            Case Command.Left
+                MoveAvatar(-1, 0)
+            Case Command.Right
+                MoveAvatar(1, 0)
+        End Select
+    End Sub
+
+    Private Sub MoveAvatar(deltaX As Integer, deltaY As Integer)
+        Dim avatar = Context.World.Avatar
+        avatar.Move(deltaX, deltaY)
+        SetState(Neutral)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
@@ -29,6 +46,9 @@ Friend Class NavigationState
                     RenderCharacter(displayBuffer, font, (x, y), cell.Character)
                 Next
             Next
+        End With
+        With Context.Font(UIFont)
+            .WriteText(displayBuffer, (0, 0), $"({avatar.Cell.Column},{avatar.Cell.Row})", Hue.White)
         End With
     End Sub
 
