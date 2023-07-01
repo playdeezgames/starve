@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Starve.Persistence
 
 Friend Module MapTypes
     Friend Const Initial = "Initial"
@@ -12,9 +13,22 @@ Friend Module MapTypes
                     spawnCharacter:=New Dictionary(Of String, Integer) From
                     {
                         {CharacterTypes.Dude, 1}
-                    })
+                    },
+                    customInitializer:=AddressOf InitializeInitialMap)
             }
         }
+
+    Private Sub InitializeInitialMap(map As IMap)
+        For column = 0 To map.Columns - 1
+            map.GetCell(column, 0).TerrainType = TerrainTypes.Tree
+            map.GetCell(column, map.Rows - 1).TerrainType = TerrainTypes.Tree
+        Next
+        For row = 1 To map.Rows - 2
+            map.GetCell(0, row).TerrainType = TerrainTypes.Tree
+            map.GetCell(map.Columns - 1, row).TerrainType = TerrainTypes.Tree
+        Next
+    End Sub
+
     <Extension>
     Friend Function ToMapTypeDescriptor(mapType As String) As MapTypeDescriptor
         Return descriptors(mapType)

@@ -46,9 +46,12 @@ Friend Class Cell
         End Get
     End Property
 
-    Public ReadOnly Property TerrainType As String Implements ICell.TerrainType
+    Public Property TerrainType As String Implements ICell.TerrainType
         Get
             Return CellData.TerrainType
         End Get
+        Set(value As String)
+            CellData.TerrainType = value
+        End Set
     End Property
 End Class

@@ -14,6 +14,7 @@ Public Class StarveContext
         Get
             Return {
                 (ViewWidth * 5, ViewHeight * 5),
+                (ViewWidth * 15 \ 2, ViewHeight * 15 \ 2),
                 (ViewWidth * 10, ViewHeight * 10),
                 (ViewWidth * 15, ViewHeight * 15),
                 (ViewWidth * 20, ViewHeight * 20),

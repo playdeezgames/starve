@@ -10,6 +10,7 @@ Friend Module MapInitializer
     End Sub
     Private Sub InitializeMap(world As IWorld, mapType As String, descriptor As MapTypeDescriptor)
         Dim map = world.CreateMap(mapType, descriptor.Size, descriptor.DefaultTerrainType)
+        descriptor.CustomInitializer.Invoke(map)
         PopulateCharacters(map, descriptor.SpawnCharacters)
     End Sub
     Private Sub PopulateCharacters(map As IMap, spawnCharacters As IReadOnlyDictionary(Of String, Integer))
