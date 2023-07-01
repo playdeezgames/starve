@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports AOS.UI
 Imports Starve.Business
 Imports Starve.Persistence
@@ -27,18 +28,17 @@ Public Class StarveContext
     End Property
 
     Public Overrides Sub ShowSplashContent(displayBuffer As IPixelSink, font As Font)
+        Dim text = "Starve!!"
         With font
-            .WriteText(displayBuffer, (0, 0), "Starve!!", Hue.White)
-        End With
-        With Me.Font(StarveFont)
-            .WriteText(displayBuffer, (8, 8), "$", Hue.Brown)
+            .WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight \ 2 - font.Height \ 2), text, Hue.Yellow)
         End With
     End Sub
 
     Public Overrides Sub ShowAboutContent(displayBuffer As IPixelSink, font As Font)
         With font
             .WriteText(displayBuffer, (0, 0), "About Starve!!", Hue.White)
-            'https://opengameart.org/content/micro-roguelike
+            .WriteText(displayBuffer, (0, font.Height), "Art:", Hue.White)
+            .WriteText(displayBuffer, (0, font.Height * 2), "https://opengameart.org/content/micro-roguelike", Hue.White)
         End With
     End Sub
 
