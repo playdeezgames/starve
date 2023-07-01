@@ -14,7 +14,7 @@ Public Module CharacterExtensions
     Public Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
         Dim currentCell = character.Cell
         Dim nextCell = currentCell.Map.GetCell(currentCell.Column + deltaX, currentCell.Row + deltaY)
-        If nextCell Is Nothing Then
+        If nextCell Is Nothing OrElse Not nextCell.IsTenable Then
             Return
         End If
         character.Cell = nextCell

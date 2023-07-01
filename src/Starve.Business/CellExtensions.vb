@@ -10,4 +10,8 @@ Public Module CellExtensions
     Function GetHue(cell As ICell) As Integer
         Return cell.TerrainType.ToTerrainTypeDescriptor.Hue
     End Function
+    <Extension>
+    Function IsTenable(cell As ICell) As Boolean
+        Return cell.TerrainType.ToTerrainTypeDescriptor.Tenable
+    End Function
 End Module
