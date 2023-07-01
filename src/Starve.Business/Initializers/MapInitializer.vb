@@ -27,5 +27,11 @@ Friend Module MapInitializer
     Private Sub PopulateCharacter(map As IMap, characterType As String)
         Dim candidate = RNG.FromEnumerable(map.Cells.Where(Function(x) x.IsTenable AndAlso x.Character Is Nothing))
         candidate.Character = map.World.CreateCharacter(characterType, candidate)
+        Dim descriptor = characterType.ToCharacterTypeDescriptor
+        With candidate.Character
+            For Each entry In descriptor.Statistics
+                .Statistic(entry.Key) = entry.Value
+            Next
+        End With
     End Sub
 End Module

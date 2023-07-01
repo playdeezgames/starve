@@ -33,4 +33,13 @@
             Return Cell.Map
         End Get
     End Property
+
+    Public Property Statistic(statisticType As String) As Integer Implements ICharacter.Statistic
+        Get
+            Return CharacterData.Statistics(statisticType)
+        End Get
+        Set(value As Integer)
+            CharacterData.Statistics(statisticType) = value
+        End Set
+    End Property
 End Class

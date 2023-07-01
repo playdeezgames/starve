@@ -32,6 +32,17 @@ Friend Class NavigationState
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), Context.ViewSize, Hue.DarkGray)
         Dim avatar = StarveContext.World.Avatar
+        RenderCurrentMap(displayBuffer, avatar)
+        Dim font = Context.Font(UIFont)
+        With font
+            .WriteText(displayBuffer, (1, 0), $"H: {avatar.Health}/{avatar.MaximumHealth}", Hue.Black)
+            .WriteText(displayBuffer, (0, 0), $"H: {avatar.Health}/{avatar.MaximumHealth}", Hue.Pink)
+            .WriteText(displayBuffer, (1, font.Height), $"S: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.Black)
+            .WriteText(displayBuffer, (0, font.Height), $"S: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.Purple)
+        End With
+    End Sub
+
+    Private Sub RenderCurrentMap(displayBuffer As IPixelSink, avatar As ICharacter)
         Dim map = avatar.Map
         Dim font = Context.Font(StarveFont)
         Dim offsetX = Context.ViewSize.Item1 \ 2 - CellWidth \ 2 - avatar.Cell.Column * CellWidth
@@ -46,9 +57,6 @@ Friend Class NavigationState
                     RenderCharacter(displayBuffer, font, (x, y), cell.Character)
                 Next
             Next
-        End With
-        With Context.Font(UIFont)
-            .WriteText(displayBuffer, (0, 0), $"({avatar.Cell.Column},{avatar.Cell.Row})", Hue.White)
         End With
     End Sub
 

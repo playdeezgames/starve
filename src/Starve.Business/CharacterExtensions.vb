@@ -21,4 +21,20 @@ Public Module CharacterExtensions
         currentCell.Character = Nothing
         nextCell.Character = character
     End Sub
+    <Extension>
+    Public Function Health(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.Health)
+    End Function
+    <Extension>
+    Public Function MaximumHealth(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.MaximumHealth)
+    End Function
+    <Extension>
+    Public Function Satiety(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.Satiety)
+    End Function
+    <Extension>
+    Public Function MaximumSatiety(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.MaximumSatiety)
+    End Function
 End Module
