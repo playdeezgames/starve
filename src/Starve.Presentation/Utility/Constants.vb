@@ -6,4 +6,5 @@
     Public Const StarveFont = "StarveFont"
     Friend Const CellWidth = 8
     Friend Const CellHeight = 8
+    Friend Const RunText = "RUN!!"
 End Module

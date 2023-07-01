@@ -11,6 +11,7 @@ Friend Module CharacterTypes
                 New CharacterTypeDescriptor(
                     "$"c,
                     Hue.Brown,
+                    "dude",
                     statistics:=New Dictionary(Of String, Integer) From
                     {
                         {StatisticTypes.Health, 100},
@@ -26,6 +27,7 @@ Friend Module CharacterTypes
                 New CharacterTypeDescriptor(
                     "2"c,
                     Hue.LightGreen,
+                    "snek",
                     statistics:=New Dictionary(Of String, Integer) From
                     {
                         {StatisticTypes.Health, 10},

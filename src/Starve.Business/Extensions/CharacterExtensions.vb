@@ -15,7 +15,11 @@ Public Module CharacterExtensions
     Public Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
         Dim currentCell = character.Cell
         Dim nextCell = currentCell.Map.GetCell(currentCell.Column + deltaX, currentCell.Row + deltaY)
-        If nextCell Is Nothing OrElse Not nextCell.IsTenable OrElse nextCell.HasCharacter Then
+        If nextCell Is Nothing OrElse Not nextCell.IsTenable Then
+            Return
+        End If
+        If nextCell.HasCharacter Then
+            character.TargetCell = nextCell
             Return
         End If
         character.ApplyHunger()
@@ -23,6 +27,7 @@ Public Module CharacterExtensions
         character.Cell = nextCell
         currentCell.Character = Nothing
         nextCell.Character = character
+        character.TargetCell = Nothing
     End Sub
     <Extension>
     Public Function Health(character As ICharacter) As Integer
@@ -72,4 +77,16 @@ Public Module CharacterExtensions
     Private Sub SetMovesMade(character As ICharacter, movesMade As Integer)
         character.Statistic(StatisticTypes.MovesMade) = movesMade
     End Sub
+    <Extension>
+    Public Function IsInCombat(character As ICharacter) As Boolean
+        Return character.TargetCell.Id <> character.Cell.Id AndAlso character.TargetCell.HasCharacter
+    End Function
+    <Extension>
+    Public Sub Run(character As ICharacter)
+        character.TargetCell = Nothing
+    End Sub
+    <Extension>
+    Public Function Name(character As ICharacter) As String
+        Return character.CharacterType.ToCharacterTypeDescriptor.Name
+    End Function
 End Module

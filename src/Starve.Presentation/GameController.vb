@@ -9,6 +9,8 @@ Public Class GameController
         SetState(BoilerplateState.Neutral, New NeutralState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Dead, New DeadState(Me, AddressOf SetCurrentState, context))
+        SetState(GameState.Combat, New CombatState(Me, AddressOf SetCurrentState, context))
+        SetState(GameState.Run, New RunState(Me, AddressOf SetCurrentState, context))
         SetCurrentState(BoilerplateState.Splash, True)
     End Sub
 End Class

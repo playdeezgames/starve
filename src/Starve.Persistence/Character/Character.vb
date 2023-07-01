@@ -42,4 +42,17 @@
             CharacterData.Statistics(statisticType) = value
         End Set
     End Property
+
+    Public Property TargetCell As ICell Implements ICharacter.TargetCell
+        Get
+            Return New Cell(WorldData, CharacterData.MapId, CharacterData.TargetCellIndex)
+        End Get
+        Set(value As ICell)
+            If value Is Nothing Then
+                value = Cell
+            End If
+            CharacterData.MapId = value.Map.Id
+            CharacterData.TargetCellIndex = value.Id
+        End Set
+    End Property
 End Class
