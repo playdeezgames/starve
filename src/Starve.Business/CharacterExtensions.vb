@@ -58,4 +58,8 @@ Public Module CharacterExtensions
         hungerRate = Math.Max(0, hungerRate - satiety)
         character.SetHealth(character.Health - hungerRate)
     End Sub
+    <Extension>
+    Public Function IsDead(character As ICharacter) As Boolean
+        Return character.Health = 0
+    End Function
 End Module

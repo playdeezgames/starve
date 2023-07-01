@@ -17,6 +17,11 @@ Friend Class NeutralState
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()
+        Dim avatar = Context.World.Avatar
+        If avatar.IsDead Then
+            SetState(GameState.Dead)
+            Return
+        End If
         SetState(GameState.Navigation)
     End Sub
 End Class
