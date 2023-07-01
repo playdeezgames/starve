@@ -19,7 +19,11 @@ Friend Module CharacterTypes
                         {StatisticTypes.Satiety, 100},
                         {StatisticTypes.MaximumSatiety, 100},
                         {StatisticTypes.HungerRate, 1},
-                        {StatisticTypes.MovesMade, 0}
+                        {StatisticTypes.MovesMade, 0},
+                        {StatisticTypes.MinimumAttack, 10},
+                        {StatisticTypes.MaximumAttack, 20},
+                        {StatisticTypes.MinimumDefend, 0},
+                        {StatisticTypes.MaximumDefend, 10}
                     })
             },
             {
@@ -35,7 +39,11 @@ Friend Module CharacterTypes
                         {StatisticTypes.Satiety, 0},
                         {StatisticTypes.MaximumSatiety, 0},
                         {StatisticTypes.HungerRate, 0},
-                        {StatisticTypes.MovesMade, 0}
+                        {StatisticTypes.MovesMade, 0},
+                        {StatisticTypes.MinimumAttack, 5},
+                        {StatisticTypes.MaximumAttack, 15},
+                        {StatisticTypes.MinimumDefend, 10},
+                        {StatisticTypes.MaximumDefend, 25}
                     })
             }
         }
