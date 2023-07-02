@@ -17,7 +17,12 @@ Friend Class NeutralState
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()
-        Dim avatar = Context.World.Avatar
+        Dim world = Context.World
+        If world.HasMessages Then
+            SetState(GameState.Message)
+            Return
+        End If
+        Dim avatar = world.Avatar
         If avatar.IsInCombat Then
             SetState(GameState.Combat)
             Return

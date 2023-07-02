@@ -4,4 +4,5 @@
     Friend Const Combat = "Combat"
     Friend Const Run = "Run"
     Friend Const Attack = "Attack"
+    Friend Const Message = "Message"
 End Module

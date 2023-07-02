@@ -109,10 +109,12 @@ Public Module CharacterExtensions
             'TODO: recyle
             character.TargetCell = Nothing
         Else
-            If doCounterAttacks Then
-                enemy.TargetCell = character.Cell
-                enemy.Attack(False)
-            End If
+            'TODO: health status of enemy
+        End If
+
+        If Not enemy.IsDead AndAlso doCounterAttacks Then
+            enemy.TargetCell = character.Cell
+            enemy.Attack(False)
         End If
     End Sub
 End Module
