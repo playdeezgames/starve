@@ -6,4 +6,6 @@
     ReadOnly Property Column As Integer
     ReadOnly Property Row As Integer
     Property TerrainType As String
+    Sub AddItem(item As IItem)
+    ReadOnly Property TopItem As IItem
 End Interface

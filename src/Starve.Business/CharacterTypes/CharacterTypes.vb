@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Starve.Persistence
 
 Friend Module CharacterTypes
     Friend Const Dude = "Dude"
@@ -44,9 +45,15 @@ Friend Module CharacterTypes
                         {StatisticTypes.MaximumAttack, 15},
                         {StatisticTypes.MinimumDefend, 10},
                         {StatisticTypes.MaximumDefend, 25}
-                    })
+                    },
+                    initializer:=AddressOf InitializeSnek)
             }
         }
+
+    Private Sub InitializeSnek(character As ICharacter)
+        character.AddItem(ItemInitializer.CreateItem(character.World, ItemTypes.SnekCorpse))
+    End Sub
+
     <Extension>
     Friend Function ToCharacterTypeDescriptor(characterType As String) As CharacterTypeDescriptor
         Return descriptors(characterType)

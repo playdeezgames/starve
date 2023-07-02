@@ -60,4 +60,17 @@ Friend Class Cell
             Return CellData.CharacterId.HasValue
         End Get
     End Property
+
+    Public ReadOnly Property TopItem As IItem Implements ICell.TopItem
+        Get
+            If CellData.ItemIds.Any Then
+                Return New Item(WorldData, CellData.ItemIds.First)
+            End If
+            Return Nothing
+        End Get
+    End Property
+
+    Public Sub AddItem(item As IItem) Implements ICell.AddItem
+        CellData.ItemIds.Add(item.Id)
+    End Sub
 End Class

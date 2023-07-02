@@ -8,4 +8,5 @@ Public Interface IWorld
     ReadOnly Property Characters As IEnumerable(Of ICharacter)
     ReadOnly Property HasMessages As Boolean
     Function CreateMessage() As IMessage
+    Function CreateItem(itemType As String) As IItem
 End Interface

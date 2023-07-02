@@ -104,4 +104,20 @@ Public Class World
         WorldData.Messages.Add(New MessageData)
         Return New Message(WorldData, messageId)
     End Function
+
+    Public Function CreateItem(itemType As String) As IItem Implements IWorld.CreateItem
+        Dim itemData As New ItemData With
+            {
+                .ItemType = itemType,
+                .Recycled = False
+            }
+        Dim index = WorldData.Items.FindIndex(Function(x) x.Recycled)
+        If index = -1 Then
+            index = WorldData.Items.Count
+            WorldData.Items.Add(itemData)
+        Else
+            WorldData.Items(index) = itemData
+        End If
+        Return New Item(WorldData, index)
+    End Function
 End Class

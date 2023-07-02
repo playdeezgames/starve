@@ -5,4 +5,5 @@
     Public Property CellIndex As Integer
     Public Property TargetCellIndex As Integer
     Public Property Statistics As New Dictionary(Of String, Integer)
+    Public Property ItemIds As New HashSet(Of Integer)
 End Class

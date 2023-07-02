@@ -54,10 +54,21 @@ Friend Class NavigationState
                     Dim y = offsetY + row * CellHeight
                     Dim cell = map.GetCell(column, row)
                     RenderTerrain(displayBuffer, font, (x, y), cell)
+                    RenderItem(displayBuffer, font, (x, y), cell.TopItem)
                     RenderCharacter(displayBuffer, font, (x, y), cell.Character)
                 Next
             Next
         End With
+    End Sub
+
+    Private Sub RenderItem(displayBuffer As IPixelSink, font As Font, position As (x As Integer, y As Integer), item As IItem)
+        If item Is Nothing Then
+            Return
+        End If
+        Dim glyph = item.Glyph()
+        Dim hue = item.Hue()
+        displayBuffer.Fill(position, (CellWidth, CellHeight), Business.Hue.Black)
+        font.WriteText(displayBuffer, position, $"{glyph}", hue)
     End Sub
 
     Private Sub RenderCharacter(displayBuffer As IPixelSink, font As Font, position As (x As Integer, y As Integer), character As Persistence.ICharacter)

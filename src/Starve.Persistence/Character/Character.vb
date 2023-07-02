@@ -62,6 +62,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Items As IEnumerable(Of IItem) Implements ICharacter.Items
+        Get
+            Return CharacterData.ItemIds.Select(Function(x) New Item(WorldData, x))
+        End Get
+    End Property
+
     Private ReadOnly Property IsAvatar As Boolean
         Get
             Return If(WorldData.AvatarCharacterId, -1) = Id
@@ -74,5 +80,13 @@
             Cell.Character = Nothing
             CharacterData.Recycled = True
         End If
+    End Sub
+
+    Public Sub RemoveItem(item As IItem) Implements ICharacter.RemoveItem
+        CharacterData.ItemIds.Remove(item.Id)
+    End Sub
+
+    Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
+        CharacterData.ItemIds.Add(item.Id)
     End Sub
 End Class

@@ -134,7 +134,7 @@ Public Module CharacterExtensions
             message.AddLine(Business.Hue.LightGray, $"{enemy.Name} takes {damage} damage.")
             If enemy.IsDead Then
                 message.AddLine(Business.Hue.LightGray, $"{character.Name} kills {enemy.Name}")
-                'TODO: drops
+                enemy.DropItems()
                 enemy.Recycle()
                 character.TargetCell = Nothing
                 doCounterAttacks = False
@@ -148,5 +148,12 @@ Public Module CharacterExtensions
             enemy.TargetCell = character.Cell
             enemy.Attack(False)
         End If
+    End Sub
+    <Extension>
+    Private Sub DropItems(character As ICharacter)
+        For Each item In character.Items
+            character.RemoveItem(item)
+            character.Cell.AddItem(item)
+        Next
     End Sub
 End Module
