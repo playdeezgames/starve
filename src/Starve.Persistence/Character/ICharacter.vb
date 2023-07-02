@@ -5,4 +5,6 @@
     Property TargetCell As ICell
     ReadOnly Property Map As IMap
     Property Statistic(statisticType As String) As Integer
+    ReadOnly Property World As IWorld
+    Sub Recycle()
 End Interface

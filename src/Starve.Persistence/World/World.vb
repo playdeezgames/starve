@@ -35,7 +35,10 @@ Public Class World
 
     Public ReadOnly Property CurrentMessage As IMessage Implements IWorld.CurrentMessage
         Get
-            Throw New NotImplementedException()
+            If HasMessages Then
+                Return New Message(WorldData, 0)
+            End If
+            Return Nothing
         End Get
     End Property
 
@@ -94,5 +97,11 @@ Public Class World
             WorldData.Characters(index) = characterData
         End If
         Return New Character(WorldData, index)
+    End Function
+
+    Public Function CreateMessage() As IMessage Implements IWorld.CreateMessage
+        Dim messageId = WorldData.Messages.Count
+        WorldData.Messages.Add(New MessageData)
+        Return New Message(WorldData, messageId)
     End Function
 End Class

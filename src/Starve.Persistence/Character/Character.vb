@@ -55,4 +55,23 @@
             CharacterData.TargetCellIndex = value.Id
         End Set
     End Property
+
+    Public ReadOnly Property World As IWorld Implements ICharacter.World
+        Get
+            Return New World(WorldData)
+        End Get
+    End Property
+
+    Private ReadOnly Property IsAvatar As Boolean
+        Get
+            Return If(WorldData.AvatarCharacterId, -1) = Id
+        End Get
+    End Property
+
+    Public Sub Recycle() Implements ICharacter.Recycle
+        If Not IsAvatar Then
+            Cell.Character = Nothing
+            CharacterData.Recycled = True
+        End If
+    End Sub
 End Class

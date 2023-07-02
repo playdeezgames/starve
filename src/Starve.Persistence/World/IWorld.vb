@@ -7,4 +7,5 @@ Public Interface IWorld
     Property Avatar As ICharacter
     ReadOnly Property Characters As IEnumerable(Of ICharacter)
     ReadOnly Property HasMessages As Boolean
+    Function CreateMessage() As IMessage
 End Interface

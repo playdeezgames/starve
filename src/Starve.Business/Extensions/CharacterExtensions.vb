@@ -1,7 +1,7 @@
 ﻿Imports System.Diagnostics.CodeAnalysis
 Imports System.Runtime.CompilerServices
+Imports SPLORR.Game
 Imports Starve.Persistence
-
 Public Module CharacterExtensions
     <Extension>
     Public Function Glyph(character As ICharacter) As Char
@@ -97,22 +97,54 @@ Public Module CharacterExtensions
         Return Nothing
     End Function
     <Extension>
+    Private Function MinimumAttack(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.MinimumAttack)
+    End Function
+    <Extension>
+    Private Function MaximumAttack(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.MaximumAttack)
+    End Function
+    <Extension>
+    Private Function MinimumDefend(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.MinimumDefend)
+    End Function
+    <Extension>
+    Private Function MaximumDefend(character As ICharacter) As Integer
+        Return character.Statistic(StatisticTypes.MaximumDefend)
+    End Function
+    <Extension>
+    Private Function RollAttack(character As ICharacter) As Integer
+        Return RNG.FromRange(character.MinimumAttack, character.MaximumAttack)
+    End Function
+    <Extension>
+    Private Function RollDefend(character As ICharacter) As Integer
+        Return RNG.FromRange(character.MinimumDefend, character.MaximumDefend)
+    End Function
+    <Extension>
     Public Sub Attack(character As ICharacter, doCounterAttacks As Boolean)
         Dim enemy = character.Enemy
-        'TODO: roll attack
-        'TODO: roll defend
-        'TODO: calculate damage
-        'TODO: apply damage
-        If enemy.IsDead Then
-            'TODO: message about killing
-            'TODO: drops
-            'TODO: recyle
-            character.TargetCell = Nothing
+        Dim message = character.World.CreateMessage()
+        Dim attackRoll = character.RollAttack()
+        message.AddLine(Business.Hue.LightGray, $"{character.Name} rolls an attack of {attackRoll}")
+        Dim defendRoll = enemy.RollDefend()
+        message.AddLine(Business.Hue.LightGray, $"{enemy.Name} rolls a defend of {defendRoll}")
+        Dim damage = Math.Max(0, attackRoll - defendRoll)
+        If damage > 0 Then
+            enemy.SetHealth(enemy.Health - damage)
+            message.AddLine(Business.Hue.LightGray, $"{enemy.Name} takes {damage} damage.")
+            If enemy.IsDead Then
+                message.AddLine(Business.Hue.LightGray, $"{character.Name} kills {enemy.Name}")
+                'TODO: drops
+                enemy.Recycle()
+                character.TargetCell = Nothing
+                doCounterAttacks = False
+            Else
+                message.AddLine(Business.Hue.LightGray, $"{enemy.Name} has {enemy.Health} health remaining")
+            End If
         Else
-            'TODO: health status of enemy
+            message.AddLine(Business.Hue.LightGray, $"{character.Name} misses.")
         End If
-
-        If Not enemy.IsDead AndAlso doCounterAttacks Then
+        If doCounterAttacks Then
             enemy.TargetCell = character.Cell
             enemy.Attack(False)
         End If
