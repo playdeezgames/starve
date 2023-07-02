@@ -10,6 +10,8 @@ Friend Class NavigationState
     End Sub
     Public Overrides Sub HandleCommand(cmd As String)
         Select Case cmd
+            Case Command.A
+                SetState(GameState.ActionMenu)
             Case Command.B
                 SetState(BoilerplateState.GameMenu)
             Case Command.Up
@@ -40,6 +42,7 @@ Friend Class NavigationState
             .WriteText(displayBuffer, (1, font.Height), $"S: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.Black)
             .WriteText(displayBuffer, (0, font.Height), $"S: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.Purple)
         End With
+        Context.ShowStatusBar(displayBuffer, font, Context.ControlsText("Action Menu", "Game Menu"), Hue.Black, Hue.LightGray)
     End Sub
 
     Private Sub RenderCurrentMap(displayBuffer As IPixelSink, avatar As ICharacter)
@@ -67,7 +70,6 @@ Friend Class NavigationState
         End If
         Dim glyph = item.Glyph()
         Dim hue = item.Hue()
-        displayBuffer.Fill(position, (CellWidth, CellHeight), Business.Hue.Black)
         font.WriteText(displayBuffer, position, $"{glyph}", hue)
     End Sub
 
@@ -77,7 +79,6 @@ Friend Class NavigationState
         End If
         Dim glyph = character.Glyph()
         Dim hue = character.Hue()
-        displayBuffer.Fill(position, (CellWidth, CellHeight), Business.Hue.Black)
         font.WriteText(displayBuffer, position, $"{glyph}", hue)
     End Sub
 

@@ -10,6 +10,7 @@ Public Interface ICharacter
     ReadOnly Property World As IWorld
     Sub Recycle()
     ReadOnly Property Items As IEnumerable(Of IItem)
+    ReadOnly Property HasItems As Boolean
     Sub RemoveItem(item As IItem)
     Sub AddItem(item As IItem)
 End Interface

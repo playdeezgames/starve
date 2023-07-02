@@ -8,4 +8,7 @@
     Friend Const CellHeight = 8
     Friend Const RunText = "RUN!!"
     Friend Const AttackText = "Attack!"
+    Friend Const PickUpText = "Pick Up..."
+    Friend Const InventoryText = "Inventory"
+    Friend Const StatusText = "Status"
 End Module

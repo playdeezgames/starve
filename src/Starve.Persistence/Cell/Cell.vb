@@ -63,10 +63,16 @@ Friend Class Cell
 
     Public ReadOnly Property TopItem As IItem Implements ICell.TopItem
         Get
-            If CellData.ItemIds.Any Then
+            If HasItems Then
                 Return New Item(WorldData, CellData.ItemIds.First)
             End If
             Return Nothing
+        End Get
+    End Property
+
+    Public ReadOnly Property HasItems As Boolean Implements ICell.HasItems
+        Get
+            Return CellData.ItemIds.Any
         End Get
     End Property
 

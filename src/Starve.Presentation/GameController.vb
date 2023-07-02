@@ -13,6 +13,7 @@ Public Class GameController
         SetState(GameState.Run, New RunState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Attack, New AttackState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Message, New MessageState(Me, AddressOf SetCurrentState, context))
+        SetState(GameState.ActionMenu, New ActionMenuState(Me, AddressOf SetCurrentState, context))
         SetCurrentState(BoilerplateState.Splash, True)
     End Sub
 End Class

@@ -68,6 +68,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasItems As Boolean Implements ICharacter.HasItems
+        Get
+            Return CharacterData.ItemIds.Any
+        End Get
+    End Property
+
     Private ReadOnly Property IsAvatar As Boolean
         Get
             Return If(WorldData.AvatarCharacterId, -1) = Id
