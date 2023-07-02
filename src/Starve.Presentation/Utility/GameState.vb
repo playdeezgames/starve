@@ -2,6 +2,7 @@
     Friend Const ActionMenu = "ActionMenu"
     Friend Const Navigation = "Navigation"
     Friend Const Dead = "Dead"
+    Friend Const Drop = "Drop"
     Friend Const Combat = "Combat"
     Friend Const Run = "Run"
     Friend Const Attack = "Attack"
@@ -10,4 +11,5 @@
     Friend Const Status = "Status"
     Friend Const Ground = "Ground"
     Friend Const Take = "Take"
+    Friend Const InventoryDetail = "InventoryDetail"
 End Module

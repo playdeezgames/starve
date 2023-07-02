@@ -41,10 +41,10 @@ Friend Module CharacterTypes
                         {StatisticTypes.MaximumSatiety, 0},
                         {StatisticTypes.HungerRate, 0},
                         {StatisticTypes.MovesMade, 0},
-                        {StatisticTypes.MinimumAttack, 5},
-                        {StatisticTypes.MaximumAttack, 15},
-                        {StatisticTypes.MinimumDefend, 10},
-                        {StatisticTypes.MaximumDefend, 25}
+                        {StatisticTypes.MinimumAttack, 10},
+                        {StatisticTypes.MaximumAttack, 25},
+                        {StatisticTypes.MinimumDefend, 5},
+                        {StatisticTypes.MaximumDefend, 15}
                     },
                     initializer:=AddressOf InitializeSnek)
             }

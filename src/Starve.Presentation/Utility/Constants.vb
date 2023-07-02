@@ -1,14 +1,15 @@
 ﻿Public Module Constants
-    Public Const ViewWidth = 192
-    Public Const ViewHeight = 108
+    Friend Const AttackText = "Attack!"
+    Friend Const CellHeight = 8
+    Friend Const CellWidth = 8
     Public Const DefaultScreenWidth = ViewWidth * 5
     Public Const DefaultScreenHeight = ViewHeight * 5
-    Public Const StarveFont = "StarveFont"
-    Friend Const CellWidth = 8
-    Friend Const CellHeight = 8
-    Friend Const RunText = "RUN!!"
-    Friend Const AttackText = "Attack!"
-    Friend Const PickUpText = "Pick Up..."
+    Friend Const DropText = "Drop"
     Friend Const InventoryText = "Inventory"
+    Friend Const PickUpText = "Pick Up..."
+    Friend Const RunText = "RUN!!"
+    Public Const StarveFont = "StarveFont"
     Friend Const StatusText = "Status"
+    Public Const ViewHeight = 108
+    Public Const ViewWidth = 192
 End Module

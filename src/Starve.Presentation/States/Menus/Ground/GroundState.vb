@@ -15,10 +15,10 @@
     End Function
 
     Public Overrides Sub OnStart()
-        MyBase.OnStart()
         If Not Context.World.Avatar.Cell.HasItems Then
             SetState(GameState.ActionMenu)
             Return
         End If
+        MyBase.OnStart()
     End Sub
 End Class
