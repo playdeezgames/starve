@@ -7,6 +7,7 @@
     ReadOnly Property Row As Integer
     Property TerrainType As String
     Sub AddItem(item As IItem)
+    Sub RemoveItem(item As IItem)
     ReadOnly Property TopItem As IItem
     ReadOnly Property HasItems As Boolean
     ReadOnly Property Items As IEnumerable(Of IItem)

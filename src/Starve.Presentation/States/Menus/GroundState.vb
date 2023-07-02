@@ -6,9 +6,19 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
+        TakeState.ItemName = value.Item2
+        SetState(GameState.Take)
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         Return Context.World.Avatar.Cell.Items.GroupBy(Function(x) x.Name).Select(Function(x) ($"{x.Key}(x{x.Count})", x.Key)).ToList
     End Function
+
+    Public Overrides Sub OnStart()
+        MyBase.OnStart()
+        If Not Context.World.Avatar.Cell.HasItems Then
+            SetState(GameState.ActionMenu)
+            Return
+        End If
+    End Sub
 End Class

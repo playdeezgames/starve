@@ -9,4 +9,5 @@
     Friend Const Inventory = "Inventory"
     Friend Const Status = "Status"
     Friend Const Ground = "Ground"
+    Friend Const Take = "Take"
 End Module

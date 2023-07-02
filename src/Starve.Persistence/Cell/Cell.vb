@@ -85,4 +85,8 @@ Friend Class Cell
     Public Sub AddItem(item As IItem) Implements ICell.AddItem
         CellData.ItemIds.Add(item.Id)
     End Sub
+
+    Public Sub RemoveItem(item As IItem) Implements ICell.RemoveItem
+        CellData.ItemIds.Remove(item.Id)
+    End Sub
 End Class

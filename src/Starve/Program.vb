@@ -23,7 +23,7 @@ New StarveSettings(),
     Private ReadOnly fontFileNames As IReadOnlyDictionary(Of String, String) =
         New Dictionary(Of String, String) From
         {
-            {UIFont, "Content/CyFont3x5.json"},
+            {UIFont, "Content/CyFont4x6.json"},
             {StarveFont, "Content/starve.json"}
         }
     Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of String, String) =

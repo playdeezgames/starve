@@ -153,10 +153,19 @@ Public Module CharacterExtensions
         End If
     End Sub
     <Extension>
+    Public Sub DropItem(character As ICharacter, item As IItem)
+        character.RemoveItem(item)
+        character.Cell.AddItem(item)
+    End Sub
+    <Extension>
     Private Sub DropItems(character As ICharacter)
         For Each item In character.Items
-            character.RemoveItem(item)
-            character.Cell.AddItem(item)
+            character.DropItem(item)
         Next
+    End Sub
+    <Extension>
+    Public Sub PickUpItem(character As ICharacter, item As IItem)
+        character.AddItem(item)
+        character.Cell.RemoveItem(item)
     End Sub
 End Module
