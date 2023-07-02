@@ -97,19 +97,19 @@ Public Module CharacterExtensions
         Return Nothing
     End Function
     <Extension>
-    Private Function MinimumAttack(character As ICharacter) As Integer
+    Public Function MinimumAttack(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.MinimumAttack)
     End Function
     <Extension>
-    Private Function MaximumAttack(character As ICharacter) As Integer
+    Public Function MaximumAttack(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.MaximumAttack)
     End Function
     <Extension>
-    Private Function MinimumDefend(character As ICharacter) As Integer
+    Public Function MinimumDefend(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.MinimumDefend)
     End Function
     <Extension>
-    Private Function MaximumDefend(character As ICharacter) As Integer
+    Public Function MaximumDefend(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.MaximumDefend)
     End Function
     <Extension>
