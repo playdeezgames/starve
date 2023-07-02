@@ -10,4 +10,8 @@ Public Module ItemExtensions
     Public Function Hue(item As IItem) As Integer
         Return item.ItemType.ToItemTypeDescriptor.Hue
     End Function
+    <Extension>
+    Public Function Name(item As IItem) As String
+        Return item.ItemType.ToItemTypeDescriptor.Name
+    End Function
 End Module

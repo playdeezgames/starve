@@ -7,7 +7,7 @@ Friend Module ItemTypes
         {
             {
                 SnekCorpse,
-                New ItemTypeDescriptor("2"c, Hue.DarkGray)
+                New ItemTypeDescriptor("Snek Corpse", "2"c, Hue.DarkGray)
             }
         }
     <Extension>

@@ -6,10 +6,9 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
-        Throw New NotImplementedException()
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        Throw New NotImplementedException()
+        Return Context.World.Avatar.Cell.Items.GroupBy(Function(x) x.Name).Select(Function(x) ($"{x.Key}(x{x.Count})", x.Key)).ToList
     End Function
 End Class

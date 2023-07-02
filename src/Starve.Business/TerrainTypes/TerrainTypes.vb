@@ -6,8 +6,8 @@ Friend Module TerrainTypes
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, TerrainTypeDescriptor) =
         New Dictionary(Of String, TerrainTypeDescriptor) From
         {
-            {Empty, New TerrainTypeDescriptor("\"c, Hue.Green)},
-            {Tree, New TerrainTypeDescriptor("k"c, Hue.Green, tenable:=False)}
+            {Empty, New TerrainTypeDescriptor("Empty", "\"c, Hue.Green)},
+            {Tree, New TerrainTypeDescriptor("Tree", "k"c, Hue.Green, tenable:=False)}
         }
     <Extension>
     Friend Function ToTerrainTypeDescriptor(terrainType As String) As TerrainTypeDescriptor
