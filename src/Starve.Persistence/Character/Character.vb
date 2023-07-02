@@ -69,6 +69,7 @@
     End Property
 
     Public Sub Recycle() Implements ICharacter.Recycle
+        TargetCell = Nothing
         If Not IsAvatar Then
             Cell.Character = Nothing
             CharacterData.Recycled = True
