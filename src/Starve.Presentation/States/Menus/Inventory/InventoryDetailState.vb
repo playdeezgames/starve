@@ -1,7 +1,5 @@
-﻿Imports System.Net.Mime
-
-Friend Class InventoryDetailState
-    Inherits BasePickerState
+﻿Friend Class InventoryDetailState
+    Inherits BasePickerState(Of String)
 
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
         MyBase.New(parent, setState, context, "<placeholder>", context.ControlsText("Select", "Cancel"), GameState.Inventory)
