@@ -12,7 +12,14 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
-
+        Select Case value.Item2
+            Case InventoryText
+                SetState(GameState.Inventory)
+            Case StatusText
+                SetState(GameState.Status)
+            Case PickUpText
+                SetState(GameState.Ground)
+        End Select
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))

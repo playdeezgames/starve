@@ -6,4 +6,7 @@
     Friend Const Run = "Run"
     Friend Const Attack = "Attack"
     Friend Const Message = "Message"
+    Friend Const Inventory = "Inventory"
+    Friend Const Status = "Status"
+    Friend Const Ground = "Ground"
 End Module
