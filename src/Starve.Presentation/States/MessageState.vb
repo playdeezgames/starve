@@ -25,4 +25,12 @@
             offsetY += font.Height
         Next
     End Sub
+
+    Public Overrides Sub OnStart()
+        MyBase.OnStart()
+        Dim sfx = Context.World.CurrentMessage.Sfx
+        If Not String.IsNullOrEmpty(sfx) Then
+            PlaySfx(sfx)
+        End If
+    End Sub
 End Class

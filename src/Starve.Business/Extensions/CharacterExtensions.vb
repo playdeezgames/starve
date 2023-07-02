@@ -133,15 +133,18 @@ Public Module CharacterExtensions
             enemy.SetHealth(enemy.Health - damage)
             message.AddLine(Business.Hue.LightGray, $"{enemy.Name} takes {damage} damage.")
             If enemy.IsDead Then
+                message.Sfx = If(doCounterAttacks, Sfx.EnemyDeath, Sfx.PlayerDeath)
                 message.AddLine(Business.Hue.LightGray, $"{character.Name} kills {enemy.Name}")
                 enemy.DropItems()
                 enemy.Recycle()
                 character.TargetCell = Nothing
                 doCounterAttacks = False
             Else
+                message.Sfx = If(doCounterAttacks, Sfx.EnemyHit, Sfx.PlayerHit)
                 message.AddLine(Business.Hue.LightGray, $"{enemy.Name} has {enemy.Health} health remaining")
             End If
         Else
+            message.Sfx = Sfx.Miss
             message.AddLine(Business.Hue.LightGray, $"{character.Name} misses.")
         End If
         If doCounterAttacks Then

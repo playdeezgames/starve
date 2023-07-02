@@ -18,6 +18,15 @@
         End Get
     End Property
 
+    Public Property Sfx As String Implements IMessage.Sfx
+        Get
+            Return MessageData.Sfx
+        End Get
+        Set(value As String)
+            MessageData.Sfx = value
+        End Set
+    End Property
+
     Public Sub AddLine(hue As Integer, text As String) Implements IMessage.AddLine
         MessageData.Lines.Add(New Data.MessageLineData With
                               {

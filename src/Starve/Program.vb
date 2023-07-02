@@ -29,8 +29,12 @@ New StarveSettings(),
     Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of String, String) =
         New Dictionary(Of String, String) From
         {
-            {BoilerplateSfx.SfxVolumeTest, "Content/PlayerHit.wav"},
-            {BoilerplateSfx.Failure, "Content/Shucks.wav"}
+            {Sfx.PlayerHit, "Content/PlayerHit.wav"},
+            {Sfx.PlayerDeath, "Content/PlayerDeath.wav"},
+            {Sfx.EnemyHit, "Content/EnemyHit.wav"},
+            {Sfx.EnemyDeath, "Content/EnemyDeath.wav"},
+            {Sfx.Miss, "Content/Miss.wav"},
+            {Sfx.Shucks, "Content/Shucks.wav"}
         }
     Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
         New Dictionary(Of Integer, Color) From
