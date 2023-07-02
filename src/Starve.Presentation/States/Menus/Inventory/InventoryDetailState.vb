@@ -19,8 +19,9 @@ Friend Class InventoryDetailState
         Dim item = items.First
         Dim itemCount = items.Count
         HeaderText = $"{ItemName}(x{itemCount})"
-        Dim result As New List(Of (String, String))
-        result.Add((DropText, DropText))
+        Dim result As New List(Of (String, String)) From {
+            (DropText, DropText)
+        }
         Return result
     End Function
 
