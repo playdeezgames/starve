@@ -29,13 +29,17 @@ Public Class StarveContext
         With font
             .WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight \ 2 - font.Height \ 2), text, Hue.Yellow)
         End With
+        ShowStatusBar(displayBuffer, font, "Space/(A) - Continue", Hue.Black, Hue.LightGray)
     End Sub
 
     Public Overrides Sub ShowAboutContent(displayBuffer As IPixelSink, font As Font)
         With font
-            .WriteText(displayBuffer, (0, 0), "About Starve!!", Hue.White)
-            .WriteText(displayBuffer, (0, font.Height), "Art:", Hue.White)
-            .WriteText(displayBuffer, (0, font.Height * 2), "https://opengameart.org/content/micro-roguelike", Hue.White)
+            .WriteText(displayBuffer, (0, 0), "About Starve!!", Hue.Orange)
+            .WriteText(displayBuffer, (0, font.Height * 2), "Art:", Hue.White)
+            .WriteText(displayBuffer, (0, font.Height * 3), "https://opengameart.org/content/micro-roguelike", Hue.White)
+            .WriteText(displayBuffer, (0, font.Height * 5), "A Production of TheGrumpyGameDev", Hue.White)
+            .WriteText(displayBuffer, (0, font.Height * 7), "For Retrograde Jam 4, July 1-9, 2023", Hue.White)
+            .WriteText(displayBuffer, (0, font.Height * 9), "See 'aboot.txt'", Hue.White)
         End With
     End Sub
 
