@@ -1,4 +1,5 @@
 ﻿Imports AOS.UI
+Imports Starve.Persistence
 
 Friend Class CombatState
     Inherits BasePickerState(Of String)
@@ -28,4 +29,6 @@ Friend Class CombatState
                 (RunText, RunText)
             }
     End Function
+
+    Friend Shared Property TargetCell As ICell
 End Class

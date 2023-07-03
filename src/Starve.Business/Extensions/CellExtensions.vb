@@ -14,4 +14,16 @@ Public Module CellExtensions
     Function IsTenable(cell As ICell) As Boolean
         Return cell.TerrainType.ToTerrainTypeDescriptor.Tenable
     End Function
+    Private ReadOnly neighborDeltas As IReadOnlyList(Of (Integer, Integer)) =
+        New List(Of (Integer, Integer)) From
+        {
+            (0, -1),
+            (1, 0),
+            (0, 1),
+            (-1, 0)
+        }
+    <Extension>
+    Function Neighbors(cell As ICell) As IEnumerable(Of ICell)
+        Return neighborDeltas.Select(Function(delta) cell.Map.GetCell(cell.Column + delta.Item1, cell.Row + delta.Item2)).Where(Function(x) x IsNot Nothing)
+    End Function
 End Module
