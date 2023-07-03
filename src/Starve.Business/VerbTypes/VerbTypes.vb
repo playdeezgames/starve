@@ -1,14 +1,14 @@
 ﻿Imports System.Runtime.CompilerServices
 
 Friend Module VerbTypes
-    Friend Const Drop = "Drop"
+    Friend Const Eat = "Eat"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, VerbDescriptor) =
         New Dictionary(Of String, VerbDescriptor) From
         {
             {
-                Drop,
+                Eat,
                 New VerbDescriptor(
-                    "Drop")
+                    "Eat")
             }
         }
     <Extension>

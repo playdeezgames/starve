@@ -15,14 +15,12 @@ Friend Module ItemTypes
                     Hue.DarkGray,
                     verbs:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
                     {
-                        {VerbTypes.Drop, AddressOf StandardDrop}
+                        {VerbTypes.Eat, AddressOf EatSnekCorpse}
                     })
             }
         }
 
-    Private Sub StandardDrop(character As ICharacter, item As IItem)
-        character.RemoveItem(item)
-        character.Cell.AddItem(item)
+    Private Sub EatSnekCorpse(character As ICharacter, item As IItem)
     End Sub
 
     <Extension>
