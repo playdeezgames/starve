@@ -12,23 +12,22 @@ Public Module CharacterExtensions
         Return character.CharacterType.ToCharacterTypeDescriptor.Hue
     End Function
     <Extension>
-    Public Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
+    Public Function Move(character As ICharacter, deltaX As Integer, deltaY As Integer) As ICell
         Dim currentCell = character.Cell
         Dim nextCell = currentCell.Map.GetCell(currentCell.Column + deltaX, currentCell.Row + deltaY)
         If nextCell Is Nothing OrElse Not nextCell.IsTenable Then
-            Return
+            Return Nothing
         End If
         If nextCell.HasCharacter Then
-            character.TargetCell = nextCell
-            Return
+            Return nextCell
         End If
         character.ApplyHunger()
         character.SetMovesMade(character.MovesMade + 1)
         character.Cell = nextCell
         currentCell.Character = Nothing
         nextCell.Character = character
-        character.TargetCell = Nothing
-    End Sub
+        Return Nothing
+    End Function
     <Extension>
     Public Function Health(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.Health)
@@ -78,23 +77,12 @@ Public Module CharacterExtensions
         character.Statistic(StatisticTypes.MovesMade) = movesMade
     End Sub
     <Extension>
-    Public Function IsInCombat(character As ICharacter) As Boolean
-        Return character.TargetCell.Id <> character.Cell.Id AndAlso character.TargetCell.HasCharacter
-    End Function
-    <Extension>
     Public Sub Run(character As ICharacter)
-        character.TargetCell = Nothing
+        'TODO: counterattack!
     End Sub
     <Extension>
     Public Function Name(character As ICharacter) As String
         Return character.CharacterType.ToCharacterTypeDescriptor.Name
-    End Function
-    <Extension>
-    Private Function Enemy(character As ICharacter) As ICharacter
-        If character.IsInCombat Then
-            Return character.TargetCell.Character
-        End If
-        Return Nothing
     End Function
     <Extension>
     Public Function MinimumAttack(character As ICharacter) As Integer
@@ -121,8 +109,7 @@ Public Module CharacterExtensions
         Return RNG.FromRange(character.MinimumDefend, character.MaximumDefend)
     End Function
     <Extension>
-    Public Sub Attack(character As ICharacter, doCounterAttacks As Boolean)
-        Dim enemy = character.Enemy
+    Public Sub Attack(character As ICharacter, enemy As ICharacter, doCounterAttacks As Boolean)
         Dim message = character.World.CreateMessage()
         Dim attackRoll = character.RollAttack()
         message.AddLine(Business.Hue.LightGray, $"{character.Name} rolls an attack of {attackRoll}")
@@ -137,7 +124,6 @@ Public Module CharacterExtensions
                 message.AddLine(Business.Hue.LightGray, $"{character.Name} kills {enemy.Name}")
                 enemy.DropItems()
                 enemy.Recycle()
-                character.TargetCell = Nothing
                 doCounterAttacks = False
             Else
                 message.Sfx = If(doCounterAttacks, Sfx.EnemyHit, Sfx.PlayerHit)
@@ -148,8 +134,7 @@ Public Module CharacterExtensions
             message.AddLine(Business.Hue.LightGray, $"{character.Name} misses.")
         End If
         If doCounterAttacks Then
-            enemy.TargetCell = character.Cell
-            enemy.Attack(False)
+            enemy.Attack(character, False)
         End If
     End Sub
     <Extension>

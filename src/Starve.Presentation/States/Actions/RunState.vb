@@ -18,6 +18,7 @@ Friend Class RunState
 
     Public Overrides Sub OnStart()
         MyBase.OnStart()
+        CombatState.TargetCell = Nothing
         Context.World.Avatar.Run
         SetState(Neutral)
     End Sub

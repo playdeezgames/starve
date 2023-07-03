@@ -27,7 +27,7 @@ Friend Class NavigationState
 
     Private Sub MoveAvatar(deltaX As Integer, deltaY As Integer)
         Dim avatar = Context.World.Avatar
-        avatar.Move(deltaX, deltaY)
+        CombatState.TargetCell = avatar.Move(deltaX, deltaY)
         SetState(Neutral)
     End Sub
 

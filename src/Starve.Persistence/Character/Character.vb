@@ -42,20 +42,6 @@
             CharacterData.Statistics(statisticType) = value
         End Set
     End Property
-
-    Public Property TargetCell As ICell Implements ICharacter.TargetCell
-        Get
-            Return New Cell(WorldData, CharacterData.MapId, CharacterData.TargetCellIndex)
-        End Get
-        Set(value As ICell)
-            If value Is Nothing Then
-                value = Cell
-            End If
-            CharacterData.MapId = value.Map.Id
-            CharacterData.TargetCellIndex = value.Id
-        End Set
-    End Property
-
     Public ReadOnly Property World As IWorld Implements ICharacter.World
         Get
             Return New World(WorldData)
@@ -74,14 +60,13 @@
         End Get
     End Property
 
-    Private ReadOnly Property IsAvatar As Boolean
+    ReadOnly Property IsAvatar As Boolean Implements ICharacter.IsAvatar
         Get
             Return If(WorldData.AvatarCharacterId, -1) = Id
         End Get
     End Property
 
     Public Sub Recycle() Implements ICharacter.Recycle
-        TargetCell = Nothing
         If Not IsAvatar Then
             Cell.Character = Nothing
             CharacterData.Recycled = True

@@ -86,8 +86,7 @@ Public Class World
                 .Recycled = False,
                 .CharacterType = characterType,
                 .MapId = cell.Map.Id,
-                .CellIndex = cell.Id,
-                .TargetCellIndex = cell.Id
+                .CellIndex = cell.Id
             }
         Dim index = WorldData.Characters.FindIndex(Function(x) x.Recycled)
         If index = -1 Then

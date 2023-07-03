@@ -21,7 +21,7 @@ Friend Class CombatState
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         Dim avatar = Context.World.Avatar
-        Dim target = avatar.TargetCell.Character
+        Dim target = TargetCell.Character
         HeaderText = $"{avatar.Name}({avatar.Health}/{avatar.MaximumHealth}) v. {target.Name}({target.Health}/{target.MaximumHealth})"
         Return New List(Of (String, String)) From
             {
