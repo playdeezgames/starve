@@ -21,7 +21,7 @@ Public Module CharacterExtensions
         If nextCell.HasCharacter Then
             Return nextCell
         End If
-        character.DoCounterAttacks()
+        character.DoCounterAttacks("Opportunity Attack")
         character.ApplyHunger()
         character.SetMovesMade(character.MovesMade + 1)
         character.Cell = nextCell
@@ -110,10 +110,10 @@ Public Module CharacterExtensions
         Return RNG.FromRange(character.MinimumDefend, character.MaximumDefend)
     End Function
     <Extension>
-    Public Sub Attack(character As ICharacter, enemy As ICharacter, Optional doCounterAttacks As Boolean = False, Optional counterIndex As Integer = 0, Optional counterMaximum As Integer = 0)
+    Public Sub Attack(character As ICharacter, enemy As ICharacter, Optional doCounterAttacks As Boolean = False, Optional counterIndex As Integer = 0, Optional counterMaximum As Integer = 0, Optional title As String = "")
         Dim message = character.World.CreateMessage()
-        If counterMaximum > 1 AndAlso counterIndex > 0 Then
-            message.AddLine(LightGray, $"Counter Attack {counterIndex}/{counterMaximum}")
+        If counterIndex > 0 Then
+            message.AddLine(LightGray, $"{title} {counterIndex}/{counterMaximum}")
         End If
         Dim attackRoll = character.RollAttack()
         message.AddLine(Business.Hue.LightGray, $"{character.Name} rolls an attack of {attackRoll}")
@@ -137,16 +137,16 @@ Public Module CharacterExtensions
             message.AddLine(Business.Hue.LightGray, $"{character.Name} misses.")
         End If
         If doCounterAttacks Then
-            character.DoCounterAttacks()
+            character.DoCounterAttacks("Counter Attack")
         End If
     End Sub
     <Extension>
-    Private Sub DoCounterAttacks(character As ICharacter)
+    Private Sub DoCounterAttacks(character As ICharacter, title As String)
         Dim neighbors = character.Cell.Neighbors.Where(Function(x) If(x?.HasCharacter, False))
         Dim total = neighbors.Count
         Dim index = 1
         For Each neighbor In neighbors
-            neighbor.Character.Attack(character, False, index, total)
+            neighbor.Character.Attack(character, False, index, total, title)
             index += 1
             If character.IsDead Then
                 Exit For

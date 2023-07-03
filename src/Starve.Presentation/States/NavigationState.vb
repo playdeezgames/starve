@@ -85,7 +85,13 @@ Friend Class NavigationState
     Private Sub RenderTerrain(displayBuffer As IPixelSink, font As Font, position As (x As Integer, y As Integer), cell As Persistence.ICell)
         Dim glyph = cell.GetGlyph()
         Dim hue = cell.GetHue()
-        displayBuffer.Fill(position, (CellWidth, CellHeight), Business.Hue.Black)
+        Dim background = Black
+        If cell.HasCharacter Then
+            If cell.Neighbors.Any(Function(x) x IsNot Nothing AndAlso If(x.Character?.IsAvatar, False)) Then
+                background = Red
+            End If
+        End If
+        displayBuffer.Fill(position, (CellWidth, CellHeight), background)
         font.WriteText(displayBuffer, position, $"{glyph}", hue)
     End Sub
 End Class
