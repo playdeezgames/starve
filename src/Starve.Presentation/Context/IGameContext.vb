@@ -5,4 +5,5 @@ Public Interface IGameContext
     Sub Embark()
     Property TargetCell As ICell
     Property ItemName As String
+    ReadOnly Property IsInCombat As Boolean
 End Interface
