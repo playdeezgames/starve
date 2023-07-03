@@ -21,6 +21,7 @@ Public Module CharacterExtensions
         If nextCell.HasCharacter Then
             Return nextCell
         End If
+        character.DoCounterAttacks()
         character.ApplyHunger()
         character.SetMovesMade(character.MovesMade + 1)
         character.Cell = nextCell
