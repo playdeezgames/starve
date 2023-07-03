@@ -1,5 +1,4 @@
-﻿Imports AOS.UI
-Imports Starve.Persistence
+﻿Imports Starve.Persistence
 
 Friend Class CombatState
     Inherits BasePickerState(Of String)
