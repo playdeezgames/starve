@@ -13,7 +13,6 @@ Friend Class CharacterTypeDescriptor
         MyBase.New(name, glyph, hue)
         Me.Statistics = If(statistics, New Dictionary(Of String, Integer))
         Me.Initializer = If(initializer, Sub(x)
-
                                          End Sub)
     End Sub
 End Class
