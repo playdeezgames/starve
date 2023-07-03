@@ -26,8 +26,20 @@ Public Class StarveContext
 
     Public Overrides Sub ShowSplashContent(displayBuffer As IPixelSink, font As Font)
         Dim text = "Starve!!"
-        With font
-            .WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight \ 2 - font.Height \ 2), text, Hue.Yellow)
+        Dim bigFont = Me.Font("4x6")
+        Dim x = ViewWidth \ 2 - bigFont.TextWidth(text) \ 2
+        Dim y = ViewHeight \ 2 - bigFont.Height \ 2
+        With bigFont
+            .WriteText(displayBuffer, (x + 1, y - 1), text, Hue.Brown)
+            .WriteText(displayBuffer, (x + 1, y), text, Hue.Brown)
+            .WriteText(displayBuffer, (x + 1, y + 1), text, Hue.Brown)
+            .WriteText(displayBuffer, (x - 1, y - 1), text, Hue.Brown)
+            .WriteText(displayBuffer, (x - 1, y), text, Hue.Brown)
+            .WriteText(displayBuffer, (x - 1, y + 1), text, Hue.Brown)
+            .WriteText(displayBuffer, (x, y - 1), text, Hue.Brown)
+            .WriteText(displayBuffer, (x, y + 1), text, Hue.Brown)
+
+            .WriteText(displayBuffer, (x, y), text, Hue.Yellow)
         End With
         ShowStatusBar(displayBuffer, font, "Space/(A) - Continue", Hue.Black, Hue.LightGray)
     End Sub
