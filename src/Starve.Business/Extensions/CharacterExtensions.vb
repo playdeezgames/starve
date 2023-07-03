@@ -109,8 +109,11 @@ Public Module CharacterExtensions
         Return RNG.FromRange(character.MinimumDefend, character.MaximumDefend)
     End Function
     <Extension>
-    Public Sub Attack(character As ICharacter, enemy As ICharacter, doCounterAttacks As Boolean)
+    Public Sub Attack(character As ICharacter, enemy As ICharacter, Optional doCounterAttacks As Boolean = False, Optional counterIndex As Integer = 0, Optional counterMaximum As Integer = 0)
         Dim message = character.World.CreateMessage()
+        If counterMaximum > 1 AndAlso counterIndex > 0 Then
+            message.AddLine(LightGray, $"Counter Attack {counterIndex}/{counterMaximum}")
+        End If
         Dim attackRoll = character.RollAttack()
         message.AddLine(Business.Hue.LightGray, $"{character.Name} rolls an attack of {attackRoll}")
         Dim defendRoll = enemy.RollDefend()
@@ -124,7 +127,6 @@ Public Module CharacterExtensions
                 message.AddLine(Business.Hue.LightGray, $"{character.Name} kills {enemy.Name}")
                 enemy.DropItems()
                 enemy.Recycle()
-                doCounterAttacks = False
             Else
                 message.Sfx = If(doCounterAttacks, Sfx.EnemyHit, Sfx.PlayerHit)
                 message.AddLine(Business.Hue.LightGray, $"{enemy.Name} has {enemy.Health} health remaining")
@@ -134,8 +136,21 @@ Public Module CharacterExtensions
             message.AddLine(Business.Hue.LightGray, $"{character.Name} misses.")
         End If
         If doCounterAttacks Then
-            enemy.Attack(character, False)
+            character.DoCounterAttacks()
         End If
+    End Sub
+    <Extension>
+    Private Sub DoCounterAttacks(character As ICharacter)
+        Dim neighbors = character.Cell.Neighbors.Where(Function(x) If(x?.HasCharacter, False))
+        Dim total = neighbors.Count
+        Dim index = 1
+        For Each neighbor In neighbors
+            neighbor.Character.Attack(character, False, index, total)
+            index += 1
+            If character.IsDead Then
+                Exit For
+            End If
+        Next
     End Sub
     <Extension>
     Public Sub DropItem(character As ICharacter, item As IItem)
