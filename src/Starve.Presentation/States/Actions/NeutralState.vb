@@ -19,7 +19,8 @@ Friend Class NeutralState
         MyBase.OnStart()
         Dim world = Context.Game.World
         If world.HasMessages Then
-            SetState(GameState.Message)
+            MessageState.ReturnState = BoilerplateState.Neutral
+            SetState(Message)
             Return
         End If
         Dim avatar = world.Avatar

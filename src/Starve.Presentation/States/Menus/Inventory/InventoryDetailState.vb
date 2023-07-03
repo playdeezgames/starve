@@ -13,7 +13,12 @@ Friend Class InventoryDetailState
                 SetState(GameState.Drop)
             Case Else
                 Context.Game.World.Avatar.Items.First(Function(x) x.Name = Context.Game.ItemName).DoVerb(value.Item2, Context.Game.World.Avatar)
-                OnStart()
+                If Context.Game.World.HasMessages Then
+                    MessageState.ReturnState = GameState.InventoryDetail
+                    SetState(GameState.Message)
+                Else
+                    OnStart()
+                End If
         End Select
     End Sub
 

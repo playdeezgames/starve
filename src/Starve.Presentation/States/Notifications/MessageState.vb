@@ -9,7 +9,11 @@
         Select Case cmd
             Case Command.A, Command.B
                 Context.Game.World.DismissMessage()
-                SetState(Neutral)
+                If Context.Game.World.HasMessages Then
+                    OnStart()
+                Else
+                    SetState(ReturnState)
+                End If
         End Select
     End Sub
 
@@ -33,4 +37,6 @@
             PlaySfx(sfx)
         End If
     End Sub
+
+    Friend Shared ReturnState As String
 End Class
