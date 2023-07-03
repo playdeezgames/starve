@@ -5,27 +5,19 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, Integer))
-        Dim avatar = Context.Game.World.Avatar
-        Dim cell = avatar.Cell
-        For Each item In cell.Items.Where(Function(x) x.Name = Context.Game.ItemName).Take(value.Item2)
-            avatar.PickUpItem(item)
-        Next
+        Context.Game.TakeItems(value.Item2)
         SetState(GameState.Ground)
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, Integer))
         HeaderText = $"Take How Many {Context.Game.ItemName}?"
-        Return Enumerable.Range(1, Context.Game.World.Avatar.Cell.Items.Count(Function(x) x.Name = Context.Game.ItemName)).Select(Function(x) ($"{x}", x)).ToList
+        Return Enumerable.Range(1, Context.Game.GroundItemCountByName(Context.Game.ItemName)).Select(Function(x) ($"{x}", x)).ToList
     End Function
 
     Public Overrides Sub OnStart()
-        Dim avatar = Context.Game.World.Avatar
-        Dim cell = avatar.Cell
-        Dim items = cell.Items.Where(Function(x) x.Name = Context.Game.ItemName)
-        If items.Count <= 1 Then
-            For Each item In items
-                avatar.PickUpItem(item)
-            Next
+        Dim itemCount = Context.Game.GroundItemCountByName(Context.Game.ItemName)
+        If itemCount <= 1 Then
+            Context.Game.TakeItems(itemCount)
             SetState(GameState.Ground)
             Return
         End If

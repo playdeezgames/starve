@@ -11,11 +11,11 @@
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        Return Context.Game.World.Avatar.Cell.Items.GroupBy(Function(x) x.Name).Select(Function(x) ($"{x.Key}(x{x.Count})", x.Key)).ToList
+        Return Context.Game.GroundItems.GroupBy(Function(x) x.Name).Select(Function(x) ($"{x.Key}(x{x.Count})", x.Key)).ToList
     End Function
 
     Public Overrides Sub OnStart()
-        If Not Context.Game.World.Avatar.Cell.HasItems Then
+        If Not Context.Game.HasGroundItems Then
             SetState(GameState.ActionMenu)
             Return
         End If
