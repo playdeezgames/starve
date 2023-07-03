@@ -7,7 +7,7 @@ Public Module CharacterSatietyExtensions
         Return character.Statistic(StatisticTypes.Satiety)
     End Function
     <Extension>
-    Private Sub SetSatiety(character As ICharacter, satiety As Integer)
+    Friend Sub SetSatiety(character As ICharacter, satiety As Integer)
         character.Statistic(StatisticTypes.Satiety) = Math.Clamp(satiety, 0, character.MaximumSatiety)
     End Sub
     <Extension>

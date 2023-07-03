@@ -14,4 +14,12 @@ Public Module ItemExtensions
     Public Function Name(item As IItem) As String
         Return item.ItemType.ToItemTypeDescriptor.Name
     End Function
+    <Extension>
+    Public Function VerbTypes(item As IItem) As IEnumerable(Of String)
+        Return item.ItemType.ToItemTypeDescriptor.AllVerbTypes
+    End Function
+    <Extension>
+    Public Sub DoVerb(item As IItem, verbType As String, character As ICharacter)
+        item.ItemType.ToItemTypeDescriptor.VerbTypes(verbType).Invoke(character, item)
+    End Sub
 End Module

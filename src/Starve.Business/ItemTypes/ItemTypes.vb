@@ -13,7 +13,7 @@ Friend Module ItemTypes
                     "Snek Corpse",
                     "2"c,
                     Hue.DarkGray,
-                    verbs:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    verbTypes:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
                     {
                         {VerbTypes.Eat, AddressOf EatSnekCorpse}
                     })
@@ -21,6 +21,11 @@ Friend Module ItemTypes
         }
 
     Private Sub EatSnekCorpse(character As ICharacter, item As IItem)
+        character.RemoveItem(item)
+        item.Recycle()
+        character.SetSatiety(character.Satiety + 20) 'TODO: pull number from statistic?
+        Dim message = character.World.CreateMessage()
+        'TODO: show message
     End Sub
 
     <Extension>

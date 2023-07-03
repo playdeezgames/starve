@@ -15,4 +15,8 @@
             Return ItemData.ItemType
         End Get
     End Property
+
+    Public Sub Recycle() Implements IItem.Recycle
+        ItemData.Recycled = True
+    End Sub
 End Class

@@ -1,4 +1,6 @@
-﻿Friend Class InventoryDetailState
+﻿Imports Starve.Persistence
+
+Friend Class InventoryDetailState
     Inherits BasePickerState(Of IGameContext, String)
 
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
@@ -9,6 +11,9 @@
         Select Case value.Item2
             Case DropText
                 SetState(GameState.Drop)
+            Case Else
+                Context.Game.World.Avatar.Items.First(Function(x) x.Name = Context.Game.ItemName).DoVerb(value.Item2, Context.Game.World.Avatar)
+                OnStart()
         End Select
     End Sub
 
@@ -20,6 +25,9 @@
         Dim result As New List(Of (String, String)) From {
             (DropText, DropText)
         }
+        For Each verbType In item.VerbTypes
+            result.Add((verbType.ToVerbTypeDescriptor.Name, verbType))
+        Next
         Return result
     End Function
 

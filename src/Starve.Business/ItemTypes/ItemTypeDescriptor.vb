@@ -3,17 +3,17 @@ Imports Starve.Persistence
 
 Friend Class ItemTypeDescriptor
     Inherits VisibleEntityDescriptor
-    Friend ReadOnly Property Verbs As IReadOnlyDictionary(Of String, Action(Of ICharacter, IItem))
-    Public Sub New(name As String, glyph As Char, hue As Integer, Optional verbs As IReadOnlyDictionary(Of String, Action(Of ICharacter, IItem)) = Nothing)
+    Friend ReadOnly Property VerbTypes As IReadOnlyDictionary(Of String, Action(Of ICharacter, IItem))
+    Public Sub New(name As String, glyph As Char, hue As Integer, Optional verbTypes As IReadOnlyDictionary(Of String, Action(Of ICharacter, IItem)) = Nothing)
         MyBase.New(name, glyph, hue)
-        Me.Verbs = If(verbs, New Dictionary(Of String, Action(Of ICharacter, IItem)))
+        Me.VerbTypes = If(verbTypes, New Dictionary(Of String, Action(Of ICharacter, IItem)))
     End Sub
     Friend Function HasVerb(verbType As String) As Boolean
-        Return Verbs.ContainsKey(verbType)
+        Return VerbTypes.ContainsKey(verbType)
     End Function
-    Friend ReadOnly Property AllVerbs As IEnumerable(Of String)
+    Friend ReadOnly Property AllVerbTypes As IEnumerable(Of String)
         Get
-            Return Verbs.Keys
+            Return VerbTypes.Keys
         End Get
     End Property
 End Class
