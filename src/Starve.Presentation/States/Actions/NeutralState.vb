@@ -23,7 +23,7 @@ Friend Class NeutralState
             Return
         End If
         Dim avatar = world.Avatar
-        If avatar.IsInCombat Then
+        If avatar.IsInCombat(Context.Game) Then
             SetState(GameState.Combat)
             Return
         End If

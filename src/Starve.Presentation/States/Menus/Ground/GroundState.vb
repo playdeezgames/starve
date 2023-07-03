@@ -6,7 +6,7 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
-        TakeState.ItemName = value.Item2
+        Context.Game.ItemName = value.Item2
         SetState(GameState.Take)
     End Sub
 

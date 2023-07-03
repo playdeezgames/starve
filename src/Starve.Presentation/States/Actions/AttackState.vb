@@ -10,7 +10,7 @@
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
-        Context.Game.World.Avatar.Attack(CombatState.TargetCell.Character, True)
+        Context.Game.World.Avatar.Attack(Context.Game.TargetCell.Character, True)
         SetState(Neutral)
     End Sub
 End Class

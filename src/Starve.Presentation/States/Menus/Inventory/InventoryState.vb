@@ -5,7 +5,7 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
-        InventoryDetailState.ItemName = value.Item2
+        Context.Game.ItemName = value.Item2
         SetState(GameState.InventoryDetail)
     End Sub
 
