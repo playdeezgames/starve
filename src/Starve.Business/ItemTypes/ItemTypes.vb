@@ -24,7 +24,6 @@ Friend Module ItemTypes
         character.RemoveItem(item)
         item.Recycle()
         character.SetSatiety(character.Satiety + 20) 'TODO: pull number from statistic?
-        Dim message = character.World.CreateMessage()
         'TODO: show message
     End Sub
 
