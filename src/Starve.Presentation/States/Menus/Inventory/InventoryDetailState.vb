@@ -1,7 +1,7 @@
 ﻿Friend Class InventoryDetailState
-    Inherits BasePickerState(Of String)
+    Inherits BasePickerState(Of IGameContext, String)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context, "<placeholder>", context.ControlsText("Select", "Cancel"), GameState.Inventory)
     End Sub
 
@@ -13,7 +13,7 @@
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        Dim items = Context.World.Avatar.Items.Where(Function(x) x.Name = ItemName)
+        Dim items = Context.Game.World.Avatar.Items.Where(Function(x) x.Name = ItemName)
         Dim item = items.First
         Dim itemCount = items.Count
         HeaderText = $"{ItemName}(x{itemCount})"
@@ -24,7 +24,7 @@
     End Function
 
     Public Overrides Sub OnStart()
-        Dim avatar = Context.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         Dim items = avatar.Items.Where(Function(x) x.Name = ItemName)
         If Not items.Any Then
             SetState(GameState.Inventory)

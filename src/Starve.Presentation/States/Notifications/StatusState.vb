@@ -1,7 +1,7 @@
 ﻿Friend Class StatusState
-    Inherits BaseGameState
+    Inherits BaseGameState(Of IGameContext)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context)
     End Sub
 
@@ -17,7 +17,7 @@
         Dim font = Context.Font(UIFont)
         Context.ShowHeader(displayBuffer, font, "Status", Hue.Black, Hue.Orange)
         Context.ShowStatusBar(displayBuffer, font, "Space/(A) - Continue", Hue.Black, Hue.LightGray)
-        Dim avatar = Context.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         With font
             .WriteText(displayBuffer, (0, font.Height), $"Health: {avatar.Health}/{avatar.MaximumHealth}", Hue.Pink)
             .WriteText(displayBuffer, (0, font.Height * 2), $"Satiety: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.Purple)

@@ -2,9 +2,9 @@
 Imports Starve.Business
 
 Friend Class NeutralState
-    Inherits BaseGameState
+    Inherits BaseGameState(Of IGameContext)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context)
     End Sub
 
@@ -17,7 +17,7 @@ Friend Class NeutralState
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()
-        Dim world = Context.World
+        Dim world = Context.Game.World
         If world.HasMessages Then
             SetState(GameState.Message)
             Return

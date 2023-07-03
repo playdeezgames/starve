@@ -1,12 +1,12 @@
 ﻿Friend Class DropState
-    Inherits BasePickerState(Of Integer)
+    Inherits BasePickerState(Of IGameContext, Integer)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context, "<placeholder>", context.ControlsText("Select", "Cancel"), GameState.InventoryDetail)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, Integer))
-        Dim avatar = Context.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         Dim items = avatar.Items.Where(Function(x) x.Name = InventoryDetailState.ItemName).Take(value.Item2)
         For Each item In items
             avatar.DropItem(item)
@@ -16,11 +16,11 @@
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, Integer))
         HeaderText = $"Drop How Many {InventoryDetailState.ItemName}?"
-        Return Enumerable.Range(1, Context.World.Avatar.Items.Count(Function(x) x.Name = InventoryDetailState.ItemName)).Select(Function(x) ($"{x}", x)).ToList
+        Return Enumerable.Range(1, Context.Game.World.Avatar.Items.Count(Function(x) x.Name = InventoryDetailState.ItemName)).Select(Function(x) ($"{x}", x)).ToList
     End Function
 
     Public Overrides Sub OnStart()
-        Dim avatar = Context.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         Dim items = avatar.Items.Where(Function(x) x.Name = InventoryDetailState.ItemName)
         If items.Count <= 1 Then
             For Each item In items

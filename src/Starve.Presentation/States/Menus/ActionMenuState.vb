@@ -1,7 +1,7 @@
 ﻿Friend Class ActionMenuState
-    Inherits BasePickerState(Of String)
+    Inherits BasePickerState(Of IGameContext, String)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(
             parent,
             setState,
@@ -24,7 +24,7 @@
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         Dim result As New List(Of (String, String))
-        Dim avatar = Context.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         If avatar.Cell.HasItems Then
             result.Add((PickUpText, PickUpText))
         End If

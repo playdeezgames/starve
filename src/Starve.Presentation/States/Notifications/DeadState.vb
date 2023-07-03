@@ -2,9 +2,9 @@
 Imports Starve.Business
 
 Friend Class DeadState
-    Inherits BaseGameState
+    Inherits BaseGameState(Of IGameContext)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context)
     End Sub
 
@@ -20,7 +20,7 @@ Friend Class DeadState
         Dim font = Context.Font(UIFont)
         Dim centerX = ViewWidth \ 2
         Dim centerTextY = ViewHeight \ 2 - font.Height \ 2
-        Dim avatar = Context.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         With font
             Dim text = "Yer Dead!"
             .WriteText(displayBuffer, (centerX - font.TextWidth(text) \ 2, centerTextY - font.Height), text, Hue.Red)

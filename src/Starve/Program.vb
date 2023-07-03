@@ -11,7 +11,7 @@ Module Program
         Using host As New Host(
             GameTitle,
             New GameController(
-New StarveSettings(),
+                New StarveSettings(),
                 New StarveContext(fontFileNames, (ViewWidth, ViewHeight))),
             (ViewWidth, ViewHeight),
             hueTable,

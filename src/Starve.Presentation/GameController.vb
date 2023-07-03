@@ -1,9 +1,9 @@
 Imports AOS.UI
 
 Public Class GameController
-    Inherits BaseGameController
+    Inherits BaseGameController(Of IGameContext)
 
-    Public Sub New(settings As ISettings, context As IUIContext)
+    Public Sub New(settings As ISettings, context As IUIContext(Of IGameContext))
         MyBase.New(settings, context)
         SetState(BoilerplateState.Embark, New EmbarkState(Me, AddressOf SetCurrentState, context))
         SetState(BoilerplateState.Neutral, New NeutralState(Me, AddressOf SetCurrentState, context))

@@ -3,9 +3,9 @@ Imports Starve.Business
 Imports Starve.Persistence
 
 Friend Class NavigationState
-    Inherits BaseGameState
+    Inherits BaseGameState(Of IGameContext)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context)
     End Sub
     Public Overrides Sub HandleCommand(cmd As String)
@@ -26,14 +26,14 @@ Friend Class NavigationState
     End Sub
 
     Private Sub MoveAvatar(deltaX As Integer, deltaY As Integer)
-        Dim avatar = Context.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         CombatState.TargetCell = avatar.Move(deltaX, deltaY)
         SetState(Neutral)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), Context.ViewSize, Hue.DarkGray)
-        Dim avatar = StarveContext.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         RenderCurrentMap(displayBuffer, avatar)
         Dim font = Context.Font(UIFont)
         With font

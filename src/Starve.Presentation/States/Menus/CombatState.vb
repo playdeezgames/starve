@@ -1,9 +1,9 @@
 ﻿Imports Starve.Persistence
 
 Friend Class CombatState
-    Inherits BasePickerState(Of String)
+    Inherits BasePickerState(Of IGameContext, String)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context, "<placeholder>", context.ControlsText("Select", "RUN!!"), GameState.Run)
     End Sub
 
@@ -19,7 +19,7 @@ Friend Class CombatState
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        Dim avatar = Context.World.Avatar
+        Dim avatar = Context.Game.World.Avatar
         Dim target = TargetCell.Character
         HeaderText = $"{avatar.Name}({avatar.Health}/{avatar.MaximumHealth}) v. {target.Name}({target.Health}/{target.MaximumHealth})"
         Return New List(Of (String, String)) From

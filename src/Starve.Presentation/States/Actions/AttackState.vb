@@ -1,7 +1,7 @@
 ﻿Friend Class AttackState
-    Inherits BaseGameState
+    Inherits BaseGameState(Of IGameContext)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context)
     End Sub
 
@@ -10,7 +10,7 @@
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
-        Context.World.Avatar.Attack(CombatState.TargetCell.Character, True)
+        Context.Game.World.Avatar.Attack(CombatState.TargetCell.Character, True)
         SetState(Neutral)
     End Sub
 End Class

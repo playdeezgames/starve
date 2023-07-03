@@ -2,9 +2,9 @@
 Imports Starve.Business
 
 Friend Class RunState
-    Inherits BaseGameState
+    Inherits BaseGameState(Of IGameContext)
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context)
     End Sub
 
@@ -19,7 +19,7 @@ Friend Class RunState
     Public Overrides Sub OnStart()
         MyBase.OnStart()
         CombatState.TargetCell = Nothing
-        Context.World.Avatar.Run
+        Context.Game.World.Avatar.Run
         SetState(Neutral)
     End Sub
 End Class
