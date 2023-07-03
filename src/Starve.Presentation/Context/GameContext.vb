@@ -15,6 +15,12 @@ Friend Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property IsInteracting As Boolean Implements IGameContext.IsInteracting
+        Get
+            Return If(TargetCell?.TerrainType.ToTerrainTypeDescriptor.CanInteract, False)
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)

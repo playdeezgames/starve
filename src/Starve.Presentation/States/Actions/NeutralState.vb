@@ -24,9 +24,14 @@ Friend Class NeutralState
             Return
         End If
         Dim avatar = world.Avatar
-        If Not avatar.IsDead AndAlso Context.Game.IsInCombat Then
-            SetState(GameState.Combat)
-            Return
+        If Not avatar.IsDead Then
+            If Context.Game.IsInCombat Then
+                SetState(GameState.Combat)
+                Return
+            ElseIf Context.Game.IsInteracting Then
+                SetState(GameState.Interact)
+                Return
+            End If
         End If
         If avatar.IsDead Then
             SetState(GameState.Dead)

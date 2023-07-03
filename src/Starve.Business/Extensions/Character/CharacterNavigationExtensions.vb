@@ -7,7 +7,7 @@ Public Module CharacterNavigationExtensions
         Dim currentCell = character.Cell
         Dim nextCell = currentCell.Map.GetCell(currentCell.Column + deltaX, currentCell.Row + deltaY)
         If nextCell Is Nothing OrElse Not nextCell.IsTenable Then
-            Return Nothing
+            Return nextCell
         End If
         If nextCell.HasCharacter Then
             Return nextCell

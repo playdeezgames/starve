@@ -6,4 +6,5 @@ Public Interface IGameContext
     Property TargetCell As ICell
     Property ItemName As String
     ReadOnly Property IsInCombat As Boolean
+    ReadOnly Property IsInteracting As Boolean
 End Interface

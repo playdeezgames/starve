@@ -4,6 +4,7 @@ Imports Starve.Persistence
 
 Friend Module ItemTypes
     Friend Const SnekCorpse = "SnekCorpse"
+    Friend Const Stick = "Stick"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, ItemTypeDescriptor) =
         New Dictionary(Of String, ItemTypeDescriptor) From
         {
@@ -17,6 +18,13 @@ Friend Module ItemTypes
                     {
                         {VerbTypes.Eat, AddressOf EatSnekCorpse}
                     })
+            },
+            {
+                Stick,
+                New ItemTypeDescriptor(
+                    "Stick",
+                    "T"c,
+                    Hue.Brown)
             }
         }
 

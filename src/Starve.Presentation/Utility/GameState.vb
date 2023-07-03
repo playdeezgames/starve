@@ -12,4 +12,5 @@
     Friend Const Ground = "Ground"
     Friend Const Take = "Take"
     Friend Const InventoryDetail = "InventoryDetail"
+    Friend Const Interact = "Interact"
 End Module
