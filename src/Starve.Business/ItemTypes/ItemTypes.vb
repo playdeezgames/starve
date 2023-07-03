@@ -1,4 +1,6 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.ComponentModel
+Imports System.Runtime.CompilerServices
+Imports Starve.Persistence
 
 Friend Module ItemTypes
     Friend Const SnekCorpse = "SnekCorpse"
@@ -7,9 +9,22 @@ Friend Module ItemTypes
         {
             {
                 SnekCorpse,
-                New ItemTypeDescriptor("Snek Corpse", "2"c, Hue.DarkGray)
+                New ItemTypeDescriptor(
+                    "Snek Corpse",
+                    "2"c,
+                    Hue.DarkGray,
+                    verbs:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    {
+                        {VerbTypes.Drop, AddressOf StandardDrop}
+                    })
             }
         }
+
+    Private Sub StandardDrop(character As ICharacter, item As IItem)
+        character.RemoveItem(item)
+        character.Cell.AddItem(item)
+    End Sub
+
     <Extension>
     Friend Function ToItemTypeDescriptor(itemType As String) As ItemTypeDescriptor
         Return descriptors(itemType)
