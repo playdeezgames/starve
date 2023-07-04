@@ -9,11 +9,12 @@ Public Module CharacterCombatExtensions
     End Sub
     <Extension>
     Public Function MinimumAttack(character As ICharacter) As Integer
-        Return character.Statistic(StatisticTypes.MinimumAttack)
+
+        Return character.Statistic(StatisticTypes.MinimumAttack) + character.Equipment.Values.Sum(Function(x) x.MinimumAttack)
     End Function
     <Extension>
     Public Function MaximumAttack(character As ICharacter) As Integer
-        Return character.Statistic(StatisticTypes.MaximumAttack)
+        Return character.Statistic(StatisticTypes.MaximumAttack) + character.Equipment.Values.Sum(Function(x) x.MaximumAttack)
     End Function
     <Extension>
     Public Function MinimumDefend(character As ICharacter) As Integer

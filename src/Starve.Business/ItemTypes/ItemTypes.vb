@@ -29,7 +29,9 @@ Friend Module ItemTypes
                     statistics:=New Dictionary(Of String, Integer) From
                     {
                         {StatisticTypes.Durability, 10},
-                        {StatisticTypes.MaximumDurability, 10}
+                        {StatisticTypes.MaximumDurability, 10},
+                        {StatisticTypes.MinimumAttack, 10},
+                        {StatisticTypes.MaximumAttack, 10}
                     })
             }
         }

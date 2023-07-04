@@ -34,4 +34,12 @@ Public Module ItemExtensions
     Public Function MaximumDurability(item As IItem) As Integer
         Return item.Statistic(StatisticTypes.MaximumDurability)
     End Function
+    <Extension>
+    Public Function MinimumAttack(item As IItem) As Integer
+        Return item.Statistic(StatisticTypes.MinimumAttack)
+    End Function
+    <Extension>
+    Public Function MaximumAttack(item As IItem) As Integer
+        Return item.Statistic(StatisticTypes.MaximumAttack)
+    End Function
 End Module
