@@ -87,6 +87,12 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property TargetTerrainName As String Implements IGameContext.TargetTerrainName
+        Get
+            Return TargetCell.TerrainType.ToTerrainTypeDescriptor.Name
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)

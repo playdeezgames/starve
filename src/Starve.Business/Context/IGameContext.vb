@@ -21,6 +21,7 @@ Public Interface IGameContext
     ReadOnly Property HasItems As Boolean
     ReadOnly Property Avatar As ICharacter
     ReadOnly Property TargetCharacter As ICharacter
+    ReadOnly Property TargetTerrainName As String
     ReadOnly Property TargetCellVerbs As IEnumerable(Of String)
     Sub DismissMessage()
     Sub Abandon()
