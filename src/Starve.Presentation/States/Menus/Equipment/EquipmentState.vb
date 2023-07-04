@@ -7,7 +7,7 @@
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Context.Game.EquipSlotType = value.Item2
-        SetState(GameState.EquipmentDetail)
+        'SetState(GameState.EquipmentDetail)
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))

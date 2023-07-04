@@ -129,6 +129,8 @@ Public Class GameContext
         End Get
     End Property
 
+    Public Property EquipSlotType As String Implements IGameContext.EquipSlotType
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)
