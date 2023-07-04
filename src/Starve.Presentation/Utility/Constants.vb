@@ -5,6 +5,7 @@
     Public Const DefaultScreenWidth = ViewWidth * 5
     Public Const DefaultScreenHeight = ViewHeight * 5
     Friend Const DropText = "Drop"
+    Friend Const EquipText = "Equip"
     Friend Const InventoryText = "Inventory"
     Friend Const PickUpText = "Pick Up..."
     Friend Const RunText = "RUN!!"

@@ -39,6 +39,12 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property ItemsByName(name As String) As IEnumerable(Of IItem) Implements IGameContext.ItemsByName
+        Get
+            Return Items.Where(Function(x) x.Name = name)
+        End Get
+    End Property
+
     Public ReadOnly Property GroundItemCountByName(name As String) As Integer Implements IGameContext.GroundItemCountByName
         Get
             Return GroundItems.Count(Function(x) x.Name = name)
@@ -90,6 +96,12 @@ Public Class GameContext
     Public ReadOnly Property TargetTerrainName As String Implements IGameContext.TargetTerrainName
         Get
             Return TargetCell.TerrainType.ToTerrainTypeDescriptor.Name
+        End Get
+    End Property
+
+    Public ReadOnly Property CanEquipItem As Boolean Implements IGameContext.CanEquipItem
+        Get
+            Return If(ItemsByName(ItemName).FirstOrDefault?.CanEquip, False)
         End Get
     End Property
 

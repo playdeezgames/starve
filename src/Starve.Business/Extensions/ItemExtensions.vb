@@ -22,4 +22,8 @@ Public Module ItemExtensions
     Public Sub DoVerb(item As IItem, verbType As String, character As ICharacter)
         item.ItemType.ToItemTypeDescriptor.VerbTypes(verbType).Invoke(character, item)
     End Sub
+    <Extension>
+    Public Function CanEquip(item As IItem) As Boolean
+        Return item.ItemType.ToItemTypeDescriptor.CanEquip
+    End Function
 End Module

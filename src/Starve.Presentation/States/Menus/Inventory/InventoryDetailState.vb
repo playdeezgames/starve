@@ -11,6 +11,8 @@ Friend Class InventoryDetailState
         Select Case value.Item2
             Case DropText
                 SetState(GameState.Drop)
+            Case EquipText
+                SetState(GameState.Equip)
             Case Else
                 If Context.Game.DoItemVerb(value.Item2) Then
                     MessageState.ReturnState = GameState.InventoryDetail
@@ -26,6 +28,9 @@ Friend Class InventoryDetailState
         Dim result As New List(Of (String, String)) From {
             (DropText, DropText)
         }
+        If Context.Game.CanEquipItem Then
+            result.Add((EquipText, EquipText))
+        End If
         result.AddRange(Context.Game.VerbTypesByItemName(Context.Game.ItemName).Select(Function(verbType) (verbType.ToVerbTypeDescriptor.Name, verbType)))
         Return result
     End Function
