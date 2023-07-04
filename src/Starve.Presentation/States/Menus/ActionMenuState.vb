@@ -24,11 +24,10 @@
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         Dim result As New List(Of (String, String))
-        Dim avatar = Context.Game.World.Avatar
-        If avatar.Cell.HasItems Then
+        If Context.Game.HasGroundItems Then
             result.Add((PickUpText, PickUpText))
         End If
-        If avatar.HasItems Then
+        If Context.Game.HasItems Then
             result.Add((InventoryText, InventoryText))
         End If
         result.Add((StatusText, StatusText))
