@@ -11,6 +11,6 @@
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        Return Game.EquippedSlots.Select(Function(x) ($"{Game.EquipSlotName(x)}: {Game.EquippedItem(x).Name}", x)).ToList
+        Return Game.EquippedSlots.Select(Function(x) ($"{Game.EquipSlotName(x)}: {Game.EquippedItem(x).Name}({Game.EquippedItem(x).Durability}/{Game.EquippedItem(x).MaximumDurability})", x)).ToList
     End Function
 End Class
