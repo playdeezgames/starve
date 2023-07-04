@@ -5,7 +5,9 @@ Public Interface IGameContext
     Sub Embark()
     Sub Attack()
     Sub Run()
-    Sub TakeItems(item2 As Integer)
+    Sub TakeItems(itemCount As Integer)
+    Sub DropItems(itemCount As Integer)
+    Function ItemCountByName(itemName As String) As Integer
     Property TargetCell As ICell
     Property ItemName As String
     ReadOnly Property IsInCombat As Boolean

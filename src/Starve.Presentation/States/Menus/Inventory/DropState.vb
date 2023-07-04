@@ -6,26 +6,20 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, Integer))
-        Dim avatar = Context.Game.World.Avatar
-        Dim items = avatar.Items.Where(Function(x) x.Name = Context.Game.ItemName).Take(value.Item2)
-        For Each item In items
-            avatar.DropItem(item)
-        Next
+        Context.Game.DropItems(value.Item2)
         SetState(GameState.InventoryDetail)
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, Integer))
         HeaderText = $"Drop How Many {Context.Game.ItemName}?"
-        Return Enumerable.Range(1, Context.Game.World.Avatar.Items.Count(Function(x) x.Name = Context.Game.ItemName)).Select(Function(x) ($"{x}", x)).ToList
+        Return Enumerable.Range(1, Context.Game.ItemCountByName(Context.Game.ItemName)).Select(Function(x) ($"{x}", x)).ToList
     End Function
 
     Public Overrides Sub OnStart()
         Dim avatar = Context.Game.World.Avatar
-        Dim items = avatar.Items.Where(Function(x) x.Name = Context.Game.ItemName)
-        If items.Count <= 1 Then
-            For Each item In items
-                avatar.DropItem(item)
-            Next
+        Dim itemCount = Context.Game.ItemCountByName(Context.Game.ItemName)
+        If itemCount <= 1 Then
+            Context.Game.DropItems(itemCount)
             SetState(GameState.Inventory)
             Return
         End If

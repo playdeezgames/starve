@@ -66,4 +66,16 @@ Friend Class GameContext
             avatar.PickUpItem(item)
         Next
     End Sub
+
+    Public Sub DropItems(itemCount As Integer) Implements IGameContext.DropItems
+        Dim avatar = World.Avatar
+        Dim items = avatar.Items.Where(Function(x) x.Name = ItemName).Take(itemCount)
+        For Each item In items
+            avatar.DropItem(item)
+        Next
+    End Sub
+
+    Public Function ItemCountByName(itemName As String) As Integer Implements IGameContext.ItemCountByName
+        Return World.Avatar.Items.Count(Function(x) x.Name = itemName)
+    End Function
 End Class
