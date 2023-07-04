@@ -105,6 +105,12 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property HasEquipment As Boolean Implements IGameContext.HasEquipment
+        Get
+            Return Avatar.HasEquipment
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)

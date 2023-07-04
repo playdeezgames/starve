@@ -66,6 +66,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasEquipment As Boolean Implements ICharacter.HasEquipment
+        Get
+            Return CharacterData.EquipSlots.Any
+        End Get
+    End Property
+
     Public Sub Recycle() Implements ICharacter.Recycle
         If Not IsAvatar Then
             Cell.Character = Nothing

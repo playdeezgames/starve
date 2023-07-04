@@ -13,5 +13,6 @@ Public Interface ICharacter
     Sub RemoveItem(item As IItem)
     Sub AddItem(item As IItem)
     ReadOnly Property IsAvatar As Boolean
+    ReadOnly Property HasEquipment As Boolean
     Sub Equip(equipSlotType As String, item As IItem)
 End Interface

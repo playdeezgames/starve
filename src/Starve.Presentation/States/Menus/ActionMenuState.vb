@@ -30,6 +30,9 @@
         If Context.Game.HasItems Then
             result.Add((InventoryText, InventoryText))
         End If
+        If Context.Game.HasEquipment Then
+            result.Add((EquipmentText, EquipmentText))
+        End If
         result.Add((StatusText, StatusText))
         Return result
     End Function

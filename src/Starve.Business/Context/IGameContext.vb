@@ -33,4 +33,5 @@ Public Interface IGameContext
     ReadOnly Property ItemsByName(name As String) As IEnumerable(Of IItem)
     Function DoTargetCellVerb(verbType As String) As Boolean
     Sub Equip(item As IItem)
+    ReadOnly Property HasEquipment As Boolean
 End Interface
