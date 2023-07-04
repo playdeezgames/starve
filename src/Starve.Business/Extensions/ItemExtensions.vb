@@ -26,4 +26,12 @@ Public Module ItemExtensions
     Public Function CanEquip(item As IItem) As Boolean
         Return item.ItemType.ToItemTypeDescriptor.CanEquip
     End Function
+    <Extension>
+    Public Function Durability(item As IItem) As Integer
+        Return item.Statistic(StatisticTypes.Durability)
+    End Function
+    <Extension>
+    Public Function MaximumDurability(item As IItem) As Integer
+        Return item.Statistic(StatisticTypes.MaximumDurability)
+    End Function
 End Module
