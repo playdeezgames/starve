@@ -45,6 +45,18 @@ Friend Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property Items As IEnumerable(Of IItem) Implements IGameContext.Items
+        Get
+            Return World.Avatar.Items
+        End Get
+    End Property
+
+    Public ReadOnly Property HasItems As Boolean Implements IGameContext.HasItems
+        Get
+            Return World.Avatar.HasItems
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)
@@ -77,5 +89,14 @@ Friend Class GameContext
 
     Public Function ItemCountByName(itemName As String) As Integer Implements IGameContext.ItemCountByName
         Return World.Avatar.Items.Count(Function(x) x.Name = itemName)
+    End Function
+
+    Public Function DoItemVerb(verbType As String) As Boolean Implements IGameContext.DoItemVerb
+        World.Avatar.Items.First(Function(x) x.Name = ItemName).DoVerb(verbType, World.Avatar)
+        Return World.HasMessages
+    End Function
+
+    Public Function VerbTypesByItemName(itemName As String) As IEnumerable(Of String) Implements IGameContext.VerbTypesByItemName
+        Return World.Avatar.Items.First(Function(x) x.Name = itemName).VerbTypes
     End Function
 End Class

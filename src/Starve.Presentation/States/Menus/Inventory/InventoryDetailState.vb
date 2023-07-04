@@ -12,8 +12,7 @@ Friend Class InventoryDetailState
             Case DropText
                 SetState(GameState.Drop)
             Case Else
-                Context.Game.World.Avatar.Items.First(Function(x) x.Name = Context.Game.ItemName).DoVerb(value.Item2, Context.Game.World.Avatar)
-                If Context.Game.World.HasMessages Then
+                If Context.Game.DoItemVerb(value.Item2) Then
                     MessageState.ReturnState = GameState.InventoryDetail
                     SetState(GameState.Message)
                 Else
@@ -23,23 +22,16 @@ Friend Class InventoryDetailState
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        Dim items = Context.Game.World.Avatar.Items.Where(Function(x) x.Name = Context.Game.ItemName)
-        Dim item = items.First
-        Dim itemCount = items.Count
-        HeaderText = $"{Context.Game.ItemName}(x{itemCount})"
+        HeaderText = $"{Context.Game.ItemName}(x{Context.Game.ItemCountByName(Context.Game.ItemName)})"
         Dim result As New List(Of (String, String)) From {
             (DropText, DropText)
         }
-        For Each verbType In item.VerbTypes
-            result.Add((verbType.ToVerbTypeDescriptor.Name, verbType))
-        Next
+        result.AddRange(Context.Game.VerbTypesByItemName(Context.Game.ItemName).Select(Function(verbType) (verbType.ToVerbTypeDescriptor.Name, verbType)))
         Return result
     End Function
 
     Public Overrides Sub OnStart()
-        Dim avatar = Context.Game.World.Avatar
-        Dim items = avatar.Items.Where(Function(x) x.Name = Context.Game.ItemName)
-        If Not items.Any Then
+        If Context.Game.ItemCountByName(Context.Game.ItemName) = 0 Then
             SetState(GameState.Inventory)
             Return
         End If
