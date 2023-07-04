@@ -16,10 +16,8 @@ Friend Class NeutralState
         Throw New NotImplementedException
     End Sub
     Public Overrides Sub OnStart()
-        MyBase.OnStart()
         If Game.HasMessages Then
-            MessageState.ReturnState = BoilerplateState.Neutral
-            SetState(Message)
+            SetStates(Message, BoilerplateState.Neutral)
             Return
         End If
         Dim avatar = Game.Avatar
@@ -37,5 +35,6 @@ Friend Class NeutralState
             Return
         End If
         SetState(GameState.Navigation)
+        MyBase.OnStart()
     End Sub
 End Class

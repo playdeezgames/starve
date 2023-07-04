@@ -5,8 +5,7 @@
     End Sub
     Protected Overrides Sub OnActivateMenuItem(value As (String, IItem))
         Game.Equip(value.Item2)
-        MessageState.ReturnState = GameState.InventoryDetail
-        SetState(Message)
+        SetStates(Message, GameState.InventoryDetail)
     End Sub
     Protected Overrides Function InitializeMenuItems() As List(Of (String, IItem))
         HeaderText = $"Equip Which {Game.ItemName}?"
@@ -19,8 +18,7 @@
                 SetState(GameState.InventoryDetail)
             Case 1
                 Game.Equip(Game.ItemsByName(Game.ItemName).Single)
-                MessageState.ReturnState = GameState.Inventory
-                SetState(Message)
+                SetStates(Message, GameState.Inventory)
         End Select
     End Sub
 End Class

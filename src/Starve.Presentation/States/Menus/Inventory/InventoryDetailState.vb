@@ -15,8 +15,7 @@ Friend Class InventoryDetailState
                 SetState(GameState.Equip)
             Case Else
                 If Game.DoItemVerb(value.Item2) Then
-                    MessageState.ReturnState = GameState.InventoryDetail
-                    SetState(GameState.Message)
+                    SetStates(GameState.Message, GameState.InventoryDetail)
                 Else
                     OnStart()
                 End If

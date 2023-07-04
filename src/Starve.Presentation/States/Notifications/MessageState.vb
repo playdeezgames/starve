@@ -9,11 +9,7 @@
         Select Case cmd
             Case Command.A, Command.B
                 Game.DismissMessage()
-                If Game.HasMessages Then
-                    OnStart()
-                Else
-                    SetState(ReturnState)
-                End If
+                OnStart()
         End Select
     End Sub
 
@@ -32,11 +28,13 @@
 
     Public Overrides Sub OnStart()
         MyBase.OnStart()
+        If Not Game.HasMessages Then
+            PopState()
+            Return
+        End If
         Dim sfx = Game.CurrentMessage.Sfx
         If Not String.IsNullOrEmpty(sfx) Then
             PlaySfx(sfx)
         End If
     End Sub
-
-    Friend Shared ReturnState As String
 End Class

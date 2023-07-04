@@ -14,8 +14,7 @@
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         If Game.DoTargetCellVerb(value.Item2) Then
-            MessageState.ReturnState = BoilerplateState.Neutral
-            SetState(GameState.Message)
+            SetStates(GameState.Message, BoilerplateState.Neutral)
         Else
             SetState(BoilerplateState.Neutral)
         End If
