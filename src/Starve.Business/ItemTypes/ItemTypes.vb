@@ -24,7 +24,8 @@ Friend Module ItemTypes
                 New ItemTypeDescriptor(
                     "Stick",
                     "T"c,
-                    Hue.Brown)
+                    Hue.Brown,
+                    equipSlotType:=EquipSlotTypes.Weapon)
             }
         }
 
