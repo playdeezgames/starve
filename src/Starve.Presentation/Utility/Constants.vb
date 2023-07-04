@@ -7,6 +7,7 @@
     Friend Const DropText = "Drop"
     Friend Const EquipText = "Equip"
     Friend Const EquipmentText = "Equipment"
+    Public Const Font4x6 = "Font4x6"
     Friend Const InventoryText = "Inventory"
     Friend Const PickUpText = "Pick Up..."
     Friend Const RunText = "RUN!!"

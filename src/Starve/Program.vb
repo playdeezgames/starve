@@ -23,7 +23,7 @@ Module Program
         New Dictionary(Of String, String) From
         {
             {UIFont, "Content/CyFont3x5.json"},
-            {"4x6", "Content/CyFont4x6.json"},
+            {Font4x6, "Content/CyFont4x6.json"},
             {StarveFont, "Content/starve.json"}
         }
     Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of String, String) =

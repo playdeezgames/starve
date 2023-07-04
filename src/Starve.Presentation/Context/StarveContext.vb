@@ -25,7 +25,7 @@ Public Class StarveContext
 
     Public Overrides Sub ShowSplashContent(displayBuffer As IPixelSink, font As Font)
         Dim text = "Starve!!"
-        Dim bigFont = Me.Font("4x6")
+        Dim bigFont = Me.Font(Font4x6)
         Dim x = ViewWidth \ 2 - bigFont.TextWidth(text) \ 2
         Dim y = ViewHeight \ 2 - bigFont.Height \ 2
         With bigFont
