@@ -198,5 +198,10 @@ Public Class GameContext
 
     Public Sub Equip(item As IItem) Implements IGameContext.Equip
         Avatar.Equip(item.ItemType.ToItemTypeDescriptor.EquipSlotType, item)
+        World.CreateMessage().AddLine(LightGray, $"{Avatar.Name} equips {item.Name}.")
+    End Sub
+
+    Public Sub Unequip() Implements IGameContext.Unequip
+        Avatar.Unequip(EquipSlotType)
     End Sub
 End Class

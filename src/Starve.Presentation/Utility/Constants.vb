@@ -13,6 +13,7 @@
     Friend Const RunText = "RUN!!"
     Public Const StarveFont = "StarveFont"
     Friend Const StatusText = "Status"
+    Friend Const UnequipText = "Unequip"
     Public Const ViewHeight = 108
     Public Const ViewWidth = 192
 End Module

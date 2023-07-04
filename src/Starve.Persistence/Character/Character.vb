@@ -98,7 +98,7 @@
         RemoveItem(item)
         CharacterData.EquipSlots(equipSlotType) = item.Id
     End Sub
-    Private Sub Unequip(equipSlotType As String)
+    Public Sub Unequip(equipSlotType As String) Implements ICharacter.Unequip
         If CharacterData.EquipSlots.ContainsKey(equipSlotType) Then
             AddItem(New Item(WorldData, CharacterData.EquipSlots(equipSlotType)))
             CharacterData.EquipSlots.Remove(equipSlotType)

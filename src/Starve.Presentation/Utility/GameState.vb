@@ -16,4 +16,5 @@
     Friend Const Run = "Run"
     Friend Const Status = "Status"
     Friend Const Take = "Take"
+    Friend Const Unequip = "Unequip"
 End Module

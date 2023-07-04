@@ -10,4 +10,10 @@
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         Return Game.EquippedSlots.Select(Function(x) ($"{Game.EquipSlotName(x)}: {Game.EquippedItem(x).Name}({Game.EquippedItem(x).Durability}/{Game.EquippedItem(x).MaximumDurability})", x)).ToList
     End Function
+    Public Overrides Sub OnStart()
+        MyBase.OnStart()
+        If Not Game.HasEquipment Then
+            SetState(GameState.ActionMenu)
+        End If
+    End Sub
 End Class

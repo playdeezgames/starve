@@ -13,5 +13,6 @@
     ReadOnly Property IsAvatar As Boolean
     ReadOnly Property HasEquipment As Boolean
     Sub Equip(equipSlotType As String, item As IItem)
+    Sub Unequip(equipSlotType As String)
     ReadOnly Property Equipment As IReadOnlyDictionary(Of String, IItem)
 End Interface
