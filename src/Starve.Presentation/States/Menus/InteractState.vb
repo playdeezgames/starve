@@ -13,8 +13,12 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
-        Context.Game.TargetCell = Nothing
-        SetState(BoilerplateState.Neutral)
+        If Context.Game.DoTargetCellVerb(value.Item2) Then
+            MessageState.ReturnState = BoilerplateState.Neutral
+            SetState(GameState.Message)
+        Else
+            SetState(BoilerplateState.Neutral)
+        End If
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))

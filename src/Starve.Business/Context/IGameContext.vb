@@ -28,4 +28,5 @@ Public Interface IGameContext
     Sub Save(filename As String)
     ReadOnly Property HasMessages As Boolean
     ReadOnly Property CurrentMessage As IMessage
+    Function DoTargetCellVerb(verbType As String) As Boolean
 End Interface

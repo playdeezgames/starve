@@ -145,4 +145,10 @@ Public Class GameContext
     Public Function VerbTypesByItemName(itemName As String) As IEnumerable(Of String) Implements IGameContext.VerbTypesByItemName
         Return World.Avatar.Items.First(Function(x) x.Name = itemName).VerbTypes
     End Function
+
+    Public Function DoTargetCellVerb(verbType As String) As Boolean Implements IGameContext.DoTargetCellVerb
+        Dim result = TargetCell.DoVerb(verbType, Avatar)
+        TargetCell = Nothing
+        Return result
+    End Function
 End Class

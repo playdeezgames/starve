@@ -26,4 +26,9 @@ Public Module CellExtensions
     Function Neighbors(cell As ICell) As IEnumerable(Of ICell)
         Return neighborDeltas.Select(Function(delta) cell.Map.GetCell(cell.Column + delta.Item1, cell.Row + delta.Item2)).Where(Function(x) x IsNot Nothing)
     End Function
+    <Extension>
+    Function DoVerb(cell As ICell, verbType As String, character As ICharacter) As Boolean
+        cell.TerrainType.ToTerrainTypeDescriptor.VerbTypes(verbType).Invoke(character, cell)
+        Return cell.Map.World.HasMessages
+    End Function
 End Module

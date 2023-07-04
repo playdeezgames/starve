@@ -22,7 +22,11 @@ Public Module TerrainTypes
         }
 
     Private Sub DoTakeStick(character As ICharacter, cell As ICell)
-        Throw New NotImplementedException()
+        Dim item = ItemInitializer.CreateItem(character.World, ItemTypes.Stick)
+        character.AddItem(item)
+        character.World.CreateMessage().
+            AddLine(LightGray, "You take a sturdy stick,").
+            AddLine(LightGray, "suitable for snake clubbing!")
     End Sub
 
     <Extension>

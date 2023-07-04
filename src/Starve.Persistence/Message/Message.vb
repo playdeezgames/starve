@@ -27,11 +27,17 @@
         End Set
     End Property
 
-    Public Sub AddLine(hue As Integer, text As String) Implements IMessage.AddLine
+    Public Function AddLine(hue As Integer, text As String) As IMessage Implements IMessage.AddLine
         MessageData.Lines.Add(New Data.MessageLineData With
                               {
                                 .Text = text,
                                 .Hue = hue
                               })
-    End Sub
+        Return Me
+    End Function
+
+    Public Function SetSfx(sfx As String) As IMessage Implements IMessage.SetSfx
+        Me.Sfx = sfx
+        Return Me
+    End Function
 End Class
