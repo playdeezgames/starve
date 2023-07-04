@@ -1,6 +1,6 @@
 ﻿Imports Starve.Persistence
 
-Friend Class GameContext
+Public Class GameContext
     Implements IGameContext
 
     Private Property World As IWorld
