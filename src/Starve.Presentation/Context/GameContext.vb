@@ -3,7 +3,7 @@
 Friend Class GameContext
     Implements IGameContext
 
-    Public Property World As IWorld Implements IGameContext.World
+    Private Property World As IWorld
 
     Public Property TargetCell As ICell Implements IGameContext.TargetCell
 
@@ -119,6 +119,18 @@ Friend Class GameContext
 
     Public Sub DismissMessage() Implements IGameContext.DismissMessage
         World.DismissMessage()
+    End Sub
+
+    Public Sub Abandon() Implements IGameContext.Abandon
+        World = Nothing
+    End Sub
+
+    Public Sub Load(filename As String) Implements IGameContext.Load
+        World = Persistence.World.Load(filename)
+    End Sub
+
+    Public Sub Save(filename As String) Implements IGameContext.Save
+        World.Save(filename)
     End Sub
 
     Public Function ItemCountByName(itemName As String) As Integer Implements IGameContext.ItemCountByName

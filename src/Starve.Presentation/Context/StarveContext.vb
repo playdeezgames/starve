@@ -56,15 +56,15 @@ Public Class StarveContext
     End Sub
 
     Public Overrides Sub AbandonGame()
-        Game.World = Nothing
+        Game.Abandon()
     End Sub
 
     Public Overrides Sub LoadGame(slot As Integer)
-        Game.World = Persistence.World.Load(SlotFilename(slot))
+        Game.Load(SlotFilename(slot))
     End Sub
 
     Public Overrides Sub SaveGame(slot As Integer)
-        Game.World.Save(SlotFilename(slot))
+        Game.Save(SlotFilename(slot))
     End Sub
 
     Public Overrides Function DoesSlotExist(slot As Integer) As Boolean

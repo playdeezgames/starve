@@ -1,7 +1,6 @@
 ﻿Imports Starve.Persistence
 
 Public Interface IGameContext
-    Property World As IWorld
     Sub Embark()
     Sub Attack()
     Sub Run()
@@ -24,6 +23,9 @@ Public Interface IGameContext
     ReadOnly Property TargetCharacter As ICharacter
     ReadOnly Property TargetCellVerbs As IEnumerable(Of String)
     Sub DismissMessage()
+    Sub Abandon()
+    Sub Load(filename As String)
+    Sub Save(filename As String)
     ReadOnly Property HasMessages As Boolean
     ReadOnly Property CurrentMessage As IMessage
 End Interface
