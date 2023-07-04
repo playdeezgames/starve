@@ -17,17 +17,17 @@ Friend Class NeutralState
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()
-        If Context.Game.HasMessages Then
+        If Game.HasMessages Then
             MessageState.ReturnState = BoilerplateState.Neutral
             SetState(Message)
             Return
         End If
-        Dim avatar = Context.Game.Avatar
+        Dim avatar = Game.Avatar
         If Not avatar.IsDead Then
-            If Context.Game.IsInCombat Then
+            If Game.IsInCombat Then
                 SetState(GameState.Combat)
                 Return
-            ElseIf Context.Game.IsInteracting Then
+            ElseIf Game.IsInteracting Then
                 SetState(GameState.Interact)
                 Return
             End If

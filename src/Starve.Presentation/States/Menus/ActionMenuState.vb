@@ -26,13 +26,13 @@
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         Dim result As New List(Of (String, String))
-        If Context.Game.HasGroundItems Then
+        If Game.HasGroundItems Then
             result.Add((PickUpText, PickUpText))
         End If
-        If Context.Game.HasItems Then
+        If Game.HasItems Then
             result.Add((InventoryText, InventoryText))
         End If
-        If Context.Game.HasEquipment Then
+        If Game.HasEquipment Then
             result.Add((EquipmentText, EquipmentText))
         End If
         result.Add((StatusText, StatusText))

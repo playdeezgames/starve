@@ -16,7 +16,7 @@ Friend Class EmbarkState
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()
-        Context.Game.Embark()
+        Game.Embark()
         SetState(BoilerplateState.Neutral)
     End Sub
 End Class

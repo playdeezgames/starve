@@ -26,14 +26,14 @@ Friend Class NavigationState
     End Sub
 
     Private Sub MoveAvatar(deltaX As Integer, deltaY As Integer)
-        Dim avatar = Context.Game.Avatar
-        Context.Game.TargetCell = avatar.Move(deltaX, deltaY)
+        Dim avatar = Game.Avatar
+        Game.TargetCell = avatar.Move(deltaX, deltaY)
         SetState(Neutral)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), Context.ViewSize, Hue.DarkGray)
-        Dim avatar = Context.Game.Avatar
+        Dim avatar = Game.Avatar
         RenderCurrentMap(displayBuffer, avatar)
         Dim font = Context.Font(UIFont)
         With font

@@ -10,7 +10,7 @@
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
-        Context.Game.Attack()
+        Game.Attack()
         SetState(Neutral)
     End Sub
 End Class

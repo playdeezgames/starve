@@ -7,13 +7,13 @@
 
     Public Overrides Sub HandleCommand(cmd As String)
         If cmd = Command.B Then
-            Context.Game.TargetCell = Nothing
+            Game.TargetCell = Nothing
         End If
         MyBase.HandleCommand(cmd)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
-        If Context.Game.DoTargetCellVerb(value.Item2) Then
+        If Game.DoTargetCellVerb(value.Item2) Then
             MessageState.ReturnState = BoilerplateState.Neutral
             SetState(GameState.Message)
         Else
@@ -22,7 +22,7 @@
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        HeaderText = $"Interact with {Context.Game.TargetTerrainName}"
-        Return Context.Game.TargetCellVerbs.Select(Function(x) (x.ToVerbTypeDescriptor.Name, x)).ToList
+        HeaderText = $"Interact with {Game.TargetTerrainName}"
+        Return Game.TargetCellVerbs.Select(Function(x) (x.ToVerbTypeDescriptor.Name, x)).ToList
     End Function
 End Class

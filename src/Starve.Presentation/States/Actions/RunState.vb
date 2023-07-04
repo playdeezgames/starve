@@ -18,7 +18,7 @@ Friend Class RunState
 
     Public Overrides Sub OnStart()
         MyBase.OnStart()
-        Context.Game.Run()
+        Game.Run()
         SetState(Neutral)
     End Sub
 End Class

@@ -14,7 +14,7 @@ Friend Class InventoryDetailState
             Case EquipText
                 SetState(GameState.Equip)
             Case Else
-                If Context.Game.DoItemVerb(value.Item2) Then
+                If Game.DoItemVerb(value.Item2) Then
                     MessageState.ReturnState = GameState.InventoryDetail
                     SetState(GameState.Message)
                 Else
@@ -24,19 +24,19 @@ Friend Class InventoryDetailState
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        HeaderText = $"{Context.Game.ItemName}(x{Context.Game.ItemCountByName(Context.Game.ItemName)})"
+        HeaderText = $"{Game.ItemName}(x{Game.ItemCountByName(Game.ItemName)})"
         Dim result As New List(Of (String, String)) From {
             (DropText, DropText)
         }
-        If Context.Game.CanEquipItem Then
+        If Game.CanEquipItem Then
             result.Add((EquipText, EquipText))
         End If
-        result.AddRange(Context.Game.VerbTypesByItemName(Context.Game.ItemName).Select(Function(verbType) (verbType.ToVerbTypeDescriptor.Name, verbType)))
+        result.AddRange(Game.VerbTypesByItemName(Game.ItemName).Select(Function(verbType) (verbType.ToVerbTypeDescriptor.Name, verbType)))
         Return result
     End Function
 
     Public Overrides Sub OnStart()
-        If Context.Game.ItemCountByName(Context.Game.ItemName) = 0 Then
+        If Game.ItemCountByName(Game.ItemName) = 0 Then
             SetState(GameState.Inventory)
             Return
         End If
