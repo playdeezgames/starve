@@ -26,7 +26,8 @@ Public Module TerrainTypes
         character.AddItem(item)
         character.World.CreateMessage().
             AddLine(LightGray, "You take a sturdy stick,").
-            AddLine(LightGray, "suitable for snake clubbing!")
+            AddLine(LightGray, "suitable for snake clubbing!").
+            AddLine(LightGray, "(you have to equip it first)")
     End Sub
 
     <Extension>
