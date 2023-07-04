@@ -17,7 +17,7 @@
         Dim font = Context.Font(UIFont)
         Context.ShowHeader(displayBuffer, font, "Status", Hue.Black, Hue.Orange)
         Context.ShowStatusBar(displayBuffer, font, "Space/(A) - Continue", Hue.Black, Hue.LightGray)
-        Dim avatar = Context.Game.World.Avatar
+        Dim avatar = Context.Game.Avatar
         With font
             .WriteText(displayBuffer, (0, font.Height), $"Health: {avatar.Health}/{avatar.MaximumHealth}", Hue.Pink)
             .WriteText(displayBuffer, (0, font.Height * 2), $"Satiety: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.Purple)

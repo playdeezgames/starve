@@ -18,6 +18,6 @@
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        Return Context.Game.TargetCell.TerrainType.ToTerrainTypeDescriptor.AllVerbs.Select(Function(x) (x.ToVerbTypeDescriptor.Name, x)).ToList
+        Return Context.Game.TargetCellVerbs.Select(Function(x) (x.ToVerbTypeDescriptor.Name, x)).ToList
     End Function
 End Class

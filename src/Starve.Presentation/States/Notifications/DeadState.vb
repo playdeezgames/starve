@@ -20,7 +20,7 @@ Friend Class DeadState
         Dim font = Context.Font(UIFont)
         Dim centerX = ViewWidth \ 2
         Dim centerTextY = ViewHeight \ 2 - font.Height \ 2
-        Dim avatar = Context.Game.World.Avatar
+        Dim avatar = Context.Game.Avatar
         With font
             Dim text = "Yer Dead!"
             .WriteText(displayBuffer, (centerX - font.TextWidth(text) \ 2, centerTextY - font.Height), text, Hue.Red)

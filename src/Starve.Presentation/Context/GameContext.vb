@@ -57,6 +57,36 @@ Friend Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property Avatar As ICharacter Implements IGameContext.Avatar
+        Get
+            Return World.Avatar
+        End Get
+    End Property
+
+    Public ReadOnly Property TargetCharacter As ICharacter Implements IGameContext.TargetCharacter
+        Get
+            Return TargetCell?.Character
+        End Get
+    End Property
+
+    Public ReadOnly Property TargetCellVerbs As IEnumerable(Of String) Implements IGameContext.TargetCellVerbs
+        Get
+            Return If(TargetCell?.TerrainType?.ToTerrainTypeDescriptor?.AllVerbs, Array.Empty(Of String))
+        End Get
+    End Property
+
+    Public ReadOnly Property HasMessages As Boolean Implements IGameContext.HasMessages
+        Get
+            Return World.HasMessages
+        End Get
+    End Property
+
+    Public ReadOnly Property CurrentMessage As IMessage Implements IGameContext.CurrentMessage
+        Get
+            Return World.CurrentMessage
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)
@@ -85,6 +115,10 @@ Friend Class GameContext
         For Each item In items
             avatar.DropItem(item)
         Next
+    End Sub
+
+    Public Sub DismissMessage() Implements IGameContext.DismissMessage
+        World.DismissMessage()
     End Sub
 
     Public Function ItemCountByName(itemName As String) As Integer Implements IGameContext.ItemCountByName

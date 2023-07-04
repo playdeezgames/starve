@@ -8,8 +8,8 @@
     Public Overrides Sub HandleCommand(cmd As String)
         Select Case cmd
             Case Command.A, Command.B
-                Context.Game.World.DismissMessage()
-                If Context.Game.World.HasMessages Then
+                Context.Game.DismissMessage()
+                If Context.Game.HasMessages Then
                     OnStart()
                 Else
                     SetState(ReturnState)
@@ -19,7 +19,7 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), Context.ViewSize, Hue.Black)
-        Dim message = Context.Game.World.CurrentMessage
+        Dim message = Context.Game.CurrentMessage
         Dim font = Context.Font(UIFont)
         Dim offsetY = Context.ViewSize.Item2 \ 2 - font.Height * message.LineCount \ 2
         Dim centerX = Context.ViewSize.Item1 \ 2
@@ -32,7 +32,7 @@
 
     Public Overrides Sub OnStart()
         MyBase.OnStart()
-        Dim sfx = Context.Game.World.CurrentMessage.Sfx
+        Dim sfx = Context.Game.CurrentMessage.Sfx
         If Not String.IsNullOrEmpty(sfx) Then
             PlaySfx(sfx)
         End If

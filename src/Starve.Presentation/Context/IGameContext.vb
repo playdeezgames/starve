@@ -20,4 +20,10 @@ Public Interface IGameContext
     ReadOnly Property HasGroundItems As Boolean
     ReadOnly Property Items As IEnumerable(Of IItem)
     ReadOnly Property HasItems As Boolean
+    ReadOnly Property Avatar As ICharacter
+    ReadOnly Property TargetCharacter As ICharacter
+    ReadOnly Property TargetCellVerbs As IEnumerable(Of String)
+    Sub DismissMessage()
+    ReadOnly Property HasMessages As Boolean
+    ReadOnly Property CurrentMessage As IMessage
 End Interface
