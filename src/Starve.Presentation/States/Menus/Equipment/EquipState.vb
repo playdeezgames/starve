@@ -1,5 +1,4 @@
-﻿Imports Starve.Persistence
-Friend Class EquipState
+﻿Friend Class EquipState
     Inherits BasePickerState(Of IGameContext, IItem)
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context, "<placeholder>", context.ControlsText("Equip", "Cancel"), GameState.InventoryDetail)

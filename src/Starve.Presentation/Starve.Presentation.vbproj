@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RootNamespace>Starve.Presentation</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OptionStrict>On</OptionStrict>
-    <ImportedNamespaces>AOS.UI=False,Starve.Business=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,Starve.Presentation=True</ImportedNamespaces>
+    <ImportedNamespaces>AOS.UI=False,Starve.Business=False,Starve.Persistence=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,Starve.Presentation=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,6 +23,7 @@
   <ItemGroup>
     <Import Include="AOS.UI" />
     <Import Include="Starve.Business" />
+    <Import Include="Starve.Persistence" />
   </ItemGroup>
 
 </Project>
