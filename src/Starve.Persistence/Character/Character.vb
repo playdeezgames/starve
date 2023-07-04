@@ -72,6 +72,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Equipment As IReadOnlyDictionary(Of String, IItem) Implements ICharacter.Equipment
+        Get
+            Return CharacterData.EquipSlots.ToDictionary(Of String, IItem)(Function(x) x.Key, Function(x) New Item(WorldData, x.Value))
+        End Get
+    End Property
+
     Public Sub Recycle() Implements ICharacter.Recycle
         If Not IsAvatar Then
             Cell.Character = Nothing

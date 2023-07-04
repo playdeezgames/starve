@@ -111,6 +111,24 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property EquippedSlots As IEnumerable(Of String) Implements IGameContext.EquippedSlots
+        Get
+            Return Avatar.Equipment.Keys
+        End Get
+    End Property
+
+    Public ReadOnly Property EquipSlotName(equipSlotType As String) As String Implements IGameContext.EquipSlotName
+        Get
+            Return equipSlotType.ToEquipSlotTypeDescriptor.Name
+        End Get
+    End Property
+
+    Public ReadOnly Property EquippedItem(equipSlotType As String) As IItem Implements IGameContext.EquippedItem
+        Get
+            Return Avatar.Equipment(equipSlotType)
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)

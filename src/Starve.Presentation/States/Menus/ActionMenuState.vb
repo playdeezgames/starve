@@ -19,6 +19,8 @@
                 SetState(GameState.Status)
             Case PickUpText
                 SetState(GameState.Ground)
+            Case EquipmentText
+                SetState(GameState.Equipment)
         End Select
     End Sub
 
