@@ -80,4 +80,16 @@
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub
+
+    Public Sub Equip(equipSlotType As String, item As IItem) Implements ICharacter.Equip
+        Unequip(equipSlotType)
+        RemoveItem(item)
+        CharacterData.EquipSlots(equipSlotType) = item.Id
+    End Sub
+    Private Sub Unequip(equipSlotType As String)
+        If CharacterData.EquipSlots.ContainsKey(equipSlotType) Then
+            AddItem(New Item(WorldData, CharacterData.EquipSlots(equipSlotType)))
+            CharacterData.EquipSlots.Remove(equipSlotType)
+        End If
+    End Sub
 End Class

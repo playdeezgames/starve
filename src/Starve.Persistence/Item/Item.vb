@@ -16,6 +16,15 @@
         End Get
     End Property
 
+    Public Property Statistic(statisticType As String) As Integer Implements IItem.Statistic
+        Get
+            Return ItemData.Statistics(statisticType)
+        End Get
+        Set(value As Integer)
+            ItemData.Statistics(statisticType) = value
+        End Set
+    End Property
+
     Public Sub Recycle() Implements IItem.Recycle
         ItemData.Recycled = True
     End Sub

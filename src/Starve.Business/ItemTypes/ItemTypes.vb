@@ -25,7 +25,12 @@ Friend Module ItemTypes
                     "Stick",
                     "T"c,
                     Hue.Brown,
-                    equipSlotType:=EquipSlotTypes.Weapon)
+                    equipSlotType:=EquipSlotTypes.Weapon,
+                    statistics:=New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.Durability, 10},
+                        {StatisticTypes.MaximumDurability, 10}
+                    })
             }
         }
 

@@ -8,7 +8,8 @@ Friend Class EquipState
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, IItem))
-        Throw New NotImplementedException()
+        Context.Game.Equip(value.Item2)
+        SetState(GameState.InventoryDetail)
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, IItem))

@@ -169,4 +169,8 @@ Public Class GameContext
         TargetCell = Nothing
         Return result
     End Function
+
+    Public Sub Equip(item As IItem) Implements IGameContext.Equip
+        Avatar.Equip(item.ItemType.ToItemTypeDescriptor.EquipSlotType, item)
+    End Sub
 End Class
