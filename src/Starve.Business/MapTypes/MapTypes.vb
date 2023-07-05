@@ -13,11 +13,11 @@ Friend Module MapTypes
                     spawnCharacters:=New Dictionary(Of String, Integer) From
                     {
                         {CharacterTypes.Dude, 1},
-                        {CharacterTypes.Snek, 100}
+                        {CharacterTypes.Snek, 500}
                     },
                     spawnItems:=New Dictionary(Of String, Integer) From
                     {
-                        {ItemTypes.Rock, 100}
+                        {ItemTypes.Rock, 50}
                     },
                     customInitializer:=AddressOf InitializeInitialMap)
             }

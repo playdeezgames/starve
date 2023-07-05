@@ -16,7 +16,7 @@
 
     Public Overrides Sub OnStart()
         If Not Game.HasGroundItems Then
-            SetState(GameState.ActionMenu)
+            SetState(BoilerplateState.Neutral)
             Return
         End If
         MyBase.OnStart()

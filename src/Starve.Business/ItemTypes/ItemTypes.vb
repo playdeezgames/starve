@@ -31,8 +31,8 @@ Friend Module ItemTypes
                     {
                         {StatisticTypes.Durability, 50},
                         {StatisticTypes.MaximumDurability, 50},
-                        {StatisticTypes.MinimumAttack, 10},
-                        {StatisticTypes.MaximumAttack, 10}
+                        {StatisticTypes.MinimumAttack, 5},
+                        {StatisticTypes.MaximumAttack, 5}
                     })
             },
             {
@@ -40,7 +40,15 @@ Friend Module ItemTypes
                 New ItemTypeDescriptor(
                     "Rock",
                     ChrW(&HAC),
-                    Hue.DarkGray)
+                    Hue.DarkGray,
+                    equipSlotType:=EquipSlotTypes.Weapon,
+                    statistics:=New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.Durability, 100},
+                        {StatisticTypes.MaximumDurability, 100},
+                        {StatisticTypes.MinimumAttack, 5},
+                        {StatisticTypes.MaximumAttack, 5}
+                    })
             }
         }
 
