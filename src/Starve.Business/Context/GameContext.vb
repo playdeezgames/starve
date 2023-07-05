@@ -131,6 +131,12 @@ Public Class GameContext
 
     Public Property EquipSlotType As String Implements IGameContext.EquipSlotType
 
+    Public ReadOnly Property CanCraft As Boolean Implements IGameContext.CanCraft
+        Get
+            Return Avatar.CanCraft
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)

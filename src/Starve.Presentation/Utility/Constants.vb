@@ -2,6 +2,7 @@
     Friend Const AttackText = "Attack!"
     Friend Const CellHeight = 8
     Friend Const CellWidth = 8
+    Friend Const CraftText = "Craft..."
     Public Const DefaultScreenWidth = ViewWidth * 5
     Public Const DefaultScreenHeight = ViewHeight * 5
     Friend Const DropText = "Drop"

@@ -18,5 +18,8 @@ Public Module CharacterItemExtensions
         character.AddItem(item)
         character.Cell.RemoveItem(item)
     End Sub
-
+    <Extension>
+    Friend Function CanCraft(character As ICharacter) As Boolean
+        Return RecipeTypes.Descriptors.Any(Function(x) x.CanCraft(character))
+    End Function
 End Module

@@ -35,6 +35,9 @@
         If Game.HasEquipment Then
             result.Add((EquipmentText, EquipmentText))
         End If
+        If Game.CanCraft Then
+            result.Add((CraftText, CraftText))
+        End If
         result.Add((StatusText, StatusText))
         Return result
     End Function
