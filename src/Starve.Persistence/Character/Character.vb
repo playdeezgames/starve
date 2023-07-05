@@ -78,6 +78,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property EquippedItems As IReadOnlyList(Of IItem) Implements ICharacter.EquippedItems
+        Get
+            Return CharacterData.EquipSlots.Values.Distinct.Select(Of IItem)(Function(x) New Item(WorldData, x)).ToList
+        End Get
+    End Property
+
     Public Sub Recycle() Implements ICharacter.Recycle
         If Not IsAvatar Then
             Cell.Character = Nothing
@@ -103,5 +109,11 @@
             AddItem(New Item(WorldData, CharacterData.EquipSlots(equipSlotType)))
             CharacterData.EquipSlots.Remove(equipSlotType)
         End If
+    End Sub
+
+    Public Sub UnequipItem(item As IItem) Implements ICharacter.UnequipItem
+        For Each equipSlot In CharacterData.EquipSlots.Where(Function(x) x.Value = item.Id).Select(Function(x) x.Key)
+            Unequip(equipSlot)
+        Next
     End Sub
 End Class

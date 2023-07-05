@@ -14,5 +14,7 @@
     ReadOnly Property HasEquipment As Boolean
     Sub Equip(equipSlotType As String, item As IItem)
     Sub Unequip(equipSlotType As String)
+    Sub UnequipItem(item As IItem)
     ReadOnly Property Equipment As IReadOnlyDictionary(Of String, IItem)
+    ReadOnly Property EquippedItems As IReadOnlyList(Of IItem)
 End Interface

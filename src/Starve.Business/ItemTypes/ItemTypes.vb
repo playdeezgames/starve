@@ -28,8 +28,8 @@ Friend Module ItemTypes
                     equipSlotType:=EquipSlotTypes.Weapon,
                     statistics:=New Dictionary(Of String, Integer) From
                     {
-                        {StatisticTypes.Durability, 10},
-                        {StatisticTypes.MaximumDurability, 10},
+                        {StatisticTypes.Durability, 50},
+                        {StatisticTypes.MaximumDurability, 50},
                         {StatisticTypes.MinimumAttack, 10},
                         {StatisticTypes.MaximumAttack, 10}
                     })

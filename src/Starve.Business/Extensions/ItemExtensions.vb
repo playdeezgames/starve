@@ -42,4 +42,20 @@ Public Module ItemExtensions
     Public Function MaximumAttack(item As IItem) As Integer
         Return item.Statistic(StatisticTypes.MaximumAttack)
     End Function
+    <Extension>
+    Friend Function IsWeapon(item As IItem) As Boolean
+        Return item.Statistic(StatisticTypes.MaximumAttack) > 0
+    End Function
+    <Extension>
+    Friend Sub Deplete(item As IItem, depletion As Integer)
+        item.SetDurability(item.Durability - depletion)
+    End Sub
+    <Extension>
+    Friend Function IsDepleted(item As IItem) As Boolean
+        Return item.Durability = 0
+    End Function
+    <Extension>
+    Private Sub SetDurability(item As IItem, durability As Integer)
+        item.Statistic(StatisticTypes.Durability) = Math.Clamp(durability, 0, item.MaximumDurability)
+    End Sub
 End Module
