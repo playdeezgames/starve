@@ -40,4 +40,5 @@ Public Interface IGameContext
     ReadOnly Property EquippedItem(equipSlotType As String) As IItem
     Property EquipSlotType As String
     ReadOnly Property CanCraft As Boolean
+    ReadOnly Property AvailableRecipes As IEnumerable(Of (String, Integer))
 End Interface

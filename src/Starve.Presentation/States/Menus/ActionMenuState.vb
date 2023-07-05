@@ -21,6 +21,8 @@
                 SetState(GameState.Ground)
             Case EquipmentText
                 SetState(GameState.Equipment)
+            Case CraftText
+                SetState(GameState.Craft)
         End Select
     End Sub
 

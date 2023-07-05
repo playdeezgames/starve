@@ -137,6 +137,14 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property AvailableRecipes As IEnumerable(Of (String, Integer)) Implements IGameContext.AvailableRecipes
+        Get
+            Return Enumerable.Range(0, RecipeTypes.Descriptors.Count).
+                Select(Function(x) (x, RecipeTypes.Descriptors(x))).
+                Where(Function(x) x.Item2.CanCraft(Avatar)).Select(Function(x) (x.Item2.Name, x.Item1))
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)

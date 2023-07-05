@@ -2,6 +2,7 @@
     Friend Const ActionMenu = "ActionMenu"
     Friend Const Attack = "Attack"
     Friend Const Combat = "Combat"
+    Friend Const Craft = "Craft"
     Friend Const Dead = "Dead"
     Friend Const Drop = "Drop"
     Friend Const Equip = "Equip"
