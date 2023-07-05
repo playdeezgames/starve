@@ -6,6 +6,8 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, Integer))
+        Game.Craft(value.Item2)
+        SetState(BoilerplateState.Neutral)
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, Integer))

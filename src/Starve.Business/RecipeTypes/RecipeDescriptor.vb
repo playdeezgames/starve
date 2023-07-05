@@ -18,6 +18,33 @@ Friend Class RecipeDescriptor
         Return True
     End Function
 
+    Friend Sub Craft(character As ICharacter)
+        If Not CanCraft(character) Then
+            Return
+        End If
+        Dim deltas = New Dictionary(Of String, Integer)(Outputs)
+        For Each input In Inputs
+            If deltas.ContainsKey(input.Key) Then
+                deltas(input.Key) -= input.Value
+            Else
+                deltas(input.Key) = -input.Value
+            End If
+        Next
+        For Each delta In deltas
+            Select Case delta.Value
+                Case Is < 0
+                    For Each item In character.Items.Where(Function(x) x.ItemType = delta.Key).Take(-delta.Value)
+                        character.RemoveItem(item)
+                        item.Recycle()
+                    Next
+                Case Is > 0
+                    For Each item In Enumerable.Range(1, delta.Value).Select(Function(x) ItemInitializer.CreateItem(character.World, delta.Key))
+                        character.AddItem(item)
+                    Next
+            End Select
+        Next
+    End Sub
+
     Friend ReadOnly Property Name As String
         Get
             Dim inputText = String.Join("+", Inputs.Select(Function(x) $"{If(x.Value > 1, $"{x.Value} ", "")}{x.Key.ToItemTypeDescriptor.Name}").ToArray)

@@ -218,4 +218,8 @@ Public Class GameContext
     Public Sub Unequip() Implements IGameContext.Unequip
         Avatar.Unequip(EquipSlotType)
     End Sub
+
+    Public Sub Craft(recipeIndex As Integer) Implements IGameContext.Craft
+        RecipeTypes.Descriptors(recipeIndex).Craft(Avatar)
+    End Sub
 End Class
