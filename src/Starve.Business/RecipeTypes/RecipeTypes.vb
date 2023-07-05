@@ -11,6 +11,18 @@
                 {
                     {ItemTypes.Rock, 1},
                     {ItemTypes.SharpRock, 1}
+                }),
+            New RecipeDescriptor(
+                New Dictionary(Of String, Integer) From
+                {
+                    {ItemTypes.SharpRock, 1},
+                    {ItemTypes.SnekCorpse, 1}
+                },
+                New Dictionary(Of String, Integer) From
+                {
+                    {ItemTypes.SharpRock, 1},
+                    {ItemTypes.Meat, 1},
+                    {ItemTypes.Skin, 1}
                 })
         }
 End Module
