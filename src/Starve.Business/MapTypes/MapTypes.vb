@@ -10,10 +10,14 @@ Friend Module MapTypes
                 Initial,
                 New MapTypeDescriptor(
                     (48, 48),
-                    spawnCharacter:=New Dictionary(Of String, Integer) From
+                    spawnCharacters:=New Dictionary(Of String, Integer) From
                     {
                         {CharacterTypes.Dude, 1},
                         {CharacterTypes.Snek, 100}
+                    },
+                    spawnItems:=New Dictionary(Of String, Integer) From
+                    {
+                        {ItemTypes.Rock, 100}
                     },
                     customInitializer:=AddressOf InitializeInitialMap)
             }
