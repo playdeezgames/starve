@@ -14,4 +14,5 @@
     Friend Const MossWeight = "MossWeight"
     Friend Const MovesMade = "MovesMade"
     Friend Const Satiety = "Satiety"
+    Friend Const ForageAttempts = "ForageAttempts"
 End Module

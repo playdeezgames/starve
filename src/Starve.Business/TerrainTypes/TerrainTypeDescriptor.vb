@@ -8,6 +8,7 @@ Public Class TerrainTypeDescriptor
             Return VerbTypes.Any
         End Get
     End Property
+    Public ReadOnly Property CanForage As Boolean
     Friend ReadOnly Property VerbTypes As IReadOnlyDictionary(Of String, Action(Of ICharacter, ICell))
     Public ReadOnly Property AllVerbs As IEnumerable(Of String)
         Get
@@ -20,9 +21,11 @@ Public Class TerrainTypeDescriptor
            glyph As Char,
            hue As Integer,
            Optional tenable As Boolean = True,
+           Optional canForage As Boolean = False,
            Optional verbTypes As IReadOnlyDictionary(Of String, Action(Of ICharacter, ICell)) = Nothing,
            Optional cellInitializer As Action(Of ICell) = Nothing)
         MyBase.New(name, glyph, hue)
+        Me.CanForage = canForage
         Me.Tenable = tenable
         Me.VerbTypes = If(verbTypes, New Dictionary(Of String, Action(Of ICharacter, ICell)))
         Me.CellInitializer = If(cellInitializer, AddressOf DoNothing)

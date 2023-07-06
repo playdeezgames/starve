@@ -15,9 +15,10 @@ Public Module TerrainTypes
                     "\"c,
                     Hue.Green,
                     tenable:=True,
+                    canForage:=True,
                     verbTypes:=New Dictionary(Of String, Action(Of ICharacter, ICell)) From
                     {
-                        {VerbTypes.Forage, AddressOf ForageGrass}
+                        {VerbTypes.LegacyForage, AddressOf ForageGrass}
                     },
                     cellInitializer:=AddressOf InitializeGrass)
             },
@@ -36,9 +37,10 @@ Public Module TerrainTypes
         }
 
     Private Sub InitializeGrass(cell As ICell)
-        cell.Statistic(StatisticTypes.Depletion) = 20
-        cell.Statistic(StatisticTypes.MossWeight) = 5
-        cell.Statistic(StatisticTypes.FiberWeight) = 15
+        cell.Statistic(StatisticTypes.ForageAttempts) = 0
+        cell.Statistic(StatisticTypes.Depletion) = 72 'TODO: remove!
+        cell.Statistic(StatisticTypes.MossWeight) = 18
+        cell.Statistic(StatisticTypes.FiberWeight) = 54
     End Sub
 
     Private Sub ForageGrass(character As ICharacter, cell As ICell)
