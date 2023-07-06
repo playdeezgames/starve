@@ -16,7 +16,6 @@
     End Function
 
     Public Overrides Sub OnStart()
-        Dim avatar = Game.Avatar
         Dim itemCount = Game.ItemCountByName(Game.ItemName)
         If itemCount <= 1 Then
             Game.DropItems(itemCount)

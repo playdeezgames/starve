@@ -20,8 +20,7 @@ Friend Class NeutralState
             SetStates(Message, BoilerplateState.Neutral)
             Return
         End If
-        Dim avatar = Game.Avatar
-        If Not avatar.IsDead Then
+        If Not Game.IsDead Then
             If Game.IsInCombat Then
                 SetState(GameState.Combat)
                 Return
@@ -30,7 +29,7 @@ Friend Class NeutralState
                 Return
             End If
         End If
-        If avatar.IsDead Then
+        If Game.IsDead Then
             SetState(GameState.Dead)
             Return
         End If

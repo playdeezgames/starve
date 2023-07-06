@@ -151,6 +151,12 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property IsDead As Boolean Implements IGameContext.IsDead
+        Get
+            Return Avatar.IsDead
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)

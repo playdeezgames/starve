@@ -45,4 +45,5 @@ Public Interface IGameContext
     Sub DoVerb(verbType As String)
     Sub ClearTargetCell()
     Sub Move(deltaX As Integer, deltaY As Integer)
+    ReadOnly Property IsDead As Boolean
 End Interface
