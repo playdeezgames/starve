@@ -82,6 +82,15 @@ Friend Class Cell
         End Get
     End Property
 
+    Public Property Statistic(statisticType As String) As Integer Implements ICell.Statistic
+        Get
+            Return CellData.Statistics(statisticType)
+        End Get
+        Set(value As Integer)
+            CellData.Statistics(statisticType) = value
+        End Set
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICell.AddItem
         CellData.ItemIds.Add(item.Id)
     End Sub

@@ -11,8 +11,15 @@ Friend Module MapInitializer
     Private Sub InitializeMap(world As IWorld, mapType As String, descriptor As MapTypeDescriptor)
         Dim map = world.CreateMap(mapType, descriptor.Size, descriptor.DefaultTerrainType)
         descriptor.CustomInitializer.Invoke(map)
+        InitializeCells(map)
         PopulateCharacters(map, descriptor.SpawnCharacters)
         PopulateItems(map, descriptor.SpawnItems)
+    End Sub
+
+    Private Sub InitializeCells(map As IMap)
+        For Each cell In map.Cells
+            cell.TerrainType.ToTerrainTypeDescriptor.CellInitializer.Invoke(cell)
+        Next
     End Sub
 
     Private Sub PopulateItems(map As IMap, spawnItems As IReadOnlyDictionary(Of String, Integer))

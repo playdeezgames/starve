@@ -11,4 +11,5 @@
     ReadOnly Property TopItem As IItem
     ReadOnly Property HasItems As Boolean
     ReadOnly Property Items As IEnumerable(Of IItem)
+    Property Statistic(statisticType As String) As Integer
 End Interface

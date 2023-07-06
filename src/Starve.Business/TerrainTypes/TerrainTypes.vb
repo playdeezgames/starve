@@ -17,7 +17,8 @@ Public Module TerrainTypes
                     verbTypes:=New Dictionary(Of String, Action(Of ICharacter, ICell)) From
                     {
                         {VerbTypes.Forage, AddressOf ForageGrass}
-                    })
+                    },
+                    cellInitializer:=AddressOf InitializeGrass)
             },
             {
                 Tree,
@@ -32,6 +33,12 @@ Public Module TerrainTypes
                     })
             }
         }
+
+    Private Sub InitializeGrass(cell As ICell)
+        cell.Statistic(StatisticTypes.Depletion) = 35
+        cell.Statistic(StatisticTypes.MossWeight) = 5
+        cell.Statistic(StatisticTypes.FiberWeight) = 10
+    End Sub
 
     Private Sub ForageGrass(character As ICharacter, cell As ICell)
         Dim item = ItemInitializer.CreateItem(character.World, ItemTypes.Fiber)
