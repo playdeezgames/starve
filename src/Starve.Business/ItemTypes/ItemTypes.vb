@@ -13,6 +13,7 @@ Friend Module ItemTypes
     Friend Const Twine = "Twine"
     Friend Const Axe = "Axe"
     Friend Const Moss = "Moss"
+    Friend Const Bandage = "Bandage"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, ItemTypeDescriptor) =
         New Dictionary(Of String, ItemTypeDescriptor) From
         {
@@ -37,6 +38,13 @@ Friend Module ItemTypes
                     "Fiber",
                     ChrW(&H5D),
                     Hue.LightGreen)
+            },
+            {
+                Bandage,
+                New ItemTypeDescriptor(
+                    "Bandage",
+                    ChrW(&H57),
+                    Hue.Tan)
             },
             {
                 Moss,
