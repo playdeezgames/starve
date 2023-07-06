@@ -157,6 +157,12 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property Inventory As IEnumerable(Of (String, String)) Implements IGameContext.Inventory
+        Get
+            Return Items.GroupBy(Function(x) x.Name).Select(Function(x) ($"{x.Key}(x{x.Count})", x.Key))
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)

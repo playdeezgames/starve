@@ -10,7 +10,7 @@
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
-        Return Game.Items.GroupBy(Function(x) x.Name).Select(Function(x) ($"{x.Key}(x{x.Count})", x.Key)).ToList
+        Return Game.Inventory.ToList
     End Function
     Public Overrides Sub OnStart()
         If Not Game.HasItems Then
