@@ -1,5 +1,5 @@
 ﻿Friend Module StatisticTypes
-    Friend Const Depletion = "Depletion"
+    Friend Const Depletion = "Depletion" 'TODO: eliminate
     Friend Const Durability = "Durability"
     Friend Const FiberWeight = "FiberWeight"
     Friend Const Health = "Health"
