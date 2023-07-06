@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports SPLORR.Game
 Imports Starve.Persistence
 
 Public Module TerrainTypes
@@ -41,10 +42,29 @@ Public Module TerrainTypes
     End Sub
 
     Private Sub ForageGrass(character As ICharacter, cell As ICell)
-        Dim item = ItemInitializer.CreateItem(character.World, ItemTypes.Fiber)
-        character.AddItem(item)
-        character.World.CreateMessage().AddLine(LightGray, $"{character.Name} finds {item.Name}")
+        Dim generated = RNG.FromGenerator(New Dictionary(Of String, Integer) From
+            {
+                {"", cell.Statistic(StatisticTypes.Depletion)},
+                {ItemTypes.Fiber, cell.Statistic(StatisticTypes.FiberWeight)},
+                {ItemTypes.Moss, cell.Statistic(StatisticTypes.MossWeight)}
+            })
+        Dim message = character.World.CreateMessage()
         character.ApplyHunger()
+        If String.IsNullOrEmpty(generated) Then
+            message.Sfx = Sfx.Shucks
+            message.AddLine(Red, $"{character.Name} finds nothing!")
+            Return
+        End If
+        Select Case generated
+            Case ItemTypes.Fiber
+                cell.Statistic(FiberWeight) -= 1
+            Case ItemTypes.Moss
+                cell.Statistic(MossWeight) -= 1
+        End Select
+        cell.Statistic(Depletion) += 1
+        Dim item = ItemInitializer.CreateItem(character.World, generated)
+        character.AddItem(item)
+        message.AddLine(LightGray, $"{character.Name} finds {item.Name}")
     End Sub
 
     Private Sub DoTakeStick(character As ICharacter, cell As ICell)
