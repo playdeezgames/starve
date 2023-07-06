@@ -44,7 +44,14 @@ Friend Module ItemTypes
                 New ItemTypeDescriptor(
                     "Bandage",
                     ChrW(&H57),
-                    Hue.Tan)
+                    Hue.Tan, verbTypes:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    {
+                        {VerbTypes.Apply, AddressOf GenericApply}
+                    },
+                    statistics:=New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.Health, 10}
+                    })
             },
             {
                 Moss,
@@ -143,6 +150,16 @@ Friend Module ItemTypes
                     })
             }
         }
+
+    Private Sub GenericApply(character As ICharacter, item As IItem)
+        Dim message = character.World.CreateMessage.AddLine(LightGray, $"{character.Name} applies {item.Name}")
+        Dim healthGain = item.Statistic(StatisticTypes.Health)
+        message.AddLine(LightGray, $"{character.Name} gains {healthGain} health")
+        character.SetHealth(character.Health + healthGain)
+        message.AddLine(LightGray, $"{character.Name} now has {character.Health}/{character.MaximumHealth} health.")
+        character.RemoveItem(item)
+        item.Recycle()
+    End Sub
 
     Private Sub GenericEat(character As ICharacter, item As IItem)
         character.RemoveItem(item)
