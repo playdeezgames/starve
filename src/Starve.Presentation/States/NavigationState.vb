@@ -26,8 +26,7 @@ Friend Class NavigationState
     End Sub
 
     Private Sub MoveAvatar(deltaX As Integer, deltaY As Integer)
-        Dim avatar = Game.Avatar
-        Game.TargetCell = avatar.Move(deltaX, deltaY)
+        Game.Move(deltaX, deltaY)
         SetState(Neutral)
     End Sub
 

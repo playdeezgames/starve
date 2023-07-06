@@ -5,7 +5,7 @@ Public Class GameContext
 
     Private Property World As IWorld
 
-    Public Property TargetCell As ICell Implements IGameContext.TargetCell
+    Private Property TargetCell As ICell
 
     Public Property ItemName As String Implements IGameContext.ItemName
 
@@ -234,5 +234,13 @@ Public Class GameContext
 
     Public Sub DoVerb(verbType As String) Implements IGameContext.DoVerb
         Avatar.Cell.TerrainType.ToTerrainTypeDescriptor.VerbTypes(verbType).Invoke(Avatar, Avatar.Cell)
+    End Sub
+
+    Public Sub ClearTargetCell() Implements IGameContext.ClearTargetCell
+        TargetCell = Nothing
+    End Sub
+
+    Public Sub Move(deltaX As Integer, deltaY As Integer) Implements IGameContext.Move
+        TargetCell = Avatar.Move(deltaX, deltaY)
     End Sub
 End Class

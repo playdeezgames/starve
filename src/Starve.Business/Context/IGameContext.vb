@@ -9,7 +9,6 @@ Public Interface IGameContext
     Function ItemCountByName(itemName As String) As Integer
     Function DoItemVerb(verbType As String) As Boolean
     Function VerbTypesByItemName(itemName As String) As IEnumerable(Of String)
-    Property TargetCell As ICell
     Property ItemName As String
     ReadOnly Property IsInCombat As Boolean
     ReadOnly Property IsInteracting As Boolean
@@ -44,4 +43,6 @@ Public Interface IGameContext
     ReadOnly Property AvailableRecipes As IEnumerable(Of (String, Integer))
     ReadOnly Property AvailableVerbs As IEnumerable(Of (String, String))
     Sub DoVerb(verbType As String)
+    Sub ClearTargetCell()
+    Sub Move(deltaX As Integer, deltaY As Integer)
 End Interface

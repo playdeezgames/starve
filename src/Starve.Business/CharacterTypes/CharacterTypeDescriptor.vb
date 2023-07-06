@@ -2,9 +2,9 @@
 
 Friend Class CharacterTypeDescriptor
     Inherits VisibleEntityDescriptor
-    ReadOnly Property Statistics As IReadOnlyDictionary(Of String, Integer)
-    ReadOnly Property Initializer As Action(Of ICharacter)
-    Public Sub New(
+    Friend ReadOnly Property Statistics As IReadOnlyDictionary(Of String, Integer)
+    Friend ReadOnly Property Initializer As Action(Of ICharacter)
+    Friend Sub New(
                   name As String,
                   glyph As Char,
                   hue As Integer,

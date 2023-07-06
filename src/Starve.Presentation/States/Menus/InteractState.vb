@@ -7,7 +7,7 @@
 
     Public Overrides Sub HandleCommand(cmd As String)
         If cmd = Command.B Then
-            Game.TargetCell = Nothing
+            Game.ClearTargetCell()
         End If
         MyBase.HandleCommand(cmd)
     End Sub
