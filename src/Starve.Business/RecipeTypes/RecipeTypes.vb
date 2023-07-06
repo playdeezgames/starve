@@ -32,6 +32,17 @@
                 New Dictionary(Of String, Integer) From
                 {
                     {ItemTypes.Twine, 1}
+                }),
+            New RecipeDescriptor(
+                New Dictionary(Of String, Integer) From
+                {
+                    {ItemTypes.Twine, 1},
+                    {ItemTypes.Stick, 1},
+                    {ItemTypes.SharpRock, 1}
+                },
+                New Dictionary(Of String, Integer) From
+                {
+                    {ItemTypes.Axe, 1}
                 })
         }
 End Module

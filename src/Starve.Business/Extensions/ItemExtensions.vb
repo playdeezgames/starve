@@ -27,6 +27,10 @@ Public Module ItemExtensions
         Return item.ItemType.ToItemTypeDescriptor.CanEquip
     End Function
     <Extension>
+    Friend Function Satiety(item As IItem) As Integer
+        Return item.Statistic(StatisticTypes.Satiety)
+    End Function
+    <Extension>
     Public Function Durability(item As IItem) As Integer
         Return item.Statistic(StatisticTypes.Durability)
     End Function

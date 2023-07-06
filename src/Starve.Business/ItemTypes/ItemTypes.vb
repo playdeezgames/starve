@@ -11,6 +11,7 @@ Friend Module ItemTypes
     Friend Const Meat = "Meat"
     Friend Const Fiber = "Fiber"
     Friend Const Twine = "Twine"
+    Friend Const Axe = "Axe"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, ItemTypeDescriptor) =
         New Dictionary(Of String, ItemTypeDescriptor) From
         {
@@ -22,7 +23,11 @@ Friend Module ItemTypes
                     Hue.Tan,
                     verbTypes:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
                     {
-                        {VerbTypes.Eat, AddressOf EatSnekCorpse}
+                        {VerbTypes.Eat, AddressOf GenericEat}
+                    },
+                    statistics:=New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.Satiety, 20}
                     })
             },
             {
@@ -51,7 +56,15 @@ Friend Module ItemTypes
                 New ItemTypeDescriptor(
                     "Meat",
                     ChrW(&H9A),
-                    Hue.Red)
+                    Hue.Red,
+                    verbTypes:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    {
+                        {VerbTypes.Eat, AddressOf GenericEat}
+                    },
+                    statistics:=New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.Satiety, 25}
+                    })
             },
             {
                 Stick,
@@ -66,6 +79,21 @@ Friend Module ItemTypes
                         {StatisticTypes.MaximumDurability, 50},
                         {StatisticTypes.MinimumAttack, 5},
                         {StatisticTypes.MaximumAttack, 5}
+                    })
+            },
+            {
+                Axe,
+                New ItemTypeDescriptor(
+                    "Axe",
+                    ChrW(&H5F),
+                    Hue.LightGray,
+                    equipSlotType:=EquipSlotTypes.Weapon,
+                    statistics:=New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.Durability, 250},
+                        {StatisticTypes.MaximumDurability, 250},
+                        {StatisticTypes.MinimumAttack, 15},
+                        {StatisticTypes.MaximumAttack, 15}
                     })
             },
             {
@@ -100,12 +128,13 @@ Friend Module ItemTypes
             }
         }
 
-    Private Sub EatSnekCorpse(character As ICharacter, item As IItem)
+    Private Sub GenericEat(character As ICharacter, item As IItem)
         character.RemoveItem(item)
         item.Recycle()
-        character.SetSatiety(character.Satiety + 20) 'TODO: pull number from statistic?
-        Dim message = character.World.CreateMessage
-        message.AddLine(LightGray, "You eat the snek corpse!")
+        character.SetSatiety(character.Satiety + item.Satiety)
+        character.World.CreateMessage().
+            AddLine(LightGray, $"You eat the {item.Name}!").
+            AddLine(LightGray, $"You have {character.Satiety} Satiety")
     End Sub
 
     <Extension>
