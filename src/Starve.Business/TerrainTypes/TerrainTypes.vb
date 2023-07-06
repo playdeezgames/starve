@@ -37,6 +37,7 @@ Public Module TerrainTypes
         Dim item = ItemInitializer.CreateItem(character.World, ItemTypes.Fiber)
         character.AddItem(item)
         character.World.CreateMessage().AddLine(LightGray, $"{character.Name} finds {item.Name}")
+        character.ApplyHunger()
     End Sub
 
     Private Sub DoTakeStick(character As ICharacter, cell As ICell)
