@@ -42,4 +42,6 @@ Public Interface IGameContext
     Property EquipSlotType As String
     ReadOnly Property CanCraft As Boolean
     ReadOnly Property AvailableRecipes As IEnumerable(Of (String, Integer))
+    ReadOnly Property AvailableVerbs As IEnumerable(Of (String, String))
+    Sub DoVerb(verbType As String)
 End Interface

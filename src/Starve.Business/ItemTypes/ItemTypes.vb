@@ -9,6 +9,7 @@ Friend Module ItemTypes
     Friend Const SharpRock = "SharpRock"
     Friend Const Skin = "Skin"
     Friend Const Meat = "Meat"
+    Friend Const Fiber = "Fiber"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, ItemTypeDescriptor) =
         New Dictionary(Of String, ItemTypeDescriptor) From
         {
@@ -22,6 +23,13 @@ Friend Module ItemTypes
                     {
                         {VerbTypes.Eat, AddressOf EatSnekCorpse}
                     })
+            },
+            {
+                Fiber,
+                New ItemTypeDescriptor(
+                    "Fiber",
+                    ChrW(&H5D),
+                    Hue.LightGreen)
             },
             {
                 Skin,

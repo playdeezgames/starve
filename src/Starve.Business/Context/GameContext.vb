@@ -145,6 +145,12 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property AvailableVerbs As IEnumerable(Of (String, String)) Implements IGameContext.AvailableVerbs
+        Get
+            Return Avatar.Cell.TerrainType.ToTerrainTypeDescriptor.AllVerbs.Select(Function(x) (x.ToVerbTypeDescriptor.Name, x))
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)
@@ -152,6 +158,9 @@ Public Class GameContext
 
     Public Sub Attack() Implements IGameContext.Attack
         World.Avatar.Attack(TargetCell.Character, True)
+        If Not TargetCell.HasCharacter Then
+            TargetCell = Nothing
+        End If
     End Sub
 
     Public Sub Run() Implements IGameContext.Run
@@ -221,5 +230,9 @@ Public Class GameContext
 
     Public Sub Craft(recipeIndex As Integer) Implements IGameContext.Craft
         RecipeTypes.Descriptors(recipeIndex).Craft(Avatar)
+    End Sub
+
+    Public Sub DoVerb(verbType As String) Implements IGameContext.DoVerb
+        Avatar.Cell.TerrainType.ToTerrainTypeDescriptor.VerbTypes(verbType).Invoke(Avatar, Avatar.Cell)
     End Sub
 End Class

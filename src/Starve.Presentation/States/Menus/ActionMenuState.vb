@@ -23,6 +23,9 @@
                 SetState(GameState.Equipment)
             Case CraftText
                 SetState(GameState.Craft)
+            Case Else
+                Game.DoVerb(value.Item2)
+                SetState(Neutral)
         End Select
     End Sub
 
@@ -31,6 +34,7 @@
         If Game.HasGroundItems Then
             result.Add((PickUpText, PickUpText))
         End If
+        result.AddRange(Game.AvailableVerbs)
         If Game.HasItems Then
             result.Add((InventoryText, InventoryText))
         End If

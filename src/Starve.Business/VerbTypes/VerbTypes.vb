@@ -3,6 +3,7 @@
 Public Module VerbTypes
     Friend Const Eat = "Eat"
     Friend Const TakeStick = "TakeStick"
+    Friend Const Forage = "Forage"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, VerbDescriptor) =
         New Dictionary(Of String, VerbDescriptor) From
         {
@@ -15,6 +16,11 @@ Public Module VerbTypes
                 TakeStick,
                 New VerbDescriptor(
                     "Take Stick")
+            },
+            {
+                Forage,
+                New VerbDescriptor(
+                    "Forage")
             }
         }
     <Extension>
