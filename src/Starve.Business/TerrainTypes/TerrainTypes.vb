@@ -36,9 +36,9 @@ Public Module TerrainTypes
         }
 
     Private Sub InitializeGrass(cell As ICell)
-        cell.Statistic(StatisticTypes.Depletion) = 35
+        cell.Statistic(StatisticTypes.Depletion) = 20
         cell.Statistic(StatisticTypes.MossWeight) = 5
-        cell.Statistic(StatisticTypes.FiberWeight) = 10
+        cell.Statistic(StatisticTypes.FiberWeight) = 15
     End Sub
 
     Private Sub ForageGrass(character As ICharacter, cell As ICell)
