@@ -23,6 +23,15 @@
                     {ItemTypes.SharpRock, 1},
                     {ItemTypes.Meat, 1},
                     {ItemTypes.Skin, 1}
+                }),
+            New RecipeDescriptor(
+                New Dictionary(Of String, Integer) From
+                {
+                    {ItemTypes.Fiber, 2}
+                },
+                New Dictionary(Of String, Integer) From
+                {
+                    {ItemTypes.Twine, 1}
                 })
         }
 End Module
