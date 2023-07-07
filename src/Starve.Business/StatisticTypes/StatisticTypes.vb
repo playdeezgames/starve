@@ -1,5 +1,4 @@
 ﻿Friend Module StatisticTypes
-    Friend Const Depletion = "Depletion" 'TODO: eliminate
     Friend Const Durability = "Durability"
     Friend ReadOnly FiberWeight As String = ForagingWeight(ItemTypes.Fiber)
     Friend Const Health = "Health"

@@ -9,6 +9,7 @@ Friend Class ForageState
     Private Grid(GridColumns, GridRows) As (Boolean, String)
     Private Column As Integer
     Private Row As Integer
+    Private Tallies As New Dictionary(Of String, Integer)
 
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IGameContext))
         MyBase.New(parent, setState, context)
@@ -38,6 +39,14 @@ Friend Class ForageState
         Dim gridCell = Grid(Column, Row)
 
         Game.DoForaging(gridCell.Item2)
+
+        If Not String.IsNullOrEmpty(gridCell.Item2) Then
+            If Not Tallies.ContainsKey(gridCell.Item2) Then
+                Tallies(gridCell.Item2) = 1
+            Else
+                Tallies(gridCell.Item2) += 1
+            End If
+        End If
 
         Grid(Column, Row) = (True, gridCell.Item2)
 
@@ -75,6 +84,12 @@ Friend Class ForageState
             .WriteText(displayBuffer, (1, font.Height), $"S: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.Black)
             .WriteText(displayBuffer, (0, font.Height), $"S: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.Purple)
         End With
+        Dim y = 0
+        For Each tally In Tallies
+            Dim text = $"+{tally.Value} {Game.ItemTypeName(tally.Key)}"
+            font.WriteText(displayBuffer, (ViewWidth - font.TextWidth(text), y), text, LightGray)
+            y += font.Height
+        Next
         Context.ShowStatusBar(displayBuffer, font, Context.ControlsText("Action Menu", "Game Menu"), Hue.Black, Hue.LightGray)
     End Sub
     Public Overrides Sub OnStart()
@@ -109,5 +124,6 @@ Friend Class ForageState
         End While
         Column = 0
         Row = 0
+        Tallies.Clear()
     End Sub
 End Class

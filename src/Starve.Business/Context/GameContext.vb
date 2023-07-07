@@ -291,4 +291,8 @@ Public Class GameContext
     Public Sub DoForaging(itemType As String) Implements IGameContext.DoForaging
         Avatar.DoForaging(itemType)
     End Sub
+
+    Public Function ItemTypeName(itemType As String) As String Implements IGameContext.ItemTypeName
+        Return itemType.ToItemTypeDescriptor.Name
+    End Function
 End Class

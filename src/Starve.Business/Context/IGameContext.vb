@@ -52,4 +52,5 @@ Public Interface IGameContext
     Sub DoForaging(itemType As String)
     ReadOnly Property Foragables As IReadOnlyDictionary(Of String, Integer)
     ReadOnly Property ForageAttempts As Integer
+    Function ItemTypeName(itemType As String) As String
 End Interface

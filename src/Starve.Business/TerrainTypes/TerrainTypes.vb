@@ -1,5 +1,4 @@
 ﻿Imports System.Runtime.CompilerServices
-Imports SPLORR.Game
 Imports Starve.Persistence
 
 Public Module TerrainTypes
@@ -16,10 +15,6 @@ Public Module TerrainTypes
                     Hue.Green,
                     tenable:=True,
                     canForage:=True,
-                    verbTypes:=New Dictionary(Of String, Action(Of ICharacter, ICell)) From
-                    {
-                        {VerbTypes.LegacyForage, AddressOf ForageGrass}
-                    },
                     cellInitializer:=AddressOf InitializeGrass)
             },
             {
@@ -38,35 +33,8 @@ Public Module TerrainTypes
 
     Private Sub InitializeGrass(cell As ICell)
         cell.Statistic(StatisticTypes.ForageAttempts) = 0
-        cell.Statistic(StatisticTypes.Depletion) = 72 'TODO: remove!
-        cell.Statistic(StatisticTypes.MossWeight) = 18
-        cell.Statistic(StatisticTypes.FiberWeight) = 54
-    End Sub
-
-    Private Sub ForageGrass(character As ICharacter, cell As ICell)
-        Dim generated = RNG.FromGenerator(New Dictionary(Of String, Integer) From
-            {
-                {"", cell.Statistic(StatisticTypes.Depletion)},
-                {ItemTypes.Fiber, cell.Statistic(StatisticTypes.FiberWeight)},
-                {ItemTypes.Moss, cell.Statistic(StatisticTypes.MossWeight)}
-            })
-        Dim message = character.World.CreateMessage()
-        character.ApplyHunger()
-        If String.IsNullOrEmpty(generated) Then
-            message.Sfx = Sfx.Shucks
-            message.AddLine(Red, $"{character.Name} finds nothing!")
-            Return
-        End If
-        Select Case generated
-            Case ItemTypes.Fiber
-                cell.Statistic(FiberWeight) -= 1
-            Case ItemTypes.Moss
-                cell.Statistic(MossWeight) -= 1
-        End Select
-        cell.Statistic(Depletion) += 1
-        Dim item = ItemInitializer.CreateItem(character.World, generated)
-        character.AddItem(item)
-        message.AddLine(LightGray, $"{character.Name} finds {item.Name}")
+        cell.Statistic(StatisticTypes.MossWeight) = 4
+        cell.Statistic(StatisticTypes.FiberWeight) = 16
     End Sub
 
     Private Sub DoTakeStick(character As ICharacter, cell As ICell)
