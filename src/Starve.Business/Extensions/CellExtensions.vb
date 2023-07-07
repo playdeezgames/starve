@@ -33,6 +33,6 @@ Public Module CellExtensions
     End Function
     <Extension>
     Function CanForage(cell As ICell) As Boolean
-        Return ItemTypes.All.Any(Function(itemType) cell.HasStatistic(ForagingWeight(itemType)) AndAlso cell.Statistic(ForagingWeight(itemType)) > 0)
+        Return ItemTypes.All.Any(Function(itemType) cell.HasStatistic(ForagingWeight(itemType)) AndAlso cell.Statistic(ForagingWeight(itemType)) > 0) AndAlso Not cell.Neighbors.Any(Function(x) x.HasCharacter)
     End Function
 End Module
