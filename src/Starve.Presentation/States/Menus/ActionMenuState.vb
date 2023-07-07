@@ -23,6 +23,8 @@
                 SetState(GameState.Equipment)
             Case CraftText
                 SetState(GameState.Craft)
+            Case ForageText
+                SetState(GameState.Forage)
             Case Else
                 Game.DoVerb(value.Item2)
                 SetState(Neutral)
@@ -43,6 +45,9 @@
         End If
         If Game.CanCraft Then
             result.Add((CraftText, CraftText))
+        End If
+        If Game.CanForage Then
+            result.Add((ForageText, ForageText))
         End If
         result.Add((StatusText, StatusText))
         Return result

@@ -47,4 +47,9 @@ Public Interface IGameContext
     Sub ClearTargetCell()
     Sub Move(deltaX As Integer, deltaY As Integer)
     ReadOnly Property IsDead As Boolean
+    ReadOnly Property CanForage As Boolean
+    Function GetItemTypeGlyphAndHue(itemType As String) As (Char, Integer)
+    Sub DoForaging(itemType As String)
+    ReadOnly Property Foragables As IReadOnlyDictionary(Of String, Integer)
+    ReadOnly Property ForageAttempts As Integer
 End Interface

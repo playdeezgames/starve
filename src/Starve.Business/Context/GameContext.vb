@@ -163,6 +163,31 @@ Public Class GameContext
         End Get
     End Property
 
+    Public ReadOnly Property CanForage As Boolean Implements IGameContext.CanForage
+        Get
+            Return Avatar.Cell.CanForage
+        End Get
+    End Property
+
+    Public ReadOnly Property Foragables As IReadOnlyDictionary(Of String, Integer) Implements IGameContext.Foragables
+        Get
+            Dim cell = Avatar.Cell
+            Return ItemTypes.
+                All.
+                Where(Function(itemType) cell.HasStatistic(ForagingWeight(itemType))).
+                ToDictionary(
+                    Function(itemType) itemType,
+                    Function(itemType) cell.Statistic(ForagingWeight(itemType)))
+        End Get
+    End Property
+
+    Public ReadOnly Property ForageAttempts As Integer Implements IGameContext.ForageAttempts
+        Get
+            Dim cell = Avatar.Cell
+            Return If(cell.HasStatistic(StatisticTypes.ForageAttempts), cell.Statistic(StatisticTypes.ForageAttempts), 0)
+        End Get
+    End Property
+
     Public Sub Embark() Implements IGameContext.Embark
         World = New World(New Data.WorldData)
         WorldInitializer.Initialize(World)
@@ -254,5 +279,16 @@ Public Class GameContext
 
     Public Sub Move(deltaX As Integer, deltaY As Integer) Implements IGameContext.Move
         TargetCell = Avatar.Move(deltaX, deltaY)
+    End Sub
+
+    Public Function GetItemTypeGlyphAndHue(itemType As String) As (Char, Integer) Implements IGameContext.GetItemTypeGlyphAndHue
+        If String.IsNullOrEmpty(itemType) Then
+            Return (ChrW(&H2F), Black)
+        End If
+        Return (itemType.ToItemTypeDescriptor.Glyph, itemType.ToItemTypeDescriptor.Hue)
+    End Function
+
+    Public Sub DoForaging(itemType As String) Implements IGameContext.DoForaging
+        Avatar.DoForaging(itemType)
     End Sub
 End Class

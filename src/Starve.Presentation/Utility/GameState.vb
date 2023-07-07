@@ -8,6 +8,7 @@
     Friend Const Equip = "Equip"
     Friend Const Equipment = "Equipment"
     Friend Const EquipmentDetail = "EquipmentDetail"
+    Friend Const Forage = "Forage"
     Friend Const Ground = "Ground"
     Friend Const Inventory = "Inventory"
     Friend Const InventoryDetail = "InventoryDetail"

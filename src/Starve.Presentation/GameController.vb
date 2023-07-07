@@ -26,6 +26,7 @@ Public Class GameController
         SetState(GameState.EquipmentDetail, New EquipmentDetailState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Unequip, New UnequipState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Craft, New CraftState(Me, AddressOf SetCurrentState, context))
+        SetState(GameState.Forage, New ForageState(Me, AddressOf SetCurrentState, context))
         SetCurrentState(BoilerplateState.Splash, True)
     End Sub
 End Class

@@ -31,4 +31,8 @@ Public Module CellExtensions
         cell.TerrainType.ToTerrainTypeDescriptor.VerbTypes(verbType).Invoke(character, cell)
         Return cell.Map.World.HasMessages
     End Function
+    <Extension>
+    Function CanForage(cell As ICell) As Boolean
+        Return ItemTypes.All.Any(Function(itemType) cell.HasStatistic(ForagingWeight(itemType)) AndAlso cell.Statistic(ForagingWeight(itemType)) > 0)
+    End Function
 End Module

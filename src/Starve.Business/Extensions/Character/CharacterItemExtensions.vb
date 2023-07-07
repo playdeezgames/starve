@@ -22,4 +22,13 @@ Public Module CharacterItemExtensions
     Friend Function CanCraft(character As ICharacter) As Boolean
         Return RecipeTypes.Descriptors.Any(Function(x) x.CanCraft(character))
     End Function
+    <Extension>
+    Friend Sub DoForaging(character As ICharacter, itemType As String)
+        character.ApplyHunger()
+        character.Cell.Statistic(ForageAttempts) += 1
+        If ItemTypes.All.Contains(itemType) Then
+            character.Cell.Statistic(ForagingWeight(itemType)) -= 1
+            character.AddItem(ItemInitializer.CreateItem(character.World, itemType))
+        End If
+    End Sub
 End Module

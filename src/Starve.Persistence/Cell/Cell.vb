@@ -91,6 +91,12 @@ Friend Class Cell
         End Set
     End Property
 
+    Public ReadOnly Property HasStatistic(statisticType As String) As Boolean Implements ICell.HasStatistic
+        Get
+            Return CellData.Statistics.ContainsKey(statisticType)
+        End Get
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICell.AddItem
         CellData.ItemIds.Add(item.Id)
     End Sub
