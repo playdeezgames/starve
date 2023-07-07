@@ -90,7 +90,7 @@ Friend Class ForageState
             font.WriteText(displayBuffer, (ViewWidth - font.TextWidth(text), y), text, LightGray)
             y += font.Height
         Next
-        Context.ShowStatusBar(displayBuffer, font, Context.ControlsText("Action Menu", "Game Menu"), Hue.Black, Hue.LightGray)
+        Context.ShowStatusBar(displayBuffer, font, Context.ControlsText("Forage!", "Stop"), Hue.Black, Hue.LightGray)
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()
