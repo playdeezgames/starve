@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\abettor-of-splorr\src\SPLORR.Game\SPLORR.Game.vbproj" />
+    <ProjectReference Include="..\SPLORR.Game\SPLORR.Game.vbproj" />
     <ProjectReference Include="..\Starve.Persistence\Starve.Persistence.vbproj" />
   </ItemGroup>
 

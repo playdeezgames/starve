@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\abettor-of-splorr\src\AOS.UI\AOS.UI.vbproj" />
+    <ProjectReference Include="..\AOS.UI\AOS.UI.vbproj" />
     <ProjectReference Include="..\Starve.Business\Starve.Business.vbproj" />
   </ItemGroup>
 

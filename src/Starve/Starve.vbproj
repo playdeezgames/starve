@@ -95,7 +95,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj" />
+    <ProjectReference Include="..\AOS.Presentation\AOS.Presentation.vbproj" />
     <ProjectReference Include="..\Starve.Presentation\Starve.Presentation.vbproj" />
   </ItemGroup>
 
