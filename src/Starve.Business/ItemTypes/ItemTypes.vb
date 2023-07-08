@@ -192,7 +192,7 @@ Friend Module ItemTypes
         character.SetSatiety(character.Satiety + item.Satiety)
         character.World.CreateMessage().
             AddLine(LightGray, $"You eat the {item.Name}!").
-            AddLine(LightGray, $"You have {character.Satiety} Satiety")
+            AddLine(LightGray, $"You have {character.Satiety} Satiety").SetSfx(Sfx.Eat)
     End Sub
 
     <Extension>
