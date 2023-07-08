@@ -1,4 +1,6 @@
-﻿Friend Class Item
+﻿Imports System.Net.NetworkInformation
+
+Friend Class Item
     Inherits ItemDataClient
     Implements IItem
     Public Sub New(worldData As Data.WorldData, itemId As Integer)
@@ -23,6 +25,12 @@
         Set(value As Integer)
             ItemData.Statistics(statisticType) = value
         End Set
+    End Property
+
+    Public ReadOnly Property HasStatistic(statisticType As String) As Boolean Implements IItem.HasStatistic
+        Get
+            Return ItemData.Statistics.ContainsKey(statisticType)
+        End Get
     End Property
 
     Public Sub Recycle() Implements IItem.Recycle

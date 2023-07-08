@@ -20,7 +20,7 @@ Public Module CharacterItemExtensions
     End Sub
     <Extension>
     Friend Function CanCraft(character As ICharacter) As Boolean
-        Return RecipeTypes.Descriptors.Any(Function(x) x.CanCraft(character))
+        Return RecipeTypes.Descriptors.Any(Function(x) x.CanCraft(character)) AndAlso Not character.Cell.Neighbors.Any(Function(x) x.HasCharacter)
     End Function
     <Extension>
     Friend Sub DoForaging(character As ICharacter, itemType As String)
@@ -31,4 +31,8 @@ Public Module CharacterItemExtensions
             character.AddItem(ItemInitializer.CreateItem(character.World, itemType))
         End If
     End Sub
+    <Extension>
+    Friend Function CanPickUp(character As ICharacter) As Boolean
+        Return character.Cell.HasItems AndAlso Not character.Cell.Neighbors.Any(Function(x) x.HasCharacter)
+    End Function
 End Module

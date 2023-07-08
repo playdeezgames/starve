@@ -14,6 +14,7 @@ Friend Module ItemTypes
     Friend Const Axe = "Axe"
     Friend Const Moss = "Moss"
     Friend Const Bandage = "Bandage"
+    Friend Const Shield = "Shield"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, ItemTypeDescriptor) =
         New Dictionary(Of String, ItemTypeDescriptor) From
         {
@@ -38,6 +39,21 @@ Friend Module ItemTypes
                     "Fiber",
                     ChrW(&H5D),
                     Hue.LightGreen)
+            },
+            {
+                Shield,
+                New ItemTypeDescriptor(
+                    "Shield",
+                    ChrW(&H7D),
+                    Hue.Brown,
+                    equipSlotType:=EquipSlotTypes.Shield,
+                    statistics:=New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.Durability, 250},
+                        {StatisticTypes.MaximumDurability, 250},
+                        {StatisticTypes.MinimumDefend, 15},
+                        {StatisticTypes.MaximumDefend, 15}
+                    })
             },
             {
                 Bandage,

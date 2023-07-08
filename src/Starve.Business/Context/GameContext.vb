@@ -27,9 +27,9 @@ Public Class GameContext
         End Get
     End Property
 
-    Public ReadOnly Property HasGroundItems As Boolean Implements IGameContext.HasGroundItems
+    Public ReadOnly Property CanPickUp As Boolean Implements IGameContext.CanPickUp
         Get
-            Return World.Avatar.Cell.HasItems
+            Return World.Avatar.CanPickUp
         End Get
     End Property
 

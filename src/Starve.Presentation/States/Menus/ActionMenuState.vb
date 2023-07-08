@@ -33,7 +33,7 @@
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         Dim result As New List(Of (String, String))
-        If Game.HasGroundItems Then
+        If Game.CanPickUp Then
             result.Add((PickUpText, PickUpText))
         End If
         result.AddRange(Game.AvailableVerbs)

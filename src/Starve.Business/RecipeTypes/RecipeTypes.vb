@@ -53,6 +53,17 @@
                 New Dictionary(Of String, Integer) From
                 {
                     {ItemTypes.Axe, 1}
+                }),
+            New RecipeDescriptor(
+                New Dictionary(Of String, Integer) From
+                {
+                    {ItemTypes.Twine, 3},
+                    {ItemTypes.Stick, 3},
+                    {ItemTypes.Skin, 10}
+                },
+                New Dictionary(Of String, Integer) From
+                {
+                    {ItemTypes.Shield, 1}
                 })
         }
 End Module

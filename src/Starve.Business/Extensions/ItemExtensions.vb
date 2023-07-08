@@ -40,15 +40,31 @@ Public Module ItemExtensions
     End Function
     <Extension>
     Public Function MinimumAttack(item As IItem) As Integer
-        Return item.Statistic(StatisticTypes.MinimumAttack)
+        Return item.TryGetStatistic(StatisticTypes.MinimumAttack)
     End Function
     <Extension>
     Public Function MaximumAttack(item As IItem) As Integer
-        Return item.Statistic(StatisticTypes.MaximumAttack)
+        Return item.TryGetStatistic(StatisticTypes.MaximumAttack)
+    End Function
+    <Extension>
+    Private Function TryGetStatistic(item As IItem, statisticType As String, Optional defaultValue As Integer = 0) As Integer
+        Return If(item.HasStatistic(statisticType), item.Statistic(statisticType), defaultValue)
+    End Function
+    <Extension>
+    Public Function MinimumDefend(item As IItem) As Integer
+        Return item.TryGetStatistic(StatisticTypes.MinimumDefend)
+    End Function
+    <Extension>
+    Public Function MaximumDefend(item As IItem) As Integer
+        Return item.TryGetStatistic(StatisticTypes.MaximumDefend)
     End Function
     <Extension>
     Friend Function IsWeapon(item As IItem) As Boolean
-        Return item.Statistic(StatisticTypes.MaximumAttack) > 0
+        Return item.TryGetStatistic(StatisticTypes.MaximumAttack) > 0
+    End Function
+    <Extension>
+    Friend Function IsArmor(item As IItem) As Boolean
+        Return item.TryGetStatistic(StatisticTypes.MaximumDefend) > 0
     End Function
     <Extension>
     Friend Sub Deplete(item As IItem, depletion As Integer)

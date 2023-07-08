@@ -15,7 +15,7 @@
     End Function
 
     Public Overrides Sub OnStart()
-        If Not Game.HasGroundItems Then
+        If Not Game.CanPickUp Then
             SetState(BoilerplateState.Neutral)
             Return
         End If

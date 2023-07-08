@@ -15,7 +15,7 @@ Public Interface IGameContext
     ReadOnly Property GroundItems As IEnumerable(Of IItem)
     ReadOnly Property GroundItemsByName(name As String) As IEnumerable(Of IItem)
     ReadOnly Property GroundItemCountByName(name As String) As Integer
-    ReadOnly Property HasGroundItems As Boolean
+    ReadOnly Property CanPickUp As Boolean
     ReadOnly Property Items As IEnumerable(Of IItem)
     ReadOnly Property Inventory As IEnumerable(Of (String, String))
     ReadOnly Property HasItems As Boolean

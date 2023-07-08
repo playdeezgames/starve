@@ -17,11 +17,11 @@ Public Module CharacterCombatExtensions
     End Function
     <Extension>
     Public Function MinimumDefend(character As ICharacter) As Integer
-        Return character.Statistic(StatisticTypes.MinimumDefend)
+        Return character.Statistic(StatisticTypes.MinimumDefend) + character.Equipment.Values.Sum(Function(x) x.MinimumDefend)
     End Function
     <Extension>
     Public Function MaximumDefend(character As ICharacter) As Integer
-        Return character.Statistic(StatisticTypes.MaximumDefend)
+        Return character.Statistic(StatisticTypes.MaximumDefend) + character.Equipment.Values.Sum(Function(x) x.MaximumDefend)
     End Function
     <Extension>
     Private Function RollAttack(character As ICharacter) As Integer
@@ -36,6 +36,10 @@ Public Module CharacterCombatExtensions
         Return character.EquippedItems.Where(Function(x) x.IsWeapon)
     End Function
     <Extension>
+    Private Function Armors(character As ICharacter) As IEnumerable(Of IItem)
+        Return character.EquippedItems.Where(Function(x) x.IsArmor)
+    End Function
+    <Extension>
     Private Function DepleteWeapons(character As ICharacter, durability As Integer) As IEnumerable(Of IItem)
         Dim weapons = character.Weapons
         While weapons.Any AndAlso durability > 0
@@ -47,7 +51,13 @@ Public Module CharacterCombatExtensions
     End Function
     <Extension>
     Private Function DepleteArmors(character As ICharacter, durability As Integer) As IEnumerable(Of IItem)
-        Return Array.Empty(Of IItem)
+        Dim armors = character.Armors
+        While armors.Any AndAlso durability > 0
+            Dim armor = RNG.FromEnumerable(armors)
+            armor.Deplete(1)
+            durability -= 1
+        End While
+        Return armors.Where(Function(x) x.IsDepleted)
     End Function
     <Extension>
     Public Sub Attack(attacker As ICharacter, defender As ICharacter, Optional doCounterAttacks As Boolean = False, Optional counterIndex As Integer = 0, Optional counterMaximum As Integer = 0, Optional title As String = "")
