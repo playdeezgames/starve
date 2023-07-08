@@ -8,7 +8,7 @@ Public Interface IGameContext
     Sub DropItems(itemCount As Integer)
     Function ItemCountByName(itemName As String) As Integer
     Function DoItemVerb(verbType As String) As Boolean
-    Function VerbTypesByItemName(itemName As String) As IEnumerable(Of String)
+    Function VerbTypesByItemName(itemName As String) As IEnumerable(Of (String, String))
     Property ItemName As String
     ReadOnly Property IsInCombat As Boolean
     ReadOnly Property IsInteracting As Boolean
@@ -22,7 +22,7 @@ Public Interface IGameContext
     ReadOnly Property Avatar As ICharacter
     ReadOnly Property TargetCharacter As ICharacter
     ReadOnly Property TargetTerrainName As String
-    ReadOnly Property TargetCellVerbs As IEnumerable(Of String)
+    ReadOnly Property TargetCellVerbs As IEnumerable(Of (String, String))
     Sub DismissMessage()
     Sub Abandon()
     Sub Load(filename As String)

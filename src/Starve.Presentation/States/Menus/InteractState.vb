@@ -22,6 +22,6 @@
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         HeaderText = $"Interact with {Game.TargetTerrainName}"
-        Return Game.TargetCellVerbs.Select(Function(x) (x.ToVerbTypeDescriptor.Name, x)).ToList
+        Return Game.TargetCellVerbs.ToList
     End Function
 End Class

@@ -1,6 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 
-Public Module VerbTypes
+Friend Module VerbTypes
     Friend Const Eat = "Eat"
     Friend Const TakeStick = "TakeStick"
     Friend Const Apply = "Apply"
@@ -24,7 +24,7 @@ Public Module VerbTypes
             }
         }
     <Extension>
-    Public Function ToVerbTypeDescriptor(verbType As String) As VerbDescriptor
+    Friend Function ToVerbTypeDescriptor(verbType As String) As VerbDescriptor
         Return descriptors(verbType)
     End Function
     Friend ReadOnly Property All As IEnumerable(Of String)

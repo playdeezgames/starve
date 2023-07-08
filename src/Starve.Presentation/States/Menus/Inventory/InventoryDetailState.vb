@@ -30,7 +30,7 @@ Friend Class InventoryDetailState
         If Game.CanEquipItem Then
             result.Add((EquipText, EquipText))
         End If
-        result.AddRange(Game.VerbTypesByItemName(Game.ItemName).Select(Function(verbType) (verbType.ToVerbTypeDescriptor.Name, verbType)))
+        result.AddRange(Game.VerbTypesByItemName(Game.ItemName))
         Return result
     End Function
 

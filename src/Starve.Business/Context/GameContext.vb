@@ -75,9 +75,9 @@ Public Class GameContext
         End Get
     End Property
 
-    Public ReadOnly Property TargetCellVerbs As IEnumerable(Of String) Implements IGameContext.TargetCellVerbs
+    Public ReadOnly Property TargetCellVerbs As IEnumerable(Of (String, String)) Implements IGameContext.TargetCellVerbs
         Get
-            Return If(TargetCell?.TerrainType?.ToTerrainTypeDescriptor?.AllVerbs, Array.Empty(Of String))
+            Return If(TargetCell?.TerrainType?.ToTerrainTypeDescriptor?.AllVerbs, Array.Empty(Of String)).Select(Function(x) (x.ToVerbTypeDescriptor.Name, x))
         End Get
     End Property
 
@@ -246,8 +246,8 @@ Public Class GameContext
         Return World.HasMessages
     End Function
 
-    Public Function VerbTypesByItemName(itemName As String) As IEnumerable(Of String) Implements IGameContext.VerbTypesByItemName
-        Return World.Avatar.Items.First(Function(x) x.Name = itemName).VerbTypes
+    Public Function VerbTypesByItemName(itemName As String) As IEnumerable(Of (String, String)) Implements IGameContext.VerbTypesByItemName
+        Return World.Avatar.Items.First(Function(x) x.Name = itemName).VerbTypes.Select(Function(verbType) (verbType.ToVerbTypeDescriptor.Name, verbType))
     End Function
 
     Public Function DoTargetCellVerb(verbType As String) As Boolean Implements IGameContext.DoTargetCellVerb
