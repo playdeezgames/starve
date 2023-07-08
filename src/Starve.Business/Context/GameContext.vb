@@ -195,7 +195,7 @@ Public Class GameContext
 
     Public Sub Attack() Implements IGameContext.Attack
         World.Avatar.Attack(TargetCell.Character, True)
-        If Not TargetCell.HasCharacter Then
+        If Not TargetCell.HasCharacter OrElse Avatar.IsDead Then
             TargetCell = Nothing
         End If
     End Sub
