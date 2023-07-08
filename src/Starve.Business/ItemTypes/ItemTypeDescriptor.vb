@@ -11,7 +11,7 @@ Friend Class ItemTypeDescriptor
             Return EquipSlotType IsNot Nothing
         End Get
     End Property
-    Public Sub New(
+    Friend Sub New(
                   name As String,
                   glyph As Char,
                   hue As Integer,
