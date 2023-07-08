@@ -49,10 +49,10 @@ Friend Module ItemTypes
                     equipSlotType:=EquipSlotTypes.Shield,
                     statistics:=New Dictionary(Of String, Integer) From
                     {
-                        {StatisticTypes.Durability, 250},
-                        {StatisticTypes.MaximumDurability, 250},
-                        {StatisticTypes.MinimumDefend, 15},
-                        {StatisticTypes.MaximumDefend, 15}
+                        {StatisticTypes.Durability, 125},
+                        {StatisticTypes.MaximumDurability, 125},
+                        {StatisticTypes.MinimumDefend, 10},
+                        {StatisticTypes.MaximumDefend, 10}
                     })
             },
             {
