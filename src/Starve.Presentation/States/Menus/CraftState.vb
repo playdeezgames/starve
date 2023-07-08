@@ -6,6 +6,7 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, Integer))
+        PlaySfx(Sfx.Craft)
         Game.Craft(value.Item2)
         SetState(BoilerplateState.Neutral)
     End Sub

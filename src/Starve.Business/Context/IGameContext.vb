@@ -49,7 +49,7 @@ Public Interface IGameContext
     ReadOnly Property IsDead As Boolean
     ReadOnly Property CanForage As Boolean
     Function GetItemTypeGlyphAndHue(itemType As String) As (Char, Integer)
-    Sub DoForaging(itemType As String)
+    Function DoForaging(itemType As String) As Boolean
     ReadOnly Property Foragables As IReadOnlyDictionary(Of String, Integer)
     ReadOnly Property ForageAttempts As Integer
     Function ItemTypeName(itemType As String) As String

@@ -38,7 +38,9 @@ Friend Class ForageState
 
         Dim gridCell = Grid(Column, Row)
 
-        Game.DoForaging(gridCell.Item2)
+        If Game.DoForaging(gridCell.Item2) Then
+            PlaySfx(Sfx.Yoink)
+        End If
 
         If Not String.IsNullOrEmpty(gridCell.Item2) Then
             If Not Tallies.ContainsKey(gridCell.Item2) Then

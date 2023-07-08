@@ -34,7 +34,13 @@ Module Program
             {Sfx.EnemyHit, "Content/EnemyHit.wav"},
             {Sfx.EnemyDeath, "Content/EnemyDeath.wav"},
             {Sfx.Miss, "Content/Miss.wav"},
-            {Sfx.Shucks, "Content/Shucks.wav"}
+            {Sfx.Shucks, "Content/Shucks.wav"},
+            {Sfx.Craft, "Content/Craft.wav"},
+            {Sfx.Eat, "Content/Eat.wav"},
+            {Sfx.Take, "Content/Take.wav"},
+            {Sfx.Tasty, "Content/Tasty.wav"},
+            {Sfx.WooHoo, "Content/WooHoo.wav"},
+            {Sfx.Yoink, "Content/Yoink.wav"}
         }
     Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
         New Dictionary(Of Integer, Color) From

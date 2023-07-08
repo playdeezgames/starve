@@ -23,14 +23,16 @@ Public Module CharacterItemExtensions
         Return RecipeTypes.Descriptors.Any(Function(x) x.CanCraft(character)) AndAlso Not character.Cell.Neighbors.Any(Function(x) x.HasCharacter)
     End Function
     <Extension>
-    Friend Sub DoForaging(character As ICharacter, itemType As String)
+    Friend Function DoForaging(character As ICharacter, itemType As String) As Boolean
         character.ApplyHunger()
         character.Cell.Statistic(ForageAttempts) += 1
         If ItemTypes.All.Contains(itemType) Then
             character.Cell.Statistic(ForagingWeight(itemType)) -= 1
             character.AddItem(ItemInitializer.CreateItem(character.World, itemType))
+            Return True
         End If
-    End Sub
+        Return False
+    End Function
     <Extension>
     Friend Function CanPickUp(character As ICharacter) As Boolean
         Return character.Cell.HasItems AndAlso Not character.Cell.Neighbors.Any(Function(x) x.HasCharacter)

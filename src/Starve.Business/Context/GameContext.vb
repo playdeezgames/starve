@@ -258,7 +258,7 @@ Public Class GameContext
 
     Public Sub Equip(item As IItem) Implements IGameContext.Equip
         Avatar.Equip(item.ItemType.ToItemTypeDescriptor.EquipSlotType, item)
-        World.CreateMessage().AddLine(LightGray, $"{Avatar.Name} equips {item.Name}.")
+        World.CreateMessage().AddLine(LightGray, $"{Avatar.Name} equips {item.Name}.").SetSfx(Sfx.WooHoo)
     End Sub
 
     Public Sub Unequip() Implements IGameContext.Unequip
@@ -288,9 +288,9 @@ Public Class GameContext
         Return (itemType.ToItemTypeDescriptor.Glyph, itemType.ToItemTypeDescriptor.Hue)
     End Function
 
-    Public Sub DoForaging(itemType As String) Implements IGameContext.DoForaging
-        Avatar.DoForaging(itemType)
-    End Sub
+    Public Function DoForaging(itemType As String) As Boolean Implements IGameContext.DoForaging
+        Return Avatar.DoForaging(itemType)
+    End Function
 
     Public Function ItemTypeName(itemType As String) As String Implements IGameContext.ItemTypeName
         Return itemType.ToItemTypeDescriptor.Name

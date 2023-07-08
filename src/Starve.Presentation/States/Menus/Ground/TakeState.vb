@@ -5,6 +5,7 @@
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, Integer))
+        PlaySfx(Sfx.Take)
         Game.TakeItems(value.Item2)
         SetState(GameState.Ground)
     End Sub
@@ -17,7 +18,10 @@
     Public Overrides Sub OnStart()
         Dim itemCount = Game.GroundItemCountByName(Game.ItemName)
         If itemCount <= 1 Then
-            Game.TakeItems(itemCount)
+            If itemCount > 0 Then
+                PlaySfx(Sfx.Take)
+                Game.TakeItems(itemCount)
+            End If
             SetState(GameState.Ground)
             Return
         End If
