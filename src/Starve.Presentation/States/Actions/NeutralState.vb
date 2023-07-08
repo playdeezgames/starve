@@ -30,6 +30,7 @@ Friend Class NeutralState
             End If
         End If
         If Game.IsDead Then
+            Game.ClearTargetCell()
             SetState(GameState.Dead)
             Return
         End If

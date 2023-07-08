@@ -49,8 +49,8 @@ Friend Module ItemTypes
                     equipSlotType:=EquipSlotTypes.Shield,
                     statistics:=New Dictionary(Of String, Integer) From
                     {
-                        {StatisticTypes.Durability, 125},
-                        {StatisticTypes.MaximumDurability, 125},
+                        {StatisticTypes.Durability, 50},
+                        {StatisticTypes.MaximumDurability, 50},
                         {StatisticTypes.MinimumDefend, 10},
                         {StatisticTypes.MaximumDefend, 10}
                     })
@@ -60,7 +60,8 @@ Friend Module ItemTypes
                 New ItemTypeDescriptor(
                     "Bandage",
                     ChrW(&H57),
-                    Hue.Tan, verbTypes:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    Hue.Tan,
+                    verbTypes:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
                     {
                         {VerbTypes.Apply, AddressOf GenericApply}
                     },
@@ -74,7 +75,15 @@ Friend Module ItemTypes
                 New ItemTypeDescriptor(
                     "Moss",
                     ChrW(&H96),
-                    Hue.Cyan)
+                    Hue.Cyan,
+                    verbTypes:=New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    {
+                        {VerbTypes.Apply, AddressOf GenericApply}
+                    },
+                    statistics:=New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.Health, 5}
+                    })
             },
             {
                 Twine,
@@ -129,8 +138,8 @@ Friend Module ItemTypes
                     equipSlotType:=EquipSlotTypes.Weapon,
                     statistics:=New Dictionary(Of String, Integer) From
                     {
-                        {StatisticTypes.Durability, 250},
-                        {StatisticTypes.MaximumDurability, 250},
+                        {StatisticTypes.Durability, 125},
+                        {StatisticTypes.MaximumDurability, 125},
                         {StatisticTypes.MinimumAttack, 15},
                         {StatisticTypes.MaximumAttack, 15}
                     })
