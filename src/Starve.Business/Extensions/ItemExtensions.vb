@@ -15,15 +15,15 @@ Public Module ItemExtensions
         Return item.ItemType.ToItemTypeDescriptor.Name
     End Function
     <Extension>
-    Public Function VerbTypes(item As IItem) As IEnumerable(Of String)
+    Friend Function VerbTypes(item As IItem) As IEnumerable(Of String)
         Return item.ItemType.ToItemTypeDescriptor.AllVerbTypes
     End Function
     <Extension>
-    Public Sub DoVerb(item As IItem, verbType As String, character As ICharacter)
+    Friend Sub DoVerb(item As IItem, verbType As String, character As ICharacter)
         item.ItemType.ToItemTypeDescriptor.VerbTypes(verbType).Invoke(character, item)
     End Sub
     <Extension>
-    Public Function CanEquip(item As IItem) As Boolean
+    Friend Function CanEquip(item As IItem) As Boolean
         Return item.ItemType.ToItemTypeDescriptor.CanEquip
     End Function
     <Extension>
@@ -39,11 +39,11 @@ Public Module ItemExtensions
         Return item.Statistic(StatisticTypes.MaximumDurability)
     End Function
     <Extension>
-    Public Function MinimumAttack(item As IItem) As Integer
+    Friend Function MinimumAttack(item As IItem) As Integer
         Return item.TryGetStatistic(StatisticTypes.MinimumAttack)
     End Function
     <Extension>
-    Public Function MaximumAttack(item As IItem) As Integer
+    Friend Function MaximumAttack(item As IItem) As Integer
         Return item.TryGetStatistic(StatisticTypes.MaximumAttack)
     End Function
     <Extension>
@@ -51,11 +51,11 @@ Public Module ItemExtensions
         Return If(item.HasStatistic(statisticType), item.Statistic(statisticType), defaultValue)
     End Function
     <Extension>
-    Public Function MinimumDefend(item As IItem) As Integer
+    Friend Function MinimumDefend(item As IItem) As Integer
         Return item.TryGetStatistic(StatisticTypes.MinimumDefend)
     End Function
     <Extension>
-    Public Function MaximumDefend(item As IItem) As Integer
+    Friend Function MaximumDefend(item As IItem) As Integer
         Return item.TryGetStatistic(StatisticTypes.MaximumDefend)
     End Function
     <Extension>
