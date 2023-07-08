@@ -1,7 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Starve.Persistence
 
-Public Module TerrainTypes
+Friend Module TerrainTypes
     Friend Const Grass = "Grass"
     Friend Const Tree = "Tree"
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, TerrainTypeDescriptor) =
@@ -47,7 +47,7 @@ Public Module TerrainTypes
     End Sub
 
     <Extension>
-    Public Function ToTerrainTypeDescriptor(terrainType As String) As TerrainTypeDescriptor
+    Friend Function ToTerrainTypeDescriptor(terrainType As String) As TerrainTypeDescriptor
         Return descriptors(terrainType)
     End Function
     Friend ReadOnly Property All As IEnumerable(Of String)
