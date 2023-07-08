@@ -14,11 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_STUFF", "_STUFF", "{11358A
 		..\shippit.sh = ..\shippit.sh
 	EndProjectSection
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.UI", "..\abettor-of-splorr\src\AOS.UI\AOS.UI.vbproj", "{0E6494E8-72A7-4D27-BC6F-8C89D963827D}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.UI", "AOS.UI\AOS.UI.vbproj", "{0E6494E8-72A7-4D27-BC6F-8C89D963827D}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.Presentation", "..\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj", "{F24481A7-245C-4E57-A283-71E1740C37C2}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.Presentation", "AOS.Presentation\AOS.Presentation.vbproj", "{F24481A7-245C-4E57-A283-71E1740C37C2}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "SPLORR.Game", "..\abettor-of-splorr\src\SPLORR.Game\SPLORR.Game.vbproj", "{8B935BCF-90CB-41F1-8B09-545C2D455038}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "SPLORR.Game", "SPLORR.Game\SPLORR.Game.vbproj", "{8B935BCF-90CB-41F1-8B09-545C2D455038}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodules", "Submodules", "{1B5D884B-129E-42F4-9954-761F77E2781B}"
 EndProject
