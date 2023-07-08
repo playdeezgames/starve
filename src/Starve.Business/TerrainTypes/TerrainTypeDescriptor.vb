@@ -1,16 +1,16 @@
 ﻿Imports Starve.Persistence
 
-Public Class TerrainTypeDescriptor
+Friend Class TerrainTypeDescriptor
     Inherits VisibleEntityDescriptor
     Friend ReadOnly Property Tenable As Boolean
-    Public ReadOnly Property CanInteract As Boolean
+    Friend ReadOnly Property CanInteract As Boolean
         Get
             Return VerbTypes.Any
         End Get
     End Property
-    Public ReadOnly Property CanForage As Boolean
+    Friend ReadOnly Property CanForage As Boolean
     Friend ReadOnly Property VerbTypes As IReadOnlyDictionary(Of String, Action(Of ICharacter, ICell))
-    Public ReadOnly Property AllVerbs As IEnumerable(Of String)
+    Friend ReadOnly Property AllVerbs As IEnumerable(Of String)
         Get
             Return VerbTypes.Keys
         End Get
